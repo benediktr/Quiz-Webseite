@@ -1,0 +1,10 @@
+INSERT INTO `customers`(`id`, `name`, `email`, `salary`, `city`) VALUES (1,'Hugo','hugo@gmail.com',2000,'Berlin');
+SELECT * FROM `customers` ;
+INSERT INTO `customers`(`id`, `name`, `email`, `salary`, `city`) VALUES (2,'Peter','peter@gmail.com',1500,'Stuttgart');
+INSERT INTO `customers`(`id`, `name`, `email`, `salary`, `city`) VALUES (3,'Hans','hans@gmail.com',1200,'Hamburg');
+INSERT INTO `customers`(`id`, `name`, `email`, `salary`, `city`) VALUES (4,'Anna','anna@gmail.com',2500,'Stuttgart');
+INSERT INTO `customers`(`id`, `name`, `email`, `salary`, `city`) VALUES (5,'Otto','otto@gmail.com',1000,'Stuttgart');
+INSERT INTO `customers`(`id`, `name`, `email`, `salary`, `city`) VALUES (6,'Lisa','lisa@gmail.com',3000,'Muenchen');
+UPDATE `customers` SET `salary`= 1600 WHERE id=5;
+SELECT * FROM `customers` ;
+DELETE FROM `customers` WHERE salary=1600 ;
