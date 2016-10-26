@@ -12,4 +12,4 @@ $name = $_SESSION['username'];
 echo "Du heißt immer noch: $name
 <a href=\"logout.php\">Logout</a>";
 ?>
-Quelle: http://www.php-einfach.de/php-tutorial/php-sessions/
+<!-- Quelle: http://www.php-einfach.de/php-tutorial/php-sessions/ -->
