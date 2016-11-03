@@ -17,7 +17,7 @@ if(isset($_GET['login'])){
 	$result = $statement->execute(array('username' => $username));
 	$user  = $statement->fetch();
 	if($user == false){
-		echo 'Diese Username ist nicht vorhanden!';
+		echo 'Dieser Username ist nicht vorhanden!';
 		$error_exist = true;
 	}
 	if ($user !== false && password_verify($password, $user['password'])) {
