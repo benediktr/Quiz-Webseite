@@ -95,5 +95,4 @@ E-Mail:<br>
 
 <?php
 }
-//Registrierung
 ?>
