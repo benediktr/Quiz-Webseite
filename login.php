@@ -20,9 +20,9 @@ if(isset($_GET['login'])){
 		echo 'Diese Username ist nicht vorhanden!';
 		$error_exist = true;
 	}
-	if ($user !== false && crypt($user['password'], $password) == $user['password']) {
+	if ($user !== false && password_verify($password, $user['password'])) {
 		$_SESSION['userid'] = $user['id'];
-		die('Login erfolgreich! Weiter zur <a href="index2.php">Startseite</a>');
+		die('Login erfolgreich! Weiter zur <a href="index2.html">Startseite</a>');
 	}
 	else {
 		$error_message = 'Username oder Passwort ist ungültig!';
