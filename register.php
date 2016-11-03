@@ -36,7 +36,7 @@ if(isset($_GET['register'])) {
 		$error = true;
 	}
 	if($password != $password2) {
-		echo 'Die Passwörter müssen übereinstimmen<br>';
+		echo 'Die Passwörter müssen übereinstimmen!<br>';
 		$error = true;
 	}
 	
