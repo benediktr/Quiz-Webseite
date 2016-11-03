@@ -47,7 +47,8 @@ if(isset($error_message)) {
 Username: <br>
 <input type = "name" size= "30" maxlength ="15" name = "username"><br>
  Passwort: <br>
-<input type = "password" size="30" maxlength ="30" name = "password"><br><br>
+<input type = "password" size="30" maxlength ="30" name = "password"><br>
+<label><input type="checkbox" name="stay_online" value="1"> Angemeldet bleiben</label><br><br>
 <input type = "submit" value ="Login">
 </form>
 </html>
