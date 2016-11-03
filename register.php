@@ -69,7 +69,7 @@ if(isset($_GET['register'])) {
 		$result = $statement->execute(array('username' => $username, 'email' => $email, 'password' => $password_hash));
 		
 		if($result) {		
-			echo 'Sie haben erfolgreich einen Account erstellt! <a href="login.php">Weiter zum Login</a>';
+			die ('Sie haben erfolgreich einen Account erstellt! <a href="login.php">Weiter zum Login</a>');
 			$show_formular = false;
 		} else {
 			echo 'Fehler bei der Registrierung!<br>';
