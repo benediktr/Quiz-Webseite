@@ -29,15 +29,15 @@ if(isset($_GET['register'])) {
 	
 	if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
 		echo 'Bitte geben Sie eine gültige E-Mail-Adresse ein!<br>';
-		$error = true;
+		$error_exist = true;
 	} 	
 	if(strlen($password) == 0) {
 		echo 'Bitte geben Sie ein Passwort!<br>';
-		$error = true;
+		$error_exist = true;
 	}
 	if($password != $password2) {
 		echo 'Die Passwörter müssen übereinstimmen!<br>';
-		$error = true;
+		$error_exist = true;
 	}
 	
 	if(!$error_exist) { 
