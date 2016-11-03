@@ -30,10 +30,10 @@ if(isset($_GET['reset'])) {
 		$result = $statement->execute(array('password' => $password_hash));
 		
 		if($result) {		
-			die ('Sie haben erfolgreich einen Account erstellt! <a href="login.php">Weiter zum Login</a>');
+			die ('Sie haben erfolgreich ihr Passwort geändert! <a href="index2.php">Weiter zur Startseite</a>');
 			$show_formular = false;
 		} else {
-			echo 'Fehler bei der Registrierung!<br>';
+			echo 'Fehler bei der Änderung ihres Passworts!<br>';
 		}
 	} 
 }
