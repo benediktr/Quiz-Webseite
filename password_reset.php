@@ -61,11 +61,3 @@ Passwort:<br>
 <?php
 }
 ?>
-Passwort:<br>
-<input type = "password" size = "30" maxlength = "200" name = "new_password2"><br><br>
-<input type = "submit" value = "Passwort Ändern">
-</form>
-
-<?php
-}
-?>
