@@ -8,7 +8,7 @@ body {
 
 #background {
 	text-align: center;
-	background-color: #32CD32;
+	background-color: lightgrey;
 	/*border-bottom: 1px solid black;*/
 	position: fixed;
 	width: 100%;
