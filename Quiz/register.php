@@ -2,9 +2,8 @@
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
   
 <?php
-	require_once('functions.php'); 
+	require 'database.php'; 
 	session_start();
-	$db = connect_to_db('localhost','user','admin','12345' );
 ?> 
   
 <?php
@@ -98,9 +97,9 @@
 			E-Mail<br>
 			<input type = "email" placeholder = "deine E-Mail-Adresse" size = "30" maxlength = "200" name = "email"><br><br>
 			<input type = "submit" id = "registerGross" value = "Registrieren">
-			</div>
+		
 		</form>
-		<div class = "zentrieren">
+		
 		<p>
 			Bereits registriert?
 		</p>

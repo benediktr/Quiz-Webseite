@@ -2,9 +2,8 @@
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
   
 <?php
-	require_once('functions.php'); 
+	require 'functions.php'; 
 	session_start();
-	$db = connect_to_db('localhost', 'quiz-project', 'quiz-project', 'project');
 ?>
   
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" >

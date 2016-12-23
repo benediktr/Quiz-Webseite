@@ -3,8 +3,7 @@
   
 <?php
 	session_start();
-	require_once('functions.php');
-	$db = connect_to_db('localhost','user','admin','12345' );
+	require 'database.php';
 ?>
   
   
