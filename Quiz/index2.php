@@ -2,8 +2,31 @@
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
   
 <?php
-	require 'functions.php'; 
+	require 'database.php'; 
 	session_start();
+	
+	if(!isset($_SESSION['userid'])) {
+		die('Bitte zuerst <a href="login.php">einloggen</a>');
+	}
+ 
+	$userid = $_SESSION['userid'];
+	
+	// Username rausfiltern
+	
+	$data = $db->prepare('SELECT username FROM user_accounts WHERE id = :id');
+	$data->bindParam(':id', $_SESSION['userid']);
+	$data->execute();
+	
+	$datas = $data->fetch(PDO::FETCH_ASSOC);
+	
+	$user = NULL;
+	
+	if( count($datas) > 0 ) {
+		$user = $datas;
+		$username = $user['username'];
+	}	
+
+
 ?>
   
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" >
@@ -15,102 +38,101 @@
 	</head>
 	<body>
 		<div id = "background">
-		<span id ="heading">Startseite</span>
+		<span id ="heading"><?php echo "Willkommen ".$username; ?></span>
 		</div>
 		<br />
 		<br />
 		<br />
 		<br />
 		<br />
-		<p id = "start" class = "zentriert">
-		Quiz-Webseite, Projektarbeit von Benedikt Ross & Lukas Keller <br />
-		Herzlich Willkommen [user] <br />
-		</p>
-		<a class = "zentrieren" href = "logout.php">Ausloggen</a>
+		<br />
+		<a href = "logout.php">Ausloggen</a>
+		<br />
+		<div class = "zentriert">Themengebiete</div>
+		<div>
+		<ul>
+			<input type="radio" name="slider" id="1" class="slider" checked>
+			<input type="radio" name="slider" id="2" class="slider">
+			<input type="radio" name="slider" id="3" class="slider">
+			<input type="radio" name="slider" id="4" class="slider">
+			<input type="radio" name="slider" id="5" class="slider">
+			<input type="radio" name="slider" id="7" class="slider">
+			<input type="radio" name="slider" id="8" class="slider">
+			<input type="radio" name="slider" id="9" class="slider">
+			<input type="radio" name="slider" id="10" class="slider">
+			<input type="radio" name="slider" id="11" class="slider">
+			<input type="radio" name="slider" id="12" class="slider">
+			<input type="radio" name="slider" id="13" class="slider">
+			<li class="slide1">
+			<img src="images/topic_art_design.jpg">
+			<h2>Kunst</h2>
+			</li>
+			<li class="slide1">
+			<img src="images/topic_bible.jpg">
+			<h2>Religion</h2>
+			</li>
+			<li class="slide1">
+			<img src="images/topic_eating_drinking.jpg">
+			<h2>Essen</h2>
+			</li>
+			<li class="slide1">
+			<img src="images/topic_freetime_sport.jpg">
+			<h2>Sport</h2>
+			</li>
+			<li class="slide1">
+			<img src="images/topic_geographie.jpg">
+			<h2>Kulturen</h2>
+			</li>
+			<li class="slide1">
+			<img src="images/topic_history.jpg">
+			<h2>Geschichte</h2>
+			</li>
+			<li class="slide1">
+			<img src="images/topic_movies.jpg">
+			<h2>Filme</h2>
+			</li>
+			<li class="slide1">
+			<img src="images/topic_music.jpg">
+			<h2>Musik</h2>
+			</li>
+			<li class="slide1">
+			<img src="images/topic_nature_animals.jpg">
+			<h2>Natur</h2>
+			</li>
+			<li class="slide1">
+			<img src="images/topic_politics.jpg">
+			<h2>Politik</h2>
+			</li>
+			<li class="slide1">
+			<img src="images/topic_science.jpg">
+			<h2>Wissenschaft</h2>
+			</li>
+			<li class="slide1">
+			<img src="images/topic_technology.jpg">
+			<h2>Technologien</h2>
+			</li>
+			<li class="slide1">
+			<img src="images/topic_tv.jpg">
+			<h2>Serien</h2>
+			</li>
+		</ul>
+		</div>
 		
-		<div class="card">
-		  	<img scr="images/topic_bible.jpg" alt="Bibel">
-			<div class="container">
-				<h4>Bibel</h4>
-			</div>
+		<div class="selector">
+			<label for="1"></label>
+			<label for="2"></label>
+			<label for="3"></label>
+			<label for="4"></label>
+			<label for="5"></label>
+			<label for="6"></label>
+			<label for="7"></label>
+			<label for="8"></label>
+			<label for="9"></label>
+			<label for="10"></label>
+			<label for="11"></label>
+			<label for="12"></label>
+			<label for="13"></label>
 		</div>
-		<div class="card">
-		  	<img scr="images/topic_art_design.jpg" alt="Kunst und Design">
-			<div class="container">
-				<h4>Kunst und Design</h4>
-			</div>
-		</div>
-		<div class="card">
-		  	<img scr="images/topic_eating_drinking.jpg" alt="Essen und Trinken">
-			<div class="container">
-				<h4>Essen und Trinken</h4>
-			</div>
-		</div>
-		<div class="card">
-		  	<img scr="images/topic_freetime_sport.jpg" alt="Freizeit und Sport">
-			<div class="container">
-				<h4>Freizeit und Sport</h4>
-			</div>
-		</div>
-		<div class="card">
-		  	<img scr="images/topic_geographie.jpg" alt="Laender und Kulturen">
-			<div class="container">
-				<h4>L&auml;nder und Kulturen</h4>
-			</div>
-		</div>
-		<div class="card">
-		  	<img scr="images/topic_history.jpg" alt="Geschichte">
-			<div class="container">
-				<h4>Geschichte</h4>
-			</div>
-		</div>
-		<div class="card">
-		  	<img scr="images/topic_movies.jpg" alt="Filme">
-			<div class="container">
-				<h4>Filme</h4>
-			</div>
-		</div>
-		<div class="card">
-		  	<img scr="images/topic_music.jpg" alt="Musik">
-			<div class="container">
-				<h4>Musik</h4>
-			</div>
-		</div>
-		<div class="card">
-		  	<img scr="images/topic_nature_animals.jpg" alt="Natur und Tiere">
-			<div class="container">
-				<h4>Natur und Tiere</h4>
-			</div>
-		</div>
-		<div class="card">
-		  	<img scr="images/topic_bible.jpg" alt="Bibel">
-			<div class="container">
-				<h4>Bibel</h4>
-			</div>
-		</div>
-		<div class="card">
-		  	<img scr="images/topic_politics.jpg" alt="Politik">
-			<div class="container">
-				<h4>Politik</h4>
-			</div>
-		</div>
-		<div class="card">
-		  	<img scr="images/topic_science.jpg" alt="Wissenschaft">
-			<div class="container">
-				<h4>Wissenschaft</h4>
-			</div>
-		</div>
-		<div class="card">
-		  	<img scr="images/topic_technology.jpg" alt="Technik">
-			<div class="container">
-				<h4>Technik</h4>
-			</div>
-		</div>
-		<div class="card">
-		  	<img scr="images/topic_tv.jpg" alt="Serien">
-			<div class="container">
-				<h4>Serien</h4>
-			</div>
-		</div>
+			
 	</body>
 </html>

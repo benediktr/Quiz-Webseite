@@ -5,7 +5,13 @@
 	$login = 'admin';
 	$pass = '12345';
 
-	$db = new PDO("mysql:host=$server;dbname=$db_name", $login, $pass);
+	try { 
+		$db = new PDO("mysql:host=$server;dbname=$db_name", $login, $pass);
+	}
+	catch(PDOException $e) {
+		exit('Unable to connect Database.');
+	}
+	
 	if ( $db ) {
 		return $db;
 	}

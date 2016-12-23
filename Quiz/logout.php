@@ -25,6 +25,7 @@
 		Sie werden nun ausgeloggt
 		</p>';
 		?>
+		<a href = "index.html">Startseite</a>
 		<br />
 	</body>
 </html>
