@@ -1,6 +1,6 @@
 body {
-	/*padding: 0;
-	margin: 0;*/
+	padding: 0;
+	margin: 0;
 	font-family: 'Montserrat', sans-serif;
 	margin-top: 0;
 }
@@ -80,7 +80,7 @@ input[type=name], input[type=password], input[type=email] {
 #registerGross {
 	font-family: 'Montserrat', sans-serif;
     background-color: #f44336;
-    color: white;
+    color: black;
     padding: 14px 20px;
     margin: 8px 0;
     border: none;
