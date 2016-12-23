@@ -27,5 +27,90 @@
 		Herzlich Willkommen [user] <br />
 		</p>
 		<a class = "zentrieren" href = "logout.php">Ausloggen</a>
+		
+		<div class="card">
+		  	<img scr="images/topic_bible.jpg" alt="Bibel">
+			<div class="container">
+				<h4>Bibel</h4>
+			</div>
+		</div>
+		<div class="card">
+		  	<img scr="images/topic_art_design.jpg" alt="Kunst und Design">
+			<div class="container">
+				<h4>Kunst und Design</h4>
+			</div>
+		</div>
+		<div class="card">
+		  	<img scr="images/topic_eating_drinking.jpg" alt="Essen und Trinken">
+			<div class="container">
+				<h4>Essen und Trinken</h4>
+			</div>
+		</div>
+		<div class="card">
+		  	<img scr="images/topic_freetime_sport.jpg" alt="Freizeit und Sport">
+			<div class="container">
+				<h4>Freizeit und Sport</h4>
+			</div>
+		</div>
+		<div class="card">
+		  	<img scr="images/topic_geographie.jpg" alt="Laender und Kulturen">
+			<div class="container">
+				<h4>L&auml;nder und Kulturen</h4>
+			</div>
+		</div>
+		<div class="card">
+		  	<img scr="images/topic_history.jpg" alt="Geschichte">
+			<div class="container">
+				<h4>Geschichte</h4>
+			</div>
+		</div>
+		<div class="card">
+		  	<img scr="images/topic_movies.jpg" alt="Filme">
+			<div class="container">
+				<h4>Filme</h4>
+			</div>
+		</div>
+		<div class="card">
+		  	<img scr="images/topic_music.jpg" alt="Musik">
+			<div class="container">
+				<h4>Musik</h4>
+			</div>
+		</div>
+		<div class="card">
+		  	<img scr="images/topic_nature_animals.jpg" alt="Natur und Tiere">
+			<div class="container">
+				<h4>Natur und Tiere</h4>
+			</div>
+		</div>
+		<div class="card">
+		  	<img scr="images/topic_bible.jpg" alt="Bibel">
+			<div class="container">
+				<h4>Bibel</h4>
+			</div>
+		</div>
+		<div class="card">
+		  	<img scr="images/topic_politics.jpg" alt="Politik">
+			<div class="container">
+				<h4>Politik</h4>
+			</div>
+		</div>
+		<div class="card">
+		  	<img scr="images/topic_science.jpg" alt="Wissenschaft">
+			<div class="container">
+				<h4>Wissenschaft</h4>
+			</div>
+		</div>
+		<div class="card">
+		  	<img scr="images/topic_technology.jpg" alt="Technik">
+			<div class="container">
+				<h4>Technik</h4>
+			</div>
+		</div>
+		<div class="card">
+		  	<img scr="images/topic_tv.jpg" alt="Serien">
+			<div class="container">
+				<h4>Serien</h4>
+			</div>
+		</div>
 	</body>
 </html>
