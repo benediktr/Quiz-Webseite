@@ -58,7 +58,7 @@
 			$statement = $db->prepare("INSERT INTO user_accounts (username, email, password) VALUES (:username, :email, :password)");
 			$result = $statement->execute(array('username' => $username, 'email' => $email, 'password' => $password_hash));
 		
-			if($result) {		
+			if($result) {	
 				die ('Sie haben erfolgreich einen Account erstellt! <a href="login.php">Weiter zum Login</a>');
 				$show_formular = false;
 			} else {

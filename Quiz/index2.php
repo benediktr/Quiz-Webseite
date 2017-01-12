@@ -45,10 +45,22 @@
 		<br />
 		<br />
 		<br />
+		<div>
+			<form action = "stats.php">
+				<button type="submit" style = "position: absolute; margin-left: 15%; font-family: 'Montserrat', sans-serif; background-color: #4CAF50; border: none; cursor: pointer;">Profil anzeigen</button>
+			</form>
+			<form action = "game.php">
+				<button type="submit" style = "position: absolute; margin-left: 47%; font-family: 'Montserrat', sans-serif; background-color: #4CAF50; border: none; cursor: pointer;">Quiz starten</button>
+			</form>
+			<form action = "question.php">
+				<button type="submit" style = "position: absolute; margin-left: 75%; font-family: 'Montserrat', sans-serif; background-color: #4CAF50; border: none; cursor: pointer;">Fragen hinzufügen</button>
+			</form>
+		
+		</div>
+		
+		<a href = "logout.php" style=" position:fixed; top:11px; right:10px;">Ausloggen</a>
 		<br />
-		<a href = "logout.php">Ausloggen</a>
-		<br />
-		<div class = "zentriert">Themengebiete</div>
+		<div class = "zentrieren"><h3 class = "titel">Vorschau Themengebiete</h3></div>
 		<div>
 		<ul>
 			<input type="radio" name="slider" id="1" class="slider" checked>
@@ -56,6 +68,7 @@
 			<input type="radio" name="slider" id="3" class="slider">
 			<input type="radio" name="slider" id="4" class="slider">
 			<input type="radio" name="slider" id="5" class="slider">
+			<input type="radio" name="slider" id="6" class="slider">
 			<input type="radio" name="slider" id="7" class="slider">
 			<input type="radio" name="slider" id="8" class="slider">
 			<input type="radio" name="slider" id="9" class="slider">
@@ -69,7 +82,7 @@
 			</li>
 			<li class="slide1">
 			<img src="images/topic_bible.jpg">
-			<h2>Religion</h2>
+			<h2>Bibel</h2>
 			</li>
 			<li class="slide1">
 			<img src="images/topic_eating_drinking.jpg">

@@ -19,6 +19,33 @@ body {
 	
 }
 
+#profilButton {
+	position: absolute;
+	margin-left: 25%;
+	font-family: 'Montserrat', sans-serif;
+	background-color: #4CAF50;
+	border: none;
+    cursor: pointer;
+}
+
+#quizStarten {
+	position: absolute;
+	margin-left: 50%;
+	font-family: 'Montserrat', sans-serif;
+	background-color: #4CAF50;
+	border: none;
+    cursor: pointer;
+}
+
+#frageHinzufügen {
+	position: absolute;
+	margin-left: 50%;
+	font-family: 'Montserrat', sans-serif;
+	background-color: #4CAF50;
+	border: none;
+    cursor: pointer;
+}
+
 #button {
 	font-family: 'Montserrat', sans-serif;
     background-color: #4CAF50;
@@ -54,6 +81,7 @@ input[type=name], input[type=password], input[type=email] {
 #heading{
 	font-size: 30px;
 	text-align: center;
+	position: absolute;
 	
 }
 
@@ -76,10 +104,16 @@ input[type=name], input[type=password], input[type=email] {
 	text-align: center;
 }
 
+.titel {
+	font-weight: bold;
+}
+
 .zentrieren {
 	text-align: center;
 	margin-left: auto;
 	margin-right: auto;
+	position: center;
+	display: block;
 }
 
 #registerGross {
@@ -137,6 +171,16 @@ img {
 	position: relative;
 	border-radius: 5px 5px 0 0;
 }
+
+#logout{
+	position: absolute;
+		
+}
+
+.break {
+	height: 50px;
+}
+
 h2 {
 	position: absolute;
 	top: 250px;
@@ -173,4 +217,5 @@ label {
 
 input[type=radio] {
 	display: none;
+	cursor: pointer;
 }
