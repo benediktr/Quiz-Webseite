@@ -47,21 +47,22 @@
 		<br />
 		<div>
 			<form action = "stats.php">
-				<button type="submit" style = "position: absolute; margin-left: 15%; font-family: 'Montserrat', sans-serif; background-color: #4CAF50; border: none; cursor: pointer;">Profil anzeigen</button>
+				<button type="submit" style = "font-size: 20px; width: 15%; padding: 5px; position: absolute; margin-left: 25%; font-family: 'Montserrat', sans-serif; background-color: #4CAF50; border: none; cursor: pointer;">Profil anzeigen</button>
 			</form>
 			<form action = "game.php">
-				<button type="submit" style = "position: absolute; margin-left: 47%; font-family: 'Montserrat', sans-serif; background-color: #4CAF50; border: none; cursor: pointer;">Quiz starten</button>
+				<button type="submit" style = "font-size: 20px; width: 15%; padding: 5px; position: absolute; margin-left: 42.5%; font-family: 'Montserrat', sans-serif; background-color: #4CAF50; border: none; cursor: pointer;">Quiz starten</button>
 			</form>
 			<form action = "question.php">
-				<button type="submit" style = "position: absolute; margin-left: 75%; font-family: 'Montserrat', sans-serif; background-color: #4CAF50; border: none; cursor: pointer;">Fragen hinzufügen</button>
+				<button type="submit" style = "font-size: 20px; width: 15%; padding: 5px; position: absolute; margin-left: 60%; font-family: 'Montserrat', sans-serif; background-color: #4CAF50; border: none; cursor: pointer;">Fragen hinzufügen</button>
 			</form>
 		
 		</div>
 		
 		<a href = "logout.php" style=" position:fixed; top:11px; right:10px;">Ausloggen</a>
 		<br />
+		<br />
 		<div class = "zentrieren"><h3 class = "titel">Vorschau Themengebiete</h3></div>
-		<div>
+		<div class = "zentrieren">
 		<ul>
 			<input type="radio" name="slider" id="1" class="slider" checked>
 			<input type="radio" name="slider" id="2" class="slider">

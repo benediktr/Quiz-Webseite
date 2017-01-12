@@ -58,8 +58,16 @@
 			$statement = $db->prepare("INSERT INTO user_accounts (username, email, password) VALUES (:username, :email, :password)");
 			$result = $statement->execute(array('username' => $username, 'email' => $email, 'password' => $password_hash));
 		
-			if($result) {	
-				die ('Sie haben erfolgreich einen Account erstellt! <a href="login.php">Weiter zum Login</a>');
+			if($result) {
+				$statement = $db->prepare("SELECT * FROM user_accounts WHERE username = :username");
+				$result = $statement->execute(array('username' => $username));
+				$user  = $statement->fetch();
+				$_SESSION['userid'] = $user['id'];
+				$id = $user['id'];
+				echo "Ihre User ID: $id<br />";
+				$idscore = $db->prepare("INSERT INTO user_scores (userid, total_score, s_bible, s_sport_freetime, s_eating_drinking, s_geography_countries, s_movies, s_time_history, s_art_design, s_music, s_series, s_politics, s_science, s_animals_nature, s_technology) VALUES (:1, :0, :0, :0, :0, :0, :0, :0, :0, :0, :0, :0, :0, :0, :0)");
+				$resultscore = $idscore->execute(array('userid' => $id, 'total_score' => 0, 's_bible' => 0, 's_sport_freetime' => 0, 's_eating_drinking' => 0, 's_geography_countries' => 0, 's_movies' => 0, 's_time_history' => 0, 's_art_design' => 0, 's_music' => 0, 's_series' => 0, 's_politics' => 0, 's_science' => 0, 's_animals_nature' => 0, 's_technology' => 0));
+				die ('Sie haben erfolgreich einen Account erstellt! <a href="index2.php">Weiter zur Startseite</a>');
 				$show_formular = false;
 			} else {
 				echo 'Fehler bei der Registrierung!<br>';
