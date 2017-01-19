@@ -1,0 +1,234 @@
+.background {
+	/* Für die Startseite */
+	background-image: url("../images/background.png");
+	padding: 0;
+	margin: 0;
+}
+
+.titel {
+	/* Den jeweiligen Titel der Seite, derzeitig nicht genutzt*/
+	color: white;
+	font-family: 'Lusitana', serif;
+	font-weight: 700;
+	font-size: 60px;
+	text-shadow: 1px 2px #b67930;
+	text-align: center;
+}
+
+.text {
+	/* Allgemeine Formatierung für den Text */
+	font-family: 'Montserrat', sans-serif;
+	color: white;
+	text-align: center;
+}
+
+nav {
+	/* Naviationsleiste */
+	max-width: 960px;
+	mask-image: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, #ffffff 25%, #ffffff 75%, rgba(255, 255, 255, 0) 100%);
+	margin: 0 auto;
+	padding: 10px 0;
+}
+
+nav ul {
+	/* Naviationsleiste */
+	text-align: center;
+	background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.2) 25%, rgba(255, 255, 255, 0.2) 75%, rgba(255, 255, 255, 0) 100%);
+	box-shadow: 0 0 25px rgba(0, 0, 0, 0.1), inset 0 0 1px rgba(255, 255, 255, 0.6);
+}
+
+nav ul li {
+	/* Naviationsleiste */
+	display: inline-block;
+}
+
+nav ul li a {
+	/* Naviationsleiste */
+	padding: 18px;
+	font: 14px Oswald;
+	text-transform:uppercase;
+	color: red;
+	text-decoration: none;
+	display: block;
+}
+
+nav ul li a:hover {
+	/* Naviationsleiste */
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1), inset 0 0 1px rgba(255, 255, 255, 0.6);
+	background: rgba(255, 255, 255, 0.1);
+	/*color: rgba(0, 35, 122, 0.7);*/
+	color: white;
+}
+
+.green {
+	color: green;
+}
+
+.red {
+	color: red;
+}
+
+/* unvisited link */
+a:link {
+    color: red;
+}
+
+/* visited link */
+a:visited {
+    color: red;
+}
+
+/* mouse over link */
+a:hover {
+    color: lightred;
+}
+
+/* selected link */
+a:active {
+    color: lightred;
+}
+
+.selector {
+	text-align: center;
+}
+
+.slider:nth-of-type(1):checked ~ .slide1:nth-of-type(1),
+.slider:nth-of-type(2):checked ~ .slide1:nth-of-type(2),
+.slider:nth-of-type(3):checked ~ .slide1:nth-of-type(3),
+.slider:nth-of-type(4):checked ~ .slide1:nth-of-type(4),
+.slider:nth-of-type(5):checked ~ .slide1:nth-of-type(5),
+.slider:nth-of-type(6):checked ~ .slide1:nth-of-type(6),
+.slider:nth-of-type(7):checked ~ .slide1:nth-of-type(7),
+.slider:nth-of-type(8):checked ~ .slide1:nth-of-type(8),
+.slider:nth-of-type(9):checked ~ .slide1:nth-of-type(9),
+.slider:nth-of-type(10):checked ~ .slide1:nth-of-type(10),
+.slider:nth-of-type(11):checked ~ .slide1:nth-of-type(11),
+.slider:nth-of-type(12):checked ~ .slide1:nth-of-type(12),
+.slider:nth-of-type(13):checked ~ .slide1:nth-of-type(13) {
+	display: inline-block;
+}
+
+input[type=radio] {
+	display: none;
+	cursor: pointer;
+}
+
+.zentrieren {
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+	position: center;
+	display: block;
+}
+
+ul {
+	text-align: center;
+}
+
+li {
+	list-style: none;
+	display: none;
+}
+
+img {
+	width: 800px;
+	height: 600px;
+	position: relative;
+	border-radius: 5px 5px 0 0;
+}
+
+label {
+	background: black;
+    padding: 10px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+h2 {
+	position: absolute;
+	top: 250px;
+	color: #fff;
+	padding: 20px;
+	background-color: #000;
+}
+
+input[type="text"], input[type="email"], input[type="name"], input[type="password"] {
+	width:98%;
+	padding:15px 0px 15px 8px;
+	border-radius:5px;
+	box-shadow:inset 4px 6px 10px -4px rgba(0,0,0,0.3), 0 1px 1px -1px rgba(255,255,255,0.3);
+	background: rgba(0,0,0,.8);
+	border:1px solid rgba(0,0,0,1);
+	margin-bottom:10px;
+	color:red;
+	text-shadow:#000 0px 1px 5px;
+	text-align: center;
+}
+
+.box {
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 2%;
+	width: 28%;
+	box-shadow: 0px 0px 8px #D8D8D8;
+	box-shadow: 5px 5px 20px black;
+	border:0;
+	color: white;
+}
+
+.frageBox {
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 2%;
+	width: 60%;
+	box-shadow: 0px 0px 8px #D8D8D8;
+	box-shadow: 5px 5px 20px black;
+	border:0;
+	color: white;
+}
+
+.button {
+	width: 100%;
+	padding: 15px;
+	border-radius: 5px;
+	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(green), to(darkgreen));
+	background-image: -webkit-linear-gradient(green 0%, darkgreen 100%);
+	background-image: -moz-linear-gradient(green 0%, dargreen 100%);
+	background-image: -o-linear-gradient(green 0%, darkgreen 100%);
+	background-image: linear-gradient(green 0%, darkgreen 100%);
+	font: 14px Oswald;
+	color: white;
+	text-transform: uppercase;
+	text-shadow: #000 0px 1px 5px;
+	border: 1px solid #000;
+	opacity: 0.7;
+	-webkit-box-shadow: 0 8px 6px -6px rgba(0,0,0,0.7);
+	-moz-box-shadow: 0 8px 6px -6px rgba(0,0,0,0.7);
+	box-shadow: 0 8px 6px -6px rgba(0,0,0,0.7);
+	border-top: 1px solid green !important;
+	-webkit-box-reflect: below 0px -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(50%, transparent), to(rgba(255,255,255,0.2)));
+}
+
+.registerButton {
+	width:100%;
+	padding:15px;
+	border-radius:5px;
+	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(red), to(darkred));
+	background-image: -webkit-linear-gradient(red 0%, darkred 100%);
+	background-image: -moz-linear-gradient(red 0%, darkred 100%);
+	background-image: -o-linear-gradient(red 0%, darkred 100%);
+	background-image: linear-gradient(red 0%, darkred 100%);
+	font:14px Oswald;
+	color: white;
+	text-transform:uppercase;
+	text-shadow:#000 0px 1px 5px;
+	border:1px solid #000;
+	opacity:0.7;
+	-webkit-box-shadow: 0 8px 6px -6px rgba(0,0,0,0.7);
+	-moz-box-shadow: 0 8px 6px -6px rgba(0,0,0,0.7);
+	box-shadow: 0 8px 6px -6px rgba(0,0,0,0.7);
+	border-top: 1px solid red !important;
+	-webkit-box-reflect: below 0px -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(50%, transparent), to(rgba(255,255,255,0.2)));
+}
