@@ -1,0 +1,45 @@
+.select-style {
+    border: 1px solid #ccc;
+    width: 200px;
+    border-radius: 3px;
+    overflow: hidden;
+    background: lightblue;
+	text-align: center;
+}
+
+.select-style select {
+    padding: 5px 8px;
+    width: 130%;
+    border: none;
+    box-shadow: none;
+    background: transparent;
+    background-image: none;
+    -webkit-appearance: none;
+	text-align: center;
+}
+
+.select-style select:focus {
+    outline: none;
+	text-align: center;
+}
+#bestenliste_spalte1{
+	position: absolute;
+	top: 50px;
+	margin-left: 25%;
+	width:10%;
+}
+#bestenliste_spalte2{
+	position: absolute;
+	top: 50px;
+	margin-left: 45%;
+	width:10%;
+}
+#bestenliste_spalte3{
+	position: absolute;
+	top: 50px;
+	margin-left: 65%;
+	width:10%;
+}
+
+
+
