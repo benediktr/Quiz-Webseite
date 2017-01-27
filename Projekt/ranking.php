@@ -38,6 +38,25 @@
 		<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet"> 
 	</head>
 	<body class = "background">
+		<nav> <!-- Navigationsleitse -->
+			<ul>
+				<li>
+					<a href="profil.php">Profil</a>
+				</li>
+				<li>
+					<a href="addquestion.php">Fragen hinzuf&uuml;en</a>
+				</li>
+				<li>
+					<a href="play.php">Spiel Starten</a>
+				</li>
+				<li>
+					<a href="ranking.php">Rangliste</a>
+				</li>
+								<li>
+					<a href="logout.php">Ausloggen</a>
+				</li>
+			</ul>
+		</nav>
 		<h1 class = "titel">Rangliste</h1>
 		<?php
 			$abfrage="SELECT `userid`, `total_score` FROM `user_scores` ORDER BY total_score DESC LIMIT 10;";
