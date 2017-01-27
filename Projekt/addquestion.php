@@ -46,6 +46,9 @@
 				<li>
 					<a href="logout.php">Ausloggen</a>
 				</li>
+				<li>
+					<a href="ranking.php">Rangliste</a>
+				</li>
 			</ul>
 		</nav>
 		<!-- Login -->	
