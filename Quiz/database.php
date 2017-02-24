@@ -19,4 +19,21 @@
 		return false;
 	}
 	
+	// Zweite Datenbank mit den Fragen
+
+
+	try { 
+		$db2 = new PDO('mysql:host=localhost;dbname=questions', 'benutzer', '12345');
+	}
+	catch(PDOException $e) {
+		exit('Unable to connect Database.');
+	}
+	
+	if ( $db2 ) {
+		return $db2;
+	}
+	else {
+		return false;
+	}
+	
 ?>

@@ -50,8 +50,12 @@
 			$abfrage_spielstand="SELECT `total_score`, `s_bible`, `s_sport_freetime`, `s_eating_drinking`, `s_geography_countries`, `s_movies`, 		`s_time_history`, `s_art_design`, `s_music`, `s_series`, `s_politics`, `s_science`, `s_animals_nature`, `s_technology` FROM `user_scores` WHERE `userid`='".$userid."';"; 
 			foreach( $db->query($abfrage_spielstand) as $row){
 			}
-			
-			$abfrage_anzahlfragen="";
+			//Zweite Abfrage mit der Anzahl der Fragen
+			$abfrage_anzahlfragen="SELECT(*) AS anzahl FROM user";
+			foreach( $db2->query($abfrage_anzahlfragen) as $ergebnis){
+				
+			}
+			echo $ergebnis['anzahl'];
 				
 		?>
 		
