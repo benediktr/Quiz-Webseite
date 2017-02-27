@@ -14,16 +14,18 @@
 	
 	if ( $db ) {
 		return $db;
+		
 	}
 	else {
 		return false;
 	}
-	
+
 	// Zweite Datenbank mit den Fragen
 
+	$db_name2 = 'questions';
 
 	try { 
-		$db2 = new PDO('mysql:host=localhost;dbname=questions', 'benutzer', '12345');
+		$db2 = new PDO("mysql:host=$server;dbname=$db_name2", $login, $pass);
 	}
 	catch(PDOException $e) {
 		exit('Unable to connect Database.');
@@ -35,5 +37,5 @@
 	else {
 		return false;
 	}
-	
+
 ?>

@@ -25,6 +25,7 @@
 		$user = $datas;
 		$username = $user['username'];
 	}	
+	
 
 ?>
   
@@ -51,11 +52,11 @@
 			foreach( $db->query($abfrage_spielstand) as $row){
 			}
 			//Zweite Abfrage mit der Anzahl der Fragen
-			$abfrage_anzahlfragen="SELECT(*) AS anzahl FROM user";
+			$abfrage_anzahlfragen="SELECT id FROM q_animals_nature_easy ORDER BY id DESC LIMIT 1";
 			foreach( $db2->query($abfrage_anzahlfragen) as $ergebnis){
-				
+				echo $ergebnis['id'];
 			}
-			echo $ergebnis['anzahl'];
+			
 				
 		?>
 		
