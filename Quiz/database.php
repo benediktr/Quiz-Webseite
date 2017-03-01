@@ -10,6 +10,7 @@
 	}
 	catch(PDOException $e) {
 		exit('Unable to connect Database.');
+		echo 'Verbindung fehlgeschlagen: ' . $e->getMessage();
 	}
 	
 	if ( $db ) {
@@ -20,22 +21,7 @@
 		return false;
 	}
 
-	// Zweite Datenbank mit den Fragen
 
-	$db_name2 = 'questions';
-
-	try { 
-		$db2 = new PDO("mysql:host=$server;dbname=$db_name2", $login, $pass);
-	}
-	catch(PDOException $e) {
-		exit('Unable to connect Database.');
-	}
 	
-	if ( $db2 ) {
-		return $db2;
-	}
-	else {
-		return false;
-	}
 
 ?>

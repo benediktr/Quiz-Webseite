@@ -35,6 +35,7 @@ if(isset($_GET['login'])){
 		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 		<title>Login</title>
 		<link rel="stylesheet" type="text/css" href="css/format.css"/>
+		<link rel="stylesheet" type="text/css" href="css/format_login.css"/>
 		<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet"> 
 		
 	</head>

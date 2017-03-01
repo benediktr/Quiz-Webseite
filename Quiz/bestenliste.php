@@ -63,7 +63,7 @@
 				<p> Name </p>
 				<?php
 					$abfrage="SELECT `userid`, `total_score` FROM `user_scores` ORDER BY total_score DESC LIMIT 10;";
-
+		
 					foreach( $db->query($abfrage) as $row){
 						$id = $row["userid"];
 						

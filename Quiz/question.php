@@ -34,7 +34,7 @@
 		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 		<title>Fragen hinzufügen</title>
 		<link rel="stylesheet" type="text/css" href="css/format.css"/>
-		<link rel="stylesheet" type="text/css" href="css/format2.css"/>
+		<link rel="stylesheet" type="text/css" href="css/format_questions.css"/>
 		<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet"> 
 	</head>
 	<body>
@@ -67,7 +67,7 @@
 			<input type = "name" placeholder = "falsche Antwort" size = "30" maxlength = "30" name = "f_answer_1"><br>
 			<input type = "name" placeholder = "falsche Antwort" size = "30" maxlength = "30" name = "f_answer_2"><br>
 			<input type = "name" placeholder = "falsche Antwort" size = "30" maxlength = "30" name = "f_answer_3"><br>
-			<input type = "submit" id = "button" value = "Frage hinzufügen">
+			<input type = "submit" id ="button" value = "Frage hinzufügen">
 		</div>	
 	</body>
 </html>

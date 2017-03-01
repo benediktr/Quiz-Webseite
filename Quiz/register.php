@@ -83,6 +83,7 @@
 		<title>Registrieren</title>
 		<link rel="stylesheet" type="text/css" href="css/format.css"/>
 		<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet"> 
+		<link rel="stylesheet" type="text/css" href="css/format_register.css"/>
 	</head>
 	<body>
 		<div id = "background">

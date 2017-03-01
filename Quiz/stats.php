@@ -3,6 +3,7 @@
   
 <?php
 	require 'database.php'; 
+	include 'database_questions.php';
 	session_start();
 	
 	if(!isset($_SESSION['userid'])) {
@@ -25,16 +26,22 @@
 		$user = $datas;
 		$username = $user['username'];
 	}	
+
 	
 
+
 ?>
+
+
   
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" >
 	<head>
 		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 		<title>Profil&uuml;bersicht</title>
 		<link rel="stylesheet" type="text/css" href="css/format_stats.css"/>
+		<link rel="stylesheet" type="text/css" href="css/format.css"/>
 		<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet"> 
+		
 	</head>
 	<body>
 		<div id = "background">
@@ -52,73 +59,293 @@
 			foreach( $db->query($abfrage_spielstand) as $row){
 			}
 			//Zweite Abfrage mit der Anzahl der Fragen
-			$abfrage_anzahlfragen="SELECT id FROM q_animals_nature_easy ORDER BY id DESC LIMIT 1";
-			foreach( $db2->query($abfrage_anzahlfragen) as $ergebnis){
-				echo $ergebnis['id'];
-			}
+			
+			
 			
 				
 		?>
 		
 		<div>
-			<h2> Dein Score: </h2>
+			<h1> Dein Score: </h1>
 			<?php
 				echo $row["total_score"];
+				
 			?>
 		</div>
 		<div>
-			<h2> Bibel:</h2>
-			<?php $stand_bibel=$row['s_bible'];
+			<h1> Bibel:</h1>
+			<?php 
+				foreach( $db2->query('SELECT COUNT(*) FROM q_bible') as $ergebnis_bible);
+				
+				if($ergebnis_bible['COUNT(*)']  == 0){
+					echo '0%';
+				}
+				else{
+					if($row['s_bible'] == 0){
+						echo '0%';
+					}
+					else{
+						echo (($row['s_bible'] / $ergebnis_bible['COUNT(*)'])*100).'%';
+					}
+				}
+				echo ' von 100 %';
 				
 			?>
 		</div>	
 		<div>	
-			<h2> Sport und Freizeit:</h2>
-			<?php echo $row['s_sport_freetime']; ?>
+			<h1> Sport und Freizeit:</h1>
+			<?php 
+				foreach( $db2->query('SELECT COUNT(*) FROM q_sport_freetime') as $ergebnis_sport_freetime){
+					
+				}
+				
+				if($ergebnis_sport_freetime['COUNT(*)'] == 0){
+					echo '0%';
+				}
+				else{
+					if($row['s_sport_freetime'] == 0){
+						echo '0%';
+					}
+					else{
+						echo (($row['s_sport_freetime'] / $ergebnis_sport_freetime['COUNT(*)'])*100).'%';
+					}
+				}
+				echo ' von 100 %';
+			?>
 		</div>	
 		<div>	
-			<h2> Essen und Trinken:</h2>
-			<?php echo $row['s_eating_drinking']; ?>
+			<h1> Essen und Trinken:</h1>
+			<?php 
+				 
+				foreach( $db2->query('SELECT COUNT(*) FROM q_eating_drinking') as $ergebnis_eating_drinking){
+					
+				}
+				if($ergebnis_eating_drinking['COUNT(*)']  == 0){
+					echo '0%';
+				}
+				else{
+					if($row['s_eating_drinking'] == 0){
+						echo '0%';
+					}
+					else{
+						echo (($row['s_eating_drinking'] / $ergebnis_eating_drinking['COUNT(*)'])*100).'%';
+					}
+				}
+				echo ' von 100 %';
+			?>
 		</div>	
 		<div>	
-			<h2> Kulturen:</h2>
-			<?php echo $row['s_geography_countries']; ?>
+			<h1> Kulturen:</h1>
+			<?php 
+				 
+				foreach( $db2->query('SELECT COUNT(*) FROM q_geographie_countries') as $ergebnis_geography_countries){
+					
+				}
+				
+				if($ergebnis_geography_countries['COUNT(*)']  == 0){
+					echo '0%';
+				}
+				else{
+					if($row['s_geography_countries'] == 0){
+						echo '0%';
+					}
+					else{
+						echo (($row['s_geography_countries'] / $ergebnis_geography_countries['COUNT(*)'])*100).'%';
+					}
+				}
+				echo ' von 100 %';
+			?>
 		</div>	
 		<div>	
-			<h2> Filme:</h2>
-			<?php echo $row['s_movies']; ?>
+			<h1> Filme:</h1>
+			<?php 
+			
+				foreach( $db2->query('SELECT COUNT(*) FROM q_movies') as $ergebnis_movies){
+					
+				}
+				if($ergebnis_movies['COUNT(*)']  == 0){
+					echo '0%';
+				}
+				else{
+					if($row['s_movies'] == 0){
+						echo '0%';
+					}
+					else{
+						echo (($row['s_movies'] / $ergebnis_movies['COUNT(*)'])*100).'%';
+					}
+				}
+				echo ' von 100 %';
+			?>
 		</div>	
 		<div>	
-			<h2> Zeit und Geschichte:</h2>
-			<?php echo $row['s_time_history']; ?>
+			<h1> Zeit und Geschichte:</h1>
+			<?php 
+				
+				foreach( $db2->query('SELECT COUNT(*) FROM q_time_history') as $ergebnis_time_history){
+					
+				}
+				if($ergebnis_time_history['COUNT(*)']  == 0){
+					echo '0%';
+				}
+				else{
+					if($row['s_time_history'] == 0){
+						echo '0%';
+					}
+					else{
+						echo (($row['s_time_history'] / $ergebnis_time_history['COUNT(*)'])*100).'%';
+					}
+				}
+				echo ' von 100 %';
+			?>
 		</div>	
 		<div>	
-			<h2> Kunst und Design:</h2>
-			<?php echo $row['s_art_design']; ?>
+			<h1> Kunst und Design:</h1>
+			<?php 
+	
+				foreach( $db2->query('SELECT COUNT(*) FROM q_art_design') as $ergebnis_art_design){
+					
+				}
+				if($ergebnis_art_design['COUNT(*)']  == 0){
+					echo '0%';
+				}
+				else{
+					if($row['s_art_design'] == 0){
+						echo '0%';
+					}
+					else{
+						echo (($row['s_art_design'] / $ergebnis_art_design['COUNT(*)'])*100).'%';
+					}
+				}
+				echo ' von 100 %';
+			?>
 		</div>
 		<div>	
-			<h2> Musik:</h2>
-			<?php echo $row['s_music']; ?>
+			<h1> Musik:</h1>
+			<?php 
+				foreach( $db2->query('SELECT COUNT(*) FROM q_music') as $ergebnis_music){
+					
+				}
+				if($ergebnis_music['COUNT(*)']  == 0){
+					echo '0%';
+				}
+				else{
+					if($row['s_music'] == 0){
+						echo '0%';
+					}
+					else{
+						echo (($row['s_music'] / $ergebnis_music['COUNT(*)'])*100).'%';
+					}
+				}
+				echo ' von 100 %';
+			?>
 		</div>
 		<div>	
-			<h2> Serien:</h2>
-			<?php echo $row['s_series']; ?>
+			<h1> Serien:</h1>
+			<?php 
+
+				foreach( $db2->query('SELECT COUNT(*) FROM q_tv') as $ergebnis_series){
+
+				}
+				if($ergebnis_series['COUNT(*)']  == 0){
+					echo '0%';
+				}
+				else{
+					if($row['s_series'] == 0){
+						echo '0%';
+					}
+					else{
+						echo (($row['s_series'] / $ergebnis_series['COUNT(*)'])*100).'%';
+					}
+				}
+				echo ' von 100 %';
+			?>
 		</div>
 		<div>	
-			<h2> Politik:</h2>
-			<?php echo $row['s_politics']; ?>
+			<h1> Politik:</h1>
+			<?php 
+				
+				foreach( $db2->query('SELECT COUNT(*) FROM q_politics') as $ergebnis_politics){
+					
+				}
+				if($ergebnis_politics['COUNT(*)']  == 0){
+					echo '0%';
+				}
+				else{
+					if($row['s_politics'] == 0){
+						echo '0%';
+					}
+					else{
+						echo (($row['s_politics'] / $ergebnis_politics['COUNT(*)'])*100).'%';
+					}
+				}
+				echo ' von 100 %';
+			
+			?>
 		</div>
 		<div>	
-			<h2> Wissenschaft:</h2>
-			<?php echo $row['s_science']; ?>
+			<h1> Wissenschaft:</h1>
+			<?php 
+				
+				foreach( $db2->query('SELECT COUNT(*) FROM q_science') as $ergebnis_science){
+					
+				}
+				if($ergebnis_science['COUNT(*)']  == 0){
+					echo '0%';
+				}
+				else{
+					if($row['s_science'] == 0){
+						echo '0%';
+					}
+					else{
+						echo (($row['s_science'] / $ergebnis_science['COUNT(*)'])*100).'%';
+					}
+				}
+				echo ' von 100 %';
+			?>
 		</div>
 		<div>	
-			<h2> Natur und Tiere:</h2>
-			<?php echo $row['s_animals_nature']; ?>
+			<h1> Natur und Tiere:</h1>
+			<?php 
+				
+				$abfrage_anzahlfragen="SELECT COUNT(*) FROM q_animals_nature";
+				foreach( $db2->query($abfrage_anzahlfragen) as $ergebnis_animals_nature){
+					
+				}
+				if($ergebnis_animals_nature['COUNT(*)']  == 0){
+					echo '0%';
+				}
+				else{
+					if($row['s_animals_nature'] == 0){
+						echo '0%';
+					}
+					else{
+						echo (($row['s_animals_nature'] / $ergebnis_animals_nature['COUNT(*)'])*100).'%';
+					}
+				}
+				echo ' von 100 %';
+			
+			?>
 		</div>
 		<div>	
-			<h2> Technologie:</h2>
-			<?php echo $row['s_science']; ?>
+			<h1> Technologie:</h1>
+			<?php 
+			
+				foreach( $db2->query('SELECT COUNT(*) FROM q_technology') as $ergebnis_technology){
+					
+				}
+				if($ergebnis_technology['COUNT(*)']  == 0){
+					echo '0%';
+				}
+				else{
+					if($row['s_technology'] == 0){
+						echo '0%';
+					}
+					else{
+						echo (($row['s_technology'] / $ergebnis_technology['COUNT(*)'])*100).'%';
+					}
+				}
+				echo ' von 100 %';
+			?>
 		</div>
 	</body>
 </html>

@@ -34,6 +34,7 @@
 		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 		<title>Startseite</title>
 		<link rel="stylesheet" type="text/css" href="css/format.css"/>
+		<link rel="stylesheet" type="text/css" href="css/format_index2.css"/>
 		<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet"> 
 	</head>
 	<body>
@@ -47,21 +48,25 @@
 		<br />
 		<div>
 			<form action = "stats.php">
-				<button type="submit" style = "font-size: 20px; width: 15%; padding: 5px; position: absolute; margin-left: 25%; font-family: 'Montserrat', sans-serif; background-color: #4CAF50; border: none; cursor: pointer;">Profil anzeigen</button>
+				<button type="submit" id="buttonlinks" >Profil anzeigen</button>
 			</form>
 			<form action = "game.php">
-				<button type="submit" style = "font-size: 20px; width: 15%; padding: 5px; position: absolute; margin-left: 42.5%; font-family: 'Montserrat', sans-serif; background-color: #4CAF50; border: none; cursor: pointer;">Quiz starten</button>
+				<button type="submit" id="buttonmitte">Quiz starten</button>
 			</form>
 			<form action = "question.php">
-				<button type="submit" style = "font-size: 20px; width: 15%; padding: 5px; position: absolute; margin-left: 60%; font-family: 'Montserrat', sans-serif; background-color: #4CAF50; border: none; cursor: pointer;">Fragen hinzufügen</button>
+				<button type="submit" id="buttonrechts">Fragen hinzufügen</button>
 			</form>
 		
 		</div>
 		
-		<a href = "logout.php" style=" position:fixed; top:11px; right:10px;">Ausloggen</a>
+		<a id="ausloggen" href = "logout.php">Ausloggen</a>
+		
 		<br />
 		<br />
-		<div class = "zentrieren"><h3 class = "titel">Vorschau Themengebiete</h3></div>
+		
+		<div class = "zentrieren">
+			<h3 class = "titel">Vorschau Themengebiete</h3>
+		</div>
 		<div class = "zentrieren">
 		<ul>
 			<input type="radio" name="slider" id="1" class="slider" checked>
@@ -78,56 +83,56 @@
 			<input type="radio" name="slider" id="12" class="slider">
 			<input type="radio" name="slider" id="13" class="slider">
 			<li class="slide1">
-			<img src="images/topic_art_design.jpg">
-			<h2>Kunst</h2>
+				<img src="images/topic_art_design.jpg" />
+				<h2>Kunst</h2>
 			</li>
 			<li class="slide1">
-			<img src="images/topic_bible.jpg">
-			<h2>Bibel</h2>
+				<img src="images/topic_bible.jpg" />
+				<h2>Bibel</h2>
 			</li>
 			<li class="slide1">
-			<img src="images/topic_eating_drinking.jpg">
-			<h2>Essen</h2>
+				<img src="images/topic_eating_drinking.jpg" />
+				<h2>Essen</h2>
 			</li>
 			<li class="slide1">
-			<img src="images/topic_freetime_sport.jpg">
-			<h2>Sport</h2>
+				<img src="images/topic_freetime_sport.jpg" />
+				<h2>Sport</h2>
 			</li>
 			<li class="slide1">
-			<img src="images/topic_geographie.jpg">
-			<h2>Kulturen</h2>
+				<img src="images/topic_geographie.jpg" />
+				<h2>Kulturen</h2>
 			</li>
-			<li class="slide1">
-			<img src="images/topic_history.jpg">
+				<li class="slide1">
+				<img src="images/topic_history.jpg" />
 			<h2>Geschichte</h2>
 			</li>
 			<li class="slide1">
-			<img src="images/topic_movies.jpg">
+				<img src="images/topic_movies.jpg" />
 			<h2>Filme</h2>
 			</li>
 			<li class="slide1">
-			<img src="images/topic_music.jpg">
-			<h2>Musik</h2>
+				<img src="images/topic_music.jpg" />
+				<h2>Musik</h2>
 			</li>
 			<li class="slide1">
-			<img src="images/topic_nature_animals.jpg">
-			<h2>Natur</h2>
+				<img src="images/topic_nature_animals.jpg" />
+				<h2>Natur</h2>
 			</li>
 			<li class="slide1">
-			<img src="images/topic_politics.jpg">
-			<h2>Politik</h2>
+				<img src="images/topic_politics.jpg" />
+				<h2>Politik</h2>
 			</li>
 			<li class="slide1">
-			<img src="images/topic_science.jpg">
-			<h2>Wissenschaft</h2>
+				<img src="images/topic_science.jpg" />
+				<h2>Wissenschaft</h2>
 			</li>
 			<li class="slide1">
-			<img src="images/topic_technology.jpg">
-			<h2>Technologien</h2>
+				<img src="images/topic_technology.jpg" />
+				<h2>Technologien</h2>
 			</li>
 			<li class="slide1">
-			<img src="images/topic_tv.jpg">
-			<h2>Serien</h2>
+				<img src="images/topic_tv.jpg" />
+				<h2>Serien</h2>
 			</li>
 		</ul>
 		</div>
