@@ -13,15 +13,6 @@
 	$statement = $db->prepare("SELECT * FROM user_accounts WHERE id = :id");
 	$result = $statement->execute(array('id' => $userid));
 	$user  = $statement->fetch();
-	
-	if(isset($_GET['add'])) {
-		// Variablen werden aus dem HTML Teil übernommen werden bzw eingelesen
-		$question = ($_POST['question']);
-		$r_answer = ($_POST['r_answer']);
-		$f_answer_1 = ($_POST['f_answer_1']);
-		$f_answer_2 = ($_POST['f_answer_2']);
-		$f_answer_3 = ($_POST['f_answer_3']);
-	}	
 ?>
   
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" >
@@ -44,9 +35,6 @@
 					<a href="play.php">Spiel Starten</a>
 				</li>
 				<li>
-					<a href="ranking.php">Rangliste</a>
-				</li>
-								<li>
 					<a href="logout.php">Ausloggen</a>
 				</li>
 			</ul>
@@ -55,7 +43,23 @@
 		<h1 class = "titel">Fragen hinzuf&uuml;gen</h1>
 		<div class = "zentrieren">
 			<div class = "frageBox">
-				<form action= "?add=1" method= "post">
+				<form action= "check.php" method= "post">
+					<select name = "topics">
+						<option value = "Kunst">Kunst</option>
+						<option value = "Bible">Bibel</option>
+						<option value = "Essen">Essen</option>
+						<option value = "Sport">Sport</option>
+						<option value = "Kulturen">Kulturen</option>
+						<option value = "Geschichte">Geschichte</option>
+						<option value = "Filme">Filme</option>
+						<option value = "Musik">Musik</option>
+						<option value = "Natur">Natur</option>
+						<option value = "Politik">Politik</option>
+						<option value = "Wissenchaft">Wissenschaft</option>
+						<option value = "Technologien">Technologien</option>
+						<option value = "Serien">Serien</option>
+					</select>
+					<br /><br />
 					<input type = "name" placeholder = "Frage" size = "60" maxlength = "100" name = "question"><br><br />
 					<input type = "name" placeholder = "richtige Antwort" size = "30" maxlength = "30" name = "r_answer"><br>
 					<input type = "name" placeholder = "falsche Antwort" size = "30" maxlength = "30" name = "f_answer_1"><br>
@@ -65,3 +69,6 @@
 				</form>
 			</div>
 		</div>
+		<br />
+	</body>
+</html>

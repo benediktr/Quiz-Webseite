@@ -37,9 +37,6 @@
 					<a href="play.php">Spiel Starten</a>
 				</li>
 				<li>
-					<a href="ranking.php">Rangliste</a>
-				</li>
-								<li>
 					<a href="logout.php">Ausloggen</a>
 				</li>
 			</ul>
