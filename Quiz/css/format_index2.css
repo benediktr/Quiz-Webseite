@@ -1,0 +1,101 @@
+/*Ausloggen-Button in der linken obeneren Ecke*/
+#ausloggen{
+		position:fixed; 
+		top:11px; 
+		right:10px;
+}
+/*Button Profil anzeigen */
+#buttonlinks{
+	font-size: 20px; 
+	width: 15%; 
+	padding: 5px; 
+	position: absolute; 
+	margin-left: 25%; 
+	font-family: 'Montserrat', sans-serif; 
+	background-color: #4CAF50; 
+	border: none; 
+	cursor: pointer;
+}
+/* Button Spiel startern */
+#buttonmitte{
+	font-size: 20px; 
+	width: 15%; 
+	padding: 5px; 
+	position: absolute; 
+	margin-left: 42.5%; 
+	font-family: 'Montserrat', sans-serif; 
+	background-color: #4CAF50; 
+	border: none; 
+	cursor: pointer;
+	
+}
+/* Button Frage hinzufügen */
+#buttonrechts{
+	font-size: 20px; 
+	width: 15%; 
+	padding: 5px; 
+	position: absolute; 
+	margin-left: 60%; 
+	font-family: 'Montserrat', sans-serif; 
+	background-color: #4CAF50; 
+	border: none; 
+	cursor: pointer;
+}
+/*----------Slider Show-----------*/
+/*Titel*/
+.titel {
+	font-weight: bold;
+}
+
+ul {
+	text-align: center;
+}
+li {
+	/*border: 3px solid #333;*/
+	list-style: none;
+	display: none;
+}
+img {
+	width: 800px;
+	height: 600px;
+	position: relative;
+	border-radius: 5px 5px 0 0;
+}
+h2 {
+	position: absolute;
+	top: 250px;
+	color: #fff;
+	padding: 20px;
+	background-color: #000;
+}
+
+label {
+	background: black;
+    padding: 10px;
+    border-radius: 50%;
+    display: inline-block;
+}
+.selector {
+	text-align: center;
+}
+
+.slider:nth-of-type(1):checked ~ .slide1:nth-of-type(1),
+.slider:nth-of-type(2):checked ~ .slide1:nth-of-type(2),
+.slider:nth-of-type(3):checked ~ .slide1:nth-of-type(3),
+.slider:nth-of-type(4):checked ~ .slide1:nth-of-type(4),
+.slider:nth-of-type(5):checked ~ .slide1:nth-of-type(5),
+.slider:nth-of-type(6):checked ~ .slide1:nth-of-type(6),
+.slider:nth-of-type(7):checked ~ .slide1:nth-of-type(7),
+.slider:nth-of-type(8):checked ~ .slide1:nth-of-type(8),
+.slider:nth-of-type(9):checked ~ .slide1:nth-of-type(9),
+.slider:nth-of-type(10):checked ~ .slide1:nth-of-type(10),
+.slider:nth-of-type(11):checked ~ .slide1:nth-of-type(11),
+.slider:nth-of-type(12):checked ~ .slide1:nth-of-type(12),
+.slider:nth-of-type(13):checked ~ .slide1:nth-of-type(13) {
+	display: inline-block;
+}
+
+input[type=radio] {
+	display: none;
+	cursor: pointer;
+}

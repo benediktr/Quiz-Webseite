@@ -1,0 +1,26 @@
+/* Grauer Rahmen in der Login Box */
+.form {
+      border: 3px solid #f1f1f1;
+}
+
+/*Register Button*/
+#register {    
+	width: auto;
+    padding: 10px 18px;
+    background-color: #f44336;
+	font-family: 'Montserrat', sans-serif;
+	border: none;
+}
+
+/*Login Box */
+#login {
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 2%;
+	width: 28%;
+	box-shadow: 0px 0px 8px #D8D8D8;
+	box-shadow: 5px 5px 20px grey;
+	border:0;
+}
+
