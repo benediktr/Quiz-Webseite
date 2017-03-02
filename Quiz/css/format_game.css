@@ -1,0 +1,21 @@
+/* Div Box mit den RadioButtons */
+#Themenauswahl{
+	margin-left:45%;
+	margin-right: auto;
+	width:10%;
+	position: absolute;
+	top:10%;
+	
+}
+
+#spielstartenbutton{
+	font-family: 'Montserrat', sans-serif;
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    
+	text-align: center;
+}
