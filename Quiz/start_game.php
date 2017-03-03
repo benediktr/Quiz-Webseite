@@ -49,19 +49,19 @@
 	
 		<div id="Themenauswahl">
 		<!-- Formular zur Auswahl der Fragen -->
-			<form action="game.php" method="post" >
+			<form action="game.php" method="POST" >
 			
-				<input type="radio" name="thema" value="Kunst" /> <label> Kunst </label> <br />
-				<input type="radio" name="thema" value="Bibel" /> <label> Bibel </label> <br />
-				<input type="radio" name="thema" value="Essen" /> <label> Essen </label> <br />
-				<input type="radio" name="thema" value="Sport" /> <label> Sport </label> <br />
-				<input type="radio" name="thema" value="Kulturen" /> <label> Kulturen </label> <br />
-				<input type="radio" name="thema" value="Geschichte" /> <label> Geschichte</label> <br />
-				<input type="radio" name="thema" value="Natur und Tiere" /> <label> Natur und Tiere </label> <br />
-				<input type="radio" name="thema" value="Politik" /> <label> Politik </label> <br />
-				<input type="radio" name="thema" value="Wissenschaft" /> <label> Wissenschaft </label> <br />
-				<input type="radio" name="thema" value="Technologien" /> <label> Technologien </label> <br />
-				<input type="radio" name="thema" value="Serien" /> <label> Serien </label> <br />
+				<input type="radio" name="thema" value="kunst" /> <label> Kunst </label> <br />
+				<input type="radio" name="thema" value="bibel" /> <label> Bibel </label> <br />
+				<input type="radio" name="thema" value="essen" /> <label> Essen </label> <br />
+				<input type="radio" name="thema" value="sport" /> <label> Sport </label> <br />
+				<input type="radio" name="thema" value="kulturen" /> <label> Kulturen </label> <br />
+				<input type="radio" name="thema" value="geschichte" /> <label> Geschichte</label> <br />
+				<input type="radio" name="thema" value="naturUndTiere" /> <label> Natur und Tiere </label> <br />
+				<input type="radio" name="thema" value="politik" /> <label> Politik </label> <br />
+				<input type="radio" name="thema" value="wissenschaft" /> <label> Wissenschaft </label> <br />
+				<input type="radio" name="thema" value="technologien" /> <label> Technologien </label> <br />
+				<input type="radio" name="thema" value="serien" /> <label> Serien </label> <br />
 			
 				<input type="submit" id="spielstartenbutton" value="Spiel Starten">
 			</form>
