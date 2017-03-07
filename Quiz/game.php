@@ -52,6 +52,7 @@
 		<br />	
 		
 		<?php
+		// Soll nur beim ersten Mal durchlaufen werden
 		if( empty($themaMySql)AND empty($themaScore) ){
 			
 			
@@ -119,17 +120,58 @@
 						break;
 					
 				}
-				echo $themaScore;
-				echo $themaMySql;
+				
 			}
 		
-		}
-		//ID der zuletzt beantworteten Frage aus der Score Datenbank holen
-		$abfrageLetzteId="SELECT ".$themaScore." FROM `user_scores` WHERE `userid`='".$userid."';";
-		foreach($db->query($abfrageLetzteId) as $ergebnisLetzteId ){
+		
+			//ID der zuletzt beantworteten Frage aus der Score Datenbank holen
+			$abfrageLetzteId="SELECT ".$themaScore." FROM `user_scores` WHERE `userid`='".$userid."';";
+			foreach($db->query($abfrageLetzteId) as $ergebnisLetzteId ){
 			$letzteID = $ergebnisLetzteId[ '' .$themaScore ];
+			}
+			$idaktuelleFrage = $letzteID+1;
+			$GLOBALS["idaktuelleFrage"];
 		}
-		echo $letzteID;
+		
+		//Frage aus der Datenbank holen 
+			$abfragefrage = "SELECT `question`, `r_answer`, `f_answer_1`, `f_answer_2`, `f_answer_3` FROM ".$themaMySql." WHERE `id`='".$idaktuelleFrage."';";
+			foreach($db2->query($abfragefrage) as $ergebnisFrage ){
+				$aktuelleFrage = $ergebnisFrage['question'];
+				$rantwort = $ergebnisFrage['r_answer'];
+				$fantwort1 = $ergebnisFrage['f_answer_1'];
+				$fantwort2 = $ergebnisFrage['f_answer_2'];
+				$fantwort3 = $ergebnisFrage['f_answer_3'];
+			}
+		
 		?>
+		<?php
+			//Formular Kopf
+			//Wenn es unter 10 Mal ist soll sich das Skript selbst nochmals aufrufen, beim 10 Mal soll das Ergebnis 
+			$durchlauf = 0;
+			if($GLOBALS["durchlauf"]<= 10){
+				echo '<form action="game.php">';
+			}
+			else{
+				echo '<form action="results_game.php" >';
+				
+			}
+			
+			// Radio Button mit der Antworten
+			
+			echo '<h1>'.$aktuelleFrage.' </h1> <br />';
+			echo '<input type="radio" name="antworten" value="antwort1" >';
+			echo $rantwort. '<br />';
+			echo '<input type="radio" name="antworten" value="antwort2" >';
+			echo $fantwort1 .'<br />';
+			echo '<input type="radio" name="antworten" value="antwort3" >';
+			echo $fantwort2 .'<br />';
+			echo '<input type="radio" name="antworten" value="antwort4" >';
+			echo $fantwort3 .'<br />';
+			
+		   
+		?>
+		
+			<input type="submit" id="button" value="Weiter">
+		</form>
 	</body>
 </html>
