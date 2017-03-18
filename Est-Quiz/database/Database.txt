@@ -1,0 +1,36 @@
+﻿Database: user
+
+1: ID
+2: Username
+3: Password
+4: E-Mail
+5: Score
+6: Register Date
+7: Score Kunst
+8: Score Bibel
+9: Score Essen und Trinken
+10: Score Freizeit
+11: Score Geographie
+12: Score Geschichte
+13: Score Filme
+14: Score Musik
+15: Score Natur
+16: Score Politik
+17: Score Wissenschaft
+18: Score Technologie
+19: Score Serien
+20: Counter Richtige Fragen
+21: Counter Fragen beantwortet
+22: Counter Fragen falsch beantwortet
+23: Counter Fragen hinzugefügt
+24: Status (Admin, Mitglied, User) // Admin, darf alles - Mitglied, darf Fragen hinzufügen, User darf nur Spielen
+
+Database: questions (all kinds)
+
+1: ID
+2: Question
+3: Right Answer
+4: Wrong Answer 1
+5: Wrong Answer 2
+6: Wrong Answer 3
+
