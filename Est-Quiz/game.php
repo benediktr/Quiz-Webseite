@@ -16,6 +16,7 @@
 	$user  = $statement->fetch();
 	
 	$username = $user['username'];
+	$id = $user['id'];
 ?>
   
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" >
@@ -45,7 +46,164 @@
 				</li>
 			</ul>
 		</nav>
-		<!-- Login -->	
-		<h1 class = "titel">Willkommen <?php echo "$username" ?></h1>
+		<div class="zentrieren" >
+		<?php
+		// Soll nur beim ersten Mal durchlaufen werden
+		
+		
+		if( !isset($_SESSION['ersteMal'])){
+		
+			if( !isset( $_POST['topics'] )){
+				//Wenn kein Thema ausgewaehlt wurde zurueck zur Uebersicht
+				echo 'Noch kein Thema ausgew&auml;hlt <a href="start_game.php">  Zur&uuml;ck zur Auswahl</a>';
+				
+			}
+			else{
+				//Ausgewähltes Thema holen und als Variable festlegen, welche dann in die MySQL Queries eingefuegt wird
+				//Einmal um die Fragen zuholen, und um die ID der letzt Beantworteten Frage zu holen
+				//Einmal fuer die Question-Datenbank und fuer die Score Datenbank
+				switch($_POST['topics']){
+					case "art":
+						$_SESSION['themaQuestion']='art';
+						$_SESSION['themaScore']='score_art';
+						break;
+					case "bible":
+						$_SESSION['themaQuestion']='bible';
+						$_SESSION['themaScore']='score_bible';
+						break;
+					case "eating":
+						$_SESSION['themaQuestion']='eating';
+						$_SESSION['themaScore']='score_eating';
+						break;
+					case "freetime":
+						$_SESSION['themaQuestion']='freetime';
+						$_SESSION['themaScore']='s_sport_freetime';
+						break;
+					case "geography":
+						$_SESSION['themaQuestion']='geographie';
+						$_SESSION['themaScore']='score_geography';
+						break;
+					case "history":
+						$_SESSION['themaQuestion']='history';
+						$_SESSION['themaScore']='score_history';
+						break;
+					case "movies":
+						$_SESSION['themaQuestion']='movies';
+						$_SESSION['themaScore']='score_movies';
+						break;
+					case "music":
+						$_SESSION['themaQuestion']='music';
+						$_SESSION['themaScore']='score_music';
+						break;
+					case "nature":
+						$_SESSION['themaQuestion']='nature';
+						$_SESSION['themaScore']='score_nature';
+						break;
+					case "politics":
+						$_SESSION['themaQuestion']='politics';
+						$_SESSION['themaScore']='score_politics';
+						break;
+					case "science":
+						$_SESSION['themaQuestion']='science';
+						$_SESSION['themaScore']='score_science';
+						break;
+					case "technology":
+						$_SESSION['themaQuestion']='technology';
+						$_SESSION['themaScore']='score_technology';
+						break;
+					case "series":
+						$_SESSION['themaQuestion']='series';
+						$_SESSION['themaScore']='score_series';
+						break;
+					
+				}
+				
+			}
+		
+			
+			//ID der zuletzt beantworteten Frage aus der Score Datenbank holen
+			$abfrageLetzteId = "SELECT ".$_SESSION['themaScore']." FROM `user` WHERE `id`='".$id."';";
+			
+			
+			foreach($db->query($abfrageLetzteId) as $ergebnisLetzteId ){
+				$letzteID = $ergebnisLetzteId[ ''.$_SESSION['themaScore'] ];
+			}
+			echo $letzteID;
+			
+			//Zur der ID der letzten Frage eins dazuzaehlen um die ID der naechsten Frage zu haben
+			$_SESSION['IDaktuelleFrage']= $letzteID + 1;
+			
+				
+			$_SESSION['ersteMal'] = false;
+			
+			//Durchlaufe Variable auf null setzen
+			$_SESSION['durchlauf']=0;
+		}
+		//------- ENDE Erstes Mal ---------
+		
+		
+		//Frage aus der Datenbank holen 
+		$abfragefrage = "SELECT `question`, `right_answer`, `wrong_answer_1`, `wrong_answer_2`, `wrong_answer_3` FROM ".$_SESSION['themaQuestion']." WHERE `id`='".		$_SESSION['IDaktuelleFrage']."';";
+	
+			
+		//Die Fragen in SESSION Variabeln speichern, um sie bei dem Wiederaufruf, der Auswertung zu haben
+		foreach($db->query($abfragefrage) as $ergebnisFrage ){
+			$_SESSION['aktuelleFrage'] = $ergebnisFrage['question'];
+			$_SESSION['rantwort'] = $ergebnisFrage['right_answer'];
+			$_SESSION['fantwort1'] = $ergebnisFrage['wrong_answer_1'];
+			$_SESSION['fantwort2'] = $ergebnisFrage['wrong_answer_2'];
+			$_SESSION['fantwort3'] = $ergebnisFrage['wrong_answer_3'];
+		}
+		
+		
+		//Formular Kopf
+		//Wenn es unter 10 Mal ist soll sich das Skript selbst nochmals aufrufen, beim 10 Mal soll das Ergebnis 
+			
+		if($_SESSION["durchlauf"]<= 10){
+			echo '<form action="game.php" method="post">';
+		}
+		else{
+				
+			echo '<form action="results_game.php" method="post" >';
+			$_SESSION['durchlauf'] = 0;
+		}
+			
+		// Radio Button mit der Antworten
+		
+		?>
+		
+		<div class = "box">
+		
+			<?php
+			
+				//Frage
+				echo '<h1>'.$_SESSION['aktuelleFrage'].' </h1>';
+				//Antwort 1
+				echo '<input type="radio" name="antworten" value="antwort1" id = "option1" >';
+				echo "<label for = 'option1'><span><span></span></span>".$_SESSION['rantwort'].'</label><br />';
+				//Antwort 2
+				echo '<input type="radio" name="antworten" value="antwort2" >';
+				echo $_SESSION['fantwort1'] .'<br />';
+				//Antwort 3
+				echo '<input type="radio" name="antworten" value="antwort3" >';
+				echo $_SESSION['fantwort2'] .'<br />';
+				//Antwort 4
+				echo '<input type="radio" name="antworten" value="antwort4" >';
+				echo $_SESSION['fantwort3'] .'<br />';
+			
+			?>
+			
+		
+			<br /><br />
+		
+			<input type="submit" class="button" value="Weiter">
+			
+			</form>
+		</div>
+	</div>
+		
+		
+		
+		
 	</body>
 </html>

@@ -16,4 +16,14 @@
 	else {
 		return false;
 	}
+	
+	/*function getMaxQuestions( $topic, $db ) {
+		$statement = $db->prepare("SELECT * FROM ".$topic." WHERE id = (SELECT MAX(id) FROM ".$topic.")");
+		$statement->execute();
+		$row = $statement->fetch();
+	
+		$max_id = $row['id'];	
+		
+		return $max_id;
+	}*/
 ?>

@@ -62,7 +62,7 @@
 				echo "<div class = 'box'><span class = 'red'>$error_message</span></div><br />";
 			}
 			if ($successfull) {
-				echo "<div class = 'box'><span class = 'green'>Willkommen <span class = 'gross'>$username</span>, du hast dich erfolgreich eingeloggt, weiter ins  <a href = 'game.php'>Spiel!</a></span></div><br />";
+				echo "<div class = 'box'><span class = 'green'>Willkommen <span class = 'gross'>$username</span>, du hast dich erfolgreich eingeloggt, weiter ins  <a href = 'profil.php'>Spiel!</a></span></div><br />";
 			}
 		?>
 		<div class = "box">

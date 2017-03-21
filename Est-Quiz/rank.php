@@ -41,7 +41,7 @@
 					<a href="rank.php">Rangliste</a>
 				</li>
 				<li>
-					<a href="addquestion.php">hinzuf&uuml;gen</a>
+					<a href="addquestion.php">Frage hinzuf&uuml;gen</a>
 				</li>
 				<li>
 					<a href="play.php">Spiel Starten</a>
@@ -52,8 +52,46 @@
 			</ul>
 		</nav>
 		<h1 class = "titel">Rangliste</h1>
-		<?php while( $plaetze < 11 ) {
-			
-		} ?>
+		<center>
+			<table>
+				<thead>
+					<tr>
+						<th>Platz</th>
+						<th>Username</th>
+						<th>Score</th>
+					</tr>
+				</thead>
+				<tbody>
+					<?php 
+						$abfrage="SELECT `id`, `total_score` FROM `user` ORDER BY total_score DESC LIMIT 10;";
+						$platz = 1;
+		
+						foreach( $db->query($abfrage) as $row){
+						$id = $row["id"];
+					
+						$idabfrage="SELECT `username`, `total_score` FROM `user` WHERE `id`='".$id."';";
+						foreach( $db->query($idabfrage) as $row2){
+							echo "<tr>";
+							$nameuser = "<td>".$row2["username"]."</td>";
+							$score_total = "<td>".$row2['total_score']."</td>";
+								if($username != $nameuser){
+								echo "<td>".$platz."</td>";
+								echo $nameuser;
+								echo $score_total;
+							}
+							else{
+								echo "<td>".$platz."/td>";
+								echo "<td>Du</td>";
+								echo "<td>".$score_total."</td>";
+							}
+							$platz += 1;
+							echo "</tr>";
+						}
+	
+					}
+					?>
+				</tbody>
+			</table>
+		</center>
 	</body>
 </html>
