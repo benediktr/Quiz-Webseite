@@ -48,9 +48,9 @@
 		</nav>
 		<div class="zentrieren" >
 		<?php
+		
+		
 		// Soll nur beim ersten Mal durchlaufen werden
-		
-		
 		if( !isset($_SESSION['ersteMal'])){
 		
 			if( !isset( $_POST['topics'] )){
@@ -142,6 +142,8 @@
 		//------- ENDE Erstes Mal ---------
 		
 		
+
+		
 		//Frage aus der Datenbank holen 
 		$abfragefrage = "SELECT `question`, `right_answer`, `wrong_answer_1`, `wrong_answer_2`, `wrong_answer_3` FROM ".$_SESSION['themaQuestion']." WHERE `id`='".		$_SESSION['IDaktuelleFrage']."';";
 	
@@ -160,47 +162,67 @@
 		//Wenn es unter 10 Mal ist soll sich das Skript selbst nochmals aufrufen, beim 10 Mal soll das Ergebnis 
 			
 		if($_SESSION["durchlauf"]<= 10){
-			echo '<form action="game.php" method="post">';
+			// ZU der Seite die anzeiget ob das von Nutzer angklickte, das Richtige war
+			echo '<form action="game_results.php" method="POST">';
+			$_SESSION['durchlauf'] = $_SESSION['durchlauf'] +1;
 		}
 		else{
-				
-			echo '<form action="results_game.php" method="post" >';
+			// Zu einer Uebersicht mit den Richtig beantworteten Fragen
+			echo '<form action="results_game.php" method="POST" >';
 			$_SESSION['durchlauf'] = 0;
 		}
 			
-		// Radio Button mit der Antworten
-		
+		// Radio Button mit der Frage und den Antworten
+			
+			//Algorithmus um festzustellen das jede Radomzahl nur einmal vorkommt
+			$fertig = false;
+			$zahlenreihenfolge(0) =  rand( 1 , 4);
+			
+			for($i = 1; $i<4; $i++){
+				
+				while($fertig == false){
+					$randomzahl = rand( 1 , 4);
+					if($randomzahl != $zahlenreihenfolge($i-1)){}
+						$zahlenreihenfolge($i) =  $randomzahl;
+						$fertig = true;
+					}
+					if($i == 2 && (($randomzahl != $zahlenfolge(0))&(($randomzahl != $zahlenfolge(1)))){
+						$zahlenreihenfolge(2) =  $randomzahl;
+						$fertig = true;
+					}
+					if(($i == 3 && $randomzahl != $zahlenfolge(2)) && (($randomzahl != $zahlenfolge(0))&(($randomzahl != $zahlenfolge(1))) ){
+						$zahlenreihenfolge(2) =  $randomzahl;
+						$fertig = true;
+					}
+				}
+			}
+			for($i = 0; $i<4; $i++){
+				echo $zahlenreihenfolge($i);
+			}
+			
+			//Frage
+			echo '<h1>'.$_SESSION['aktuelleFrage'].' </h1>';
+			
+			//--------------- Antwort 1 ----------------------------------
+			echo '<input type="radio" name="antworten" value="antwort1" >';
+			echo $_SESSION['rantwort']. '<br />';
+			//--------------- Antwort 2 -----------------------------------
+			echo '<input type="radio" name="antworten" value="antwort2"  >';
+			echo $_SESSION['fantwort1'] .'<br />';
+			//--------------- Antwort 3 -----------------------------------
+			echo '<input type="radio" name="antworten" value="antwort3" >';
+			echo $_SESSION['fantwort2'] .'<br />';
+			//---------------- Antwort 4 ----------------------------------
+			echo '<input type="radio" name="antworten" value="antwort4" >';
+			echo $_SESSION['fantwort3'] .'<br />';
+			
+		   
 		?>
-		
-		<div class = "box">
-		
-			<?php
-			
-				//Frage
-				echo '<h1>'.$_SESSION['aktuelleFrage'].' </h1>';
-				//Antwort 1
-				echo '<input type="radio" name="antworten" value="antwort1" id = "option1" >';
-				echo "<label for = 'option1'><span><span></span></span>".$_SESSION['rantwort'].'</label><br />';
-				//Antwort 2
-				echo '<input type="radio" name="antworten" value="antwort2" >';
-				echo $_SESSION['fantwort1'] .'<br />';
-				//Antwort 3
-				echo '<input type="radio" name="antworten" value="antwort3" >';
-				echo $_SESSION['fantwort2'] .'<br />';
-				//Antwort 4
-				echo '<input type="radio" name="antworten" value="antwort4" >';
-				echo $_SESSION['fantwort3'] .'<br />';
-			
-			?>
-			
-		
-			<br /><br />
 		
 			<input type="submit" class="button" value="Weiter">
 			
-			</form>
+		</form>
 		</div>
-	</div>
 		
 		
 		
