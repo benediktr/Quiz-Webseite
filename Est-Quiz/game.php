@@ -176,22 +176,22 @@
 			
 			//Algorithmus um festzustellen das jede Radomzahl nur einmal vorkommt
 			$fertig = false;
-			$zahlenreihenfolge(0) =  rand( 1 , 4);
+			$zahlenreihenfolge = array( 0 => rand( 1 , 4));
 			
 			for($i = 1; $i<4; $i++){
 				
 				while($fertig == false){
 					$randomzahl = rand( 1 , 4);
-					if($randomzahl != $zahlenreihenfolge($i-1)){}
-						$zahlenreihenfolge($i) =  $randomzahl;
+					if($randomzahl != $zahlenreihenfolge(0)){}
+						$zahlenreihenfolge =  array( 1 => $randomzahl);
 						$fertig = true;
 					}
 					if($i == 2 && (($randomzahl != $zahlenfolge(0))&(($randomzahl != $zahlenfolge(1)))){
-						$zahlenreihenfolge(2) =  $randomzahl;
+						$zahlenreihenfolge =  array( 2=> $randomzahl);
 						$fertig = true;
 					}
 					if(($i == 3 && $randomzahl != $zahlenfolge(2)) && (($randomzahl != $zahlenfolge(0))&(($randomzahl != $zahlenfolge(1))) ){
-						$zahlenreihenfolge(2) =  $randomzahl;
+						$zahlenreihenfolge =  array( 3=> $randomzahl);
 						$fertig = true;
 					}
 				}
