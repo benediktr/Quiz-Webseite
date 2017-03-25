@@ -68,8 +68,6 @@
 						
 					</select>
 					
-					<br /><br /><br />
-					
 					<input type="submit" class="button" value="Weiter" />
 				</form>
 			

@@ -1,77 +1,65 @@
-<?php session_start(); ?>
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-  
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" >
-	<head>
-		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-		<title>EST Quiz-Projekt</title>
-		<link rel="stylesheet" type="text/css" href="css/format.css"/>
-		<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet"> 
-	</head>
-	<body class = "background">
-	<?php
-		require 'php/functions.php';
-		
-		$show_formular = true;
-		$successfull = false; 
-		$error_exist = false;
-		
-		if(isset($_GET['register'])) {
-			$error_exist = false;
+<?php 
+	session_start();
+	require('php/functions.php');
+	
+	$showFormular = true;
+	$successfull = false; 
+	$error = false;
+	
+	if( isset($_GET['register']) ) {
 			$username = $_POST['username'];
 			$email = $_POST['email'];
 			$password = $_POST['password'];
 			$password2 = $_POST['password2'];
 			$rank = "User";
 		
-			if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+			if( !filter_var($email, FILTER_VALIDATE_EMAIL) ) {
 				$error_message = 'Bitte geben Sie eine gültige E-Mail-Adresse ein!<br>';
-				$error_exist = true;
+				$error = true;
 			} 	
 		
-			if(strlen($password) == 0) {
+			if( strlen($password) == 0 ) {
 				$error_message = 'Bitte geben Sie ein Passwort!<br>';
-				$error_exist = true;
+				$error = true;
 			}
 			
-			if($password != $password2) {
+			if( $password != $password2 ) {
 				$error_message = 'Die Passwörter müssen übereinstimmen!<br>';
-				$error_exist = true;
+				$error = true;
 			}
 	
-			if(!$error_exist) { 
+			if( !$error ) { 
 				$statement = $db->prepare("SELECT * FROM user WHERE email = :email");
 				$result = $statement->execute(array('email' => $email));
 				$user = $statement->fetch();
 		
-			if($user !== false) {
+			if( $user !== false ) {
 				$error_message = 'Diese E-Mail-Adresse ist bereits vergeben!<br>';
-				$error_exist = true;
+				$error = true;
 			}	
 		}
 	
-		if(!$error_exist) { 
+		if( !$error ) { 
 			$statement = $db->prepare("SELECT * FROM user WHERE username = :username");
 			$result = $statement->execute(array('username' => $username));
 			$user = $statement->fetch();
 
-			if($user !== false) {
+			if( $user !== false ) {
 				$error_message = 'Dieser Username ist bereits vergeben!<br>';
-				$error_exist = true;
+				$error = true;
 			}	
 		}
 	
-		if(!$error_exist) {	
+		if( !$error ) {	
 			$password_hash = password_hash($password, PASSWORD_DEFAULT);
 			$date = date("Y-m-d H:i:s");
 			
 			$statement = $db->prepare("INSERT INTO user (username, password, email, registerdate, status) VALUES (:username, :password, :email, :registerdate, :status)");
 			$result = $statement->execute(array('username' => $username, 'password' => $password_hash, 'email' => $email, 'registerdate' => $date, 'status' => $rank));
 			
-			if($result) {
+			if( $result ) {
 				$successfull = true;
+				$showFormular = false;
 			} 
 			
 			else {
@@ -81,44 +69,66 @@
 		} 
 	}
 	
-	if($show_formular) {
-	?>
-		<nav> <!-- Navigationsleitse -->
-			<ul>
-				<li>
-					<a href="index.php">Startseite</a>
-				</li>
-				<li>
-					<a href="login.php">Login</a>
-				</li>
-				<li>
-					<a href="register.php">Registrieren</a>
-				</li>
-				<li>
-					<a href="https://github.com/benediktr/Quiz-Webseite/wiki/Projekttagebuch">Projekttagebuch</a>
-				</li>
-			</ul>
-		</nav>
-		<h1 class = "titel">Registrieren</h1>
-		<?php
-		if ($successfull) {
-			echo "<div class = 'box'><span class = 'green'>Account erfolgreich registriert, $username du kannst dich nun <a href = 'login.php'>einloggen!</a></span></div><br />";
-		} 
-		if ($error_exist) {
-			echo "<div class = 'box'><span class = 'red'>$error_message</span></div><br />";
-		} 
-		?>
-		<div class = "box">
-			<form action = "?register=1" method = "post">
-				<input type = "name" placeholder = "Username" size = "30" maxlength = "15" name = "username"><br>
-				<input type = "password" placeholder = "Passwort" size = "30" maxlength = "255" name = "password"><br>
-				<input type = "password" placeholder = "Passwort wiederholen" size = "30" maxlength = "255" name = "password2"><br>
-				<input type = "email" placeholder = "E-Mail-Adresse" size = "30" maxlength = "200" name = "email">
-				<input type = "submit" class = "registerButton" id = "registerGross" value = "Registrieren">
-			</form>
+?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+  
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" >
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<title>EST Quiz-Projekt</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://www.w3schools.com/w3css/3/w3.css">
+	</head>
+	<body>
+		<!-- Sidebar -->
+		<div class="w3-sidebar w3-light-grey w3-bar-block" style="width:15%">
+			<h3 class="w3-bar-item">Est Quiz-Project</h3>
+			<?php if( !$access) { ?>
+			<a href="index.php" class="w3-bar-item w3-button">Startseite</a>
+			<a href="login.php" class="w3-bar-item w3-button">Einloggen</a>
+			<a href="register.php" class="w3-bar-item w3-button">Registrieren</a>
+			<a href="https://github.com/benediktr/Quiz-Webseite/wiki/Projekttagebuch" class="w3-bar-item w3-button">Projekttagebuch</a>
+			<?php } else { ?>
+			<a href="index.php" class="w3-bar-item w3-button">Startseite</a>
+			<a href="profil.php" class="w3-bar-item w3-button">Profil</a>
+			<?php if( strcmp($user['status'], "Admin") == 0 ) { ?>
+			<a href="admin.php" class="w3-bar-item w3-button">Adminpanel</a>
+			<?php } ?>
+			<a href="rank.php" class="w3-bar-item w3-button">Rangliste</a>
+			<a href="addquestion.php" class="w3-bar-item w3-button">Fragen hinzufügen</a>
+			<a href="play.php" class="w3-bar-item w3-button">Quiz Starten</a>
+			<a href="logout.php" class="w3-bar-item w3-button">Ausloggen</a>
+			<?php } ?>
 		</div>
-		<?php
-			}
-		?>
+		<!-- Content -->
+		<div style="margin-left:15%">
+			<div class="w3-container w3-teal">
+				<h1>Registrieren</h1>
+			</div>
+			<hr />
+			<div class="w3-display-middle">
+				<?php if( $showFormular ) { ?>
+				<form action = "?register=1" method = "post">
+					<label class="w3-label w3-text-green"><b>Username</b></label>
+					<input type = "name"  size = "30" maxlength = "15" name = "username" class = "w3-input w3-border"/><br>
+					<label class="w3-label w3-text-green"><b>Paswort</b></label>
+					<input type = "password" size = "30" maxlength = "255" name = "password" class = "w3-input w3-border"/><br>
+					<label class="w3-label w3-text-green"><b>Passwort wiederholen</b></label>
+					<input type = "password" size = "30" maxlength = "255" name = "password2" class = "w3-input w3-border"/><br>
+					<label class="w3-label w3-text-green"><b>E-Mail-Addresse</b></label>
+					<input type = "email" size = "30" maxlength = "200" name = "email" class = "w3-input w3-border"/><br />
+					<center><input class = "w3-button w3-white w3-border w3-border-red w3-round-large" value = "Registrieren" type = "submit"/><center>
+				</form>
+			</div>
+			<?php } if( $error ) { ?>
+				<center><p class = "w3-text-red">Fehler beim registrieren!</p></center>
+				<center><p class = "w3-text-red"><?php echo $error_message; ?></p></center>
+			<?php } if( $successfull ) { ?>
+				<center><p class = "w3-text-green">Hallo <?php echo $username; ?>, du hast erfolgreich einen Account erstellt! Du kannst dich nun <a href = "login.php">Einloggen</a>!</p></center>
+			<?php } ?>
+			</div>
+		</div>
 	</body>
 </html>

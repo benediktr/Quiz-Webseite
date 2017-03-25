@@ -1,97 +1,101 @@
-<?php session_start(); ?>
+<?php 
+	session_start();
+	require('php/functions.php');
+	
+	if( isset($_SESSION['userid']) ) {
+		$access = true;
+	} else {
+		$access = false;
+	}
+	
+	$id = $_SESSION['userid'];
+	$statement = $db->prepare("SELECT * FROM user WHERE id = :id");
+	$result = $statement->execute(array('id' => $id));
+	$user  = $statement->fetch();
+	
+?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
- 
-<?php
-	require 'php/functions.php'; 
-	
-	if(!isset($_SESSION['userid'])) {
-		die('Bitte zuerst <a href="login.php">einloggen</a>');
-	}
-	
-	$plaetze = 0;
-	
-	$userid = $_SESSION['userid'];
-	$statement = $db->prepare("SELECT * FROM user WHERE id = :id");
-	$result = $statement->execute(array('id' => $userid));
-	$user  = $statement->fetch();
-	
-/*	$statement2 = $db->prepare("SELECT `userid`, `total_score` FROM `user_scores` ORDER BY total_score DESC LIMIT 10");
-	$result2 = $statement2->execute(array('id' => $userid));
-	$user  = $statement2->fetch();*/
-	
-	$username = $user['username'];
-?>
   
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" >
 	<head>
 		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 		<title>EST Quiz-Projekt</title>
-		<link rel="stylesheet" type="text/css" href="css/format.css"/>
-		<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet"> 
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://www.w3schools.com/w3css/3/w3.css">
 	</head>
-	<body class = "background">
-		<nav> <!-- Navigationsleitse -->
-			<ul>
-				<li>
-					<a href="profil.php">Profil</a>
-				</li>
-				<li>
-					<a href="rank.php">Rangliste</a>
-				</li>
-				<li>
-					<a href="addquestion.php">Frage hinzuf&uuml;gen</a>
-				</li>
-				<li>
-					<a href="play.php">Spiel Starten</a>
-				</li>
-				<li>
-					<a href="logout.php">Ausloggen</a>
-				</li>
-			</ul>
-		</nav>
-		<h1 class = "titel">Rangliste</h1>
-		<center>
-			<table>
-				<thead>
-					<tr>
-						<th>Platz</th>
-						<th>Username</th>
-						<th>Score</th>
-					</tr>
-				</thead>
-				<tbody>
-					<?php 
-						$abfrage="SELECT `id`, `total_score` FROM `user` ORDER BY total_score DESC LIMIT 10;";
-						$platz = 1;
+	<body>
+		<!-- Sidebar -->
+		<div class="w3-sidebar w3-light-grey w3-bar-block" style="width:15%">
+			<h3 class="w3-bar-item">Est Quiz-Project</h3>
+			<?php if( !$access) { ?>
+			<a href="index.php" class="w3-bar-item w3-button">Startseite</a>
+			<a href="login.php" class="w3-bar-item w3-button">Einloggen</a>
+			<a href="register.php" class="w3-bar-item w3-button">Registrieren</a>
+			<a href="https://github.com/benediktr/Quiz-Webseite/wiki/Projekttagebuch" class="w3-bar-item w3-button">Projekttagebuch</a>
+			<?php } else { ?>
+			<a href="index.php" class="w3-bar-item w3-button">Startseite</a>
+			<a href="profil.php" class="w3-bar-item w3-button">Profil</a>
+			<?php if( strcmp($user['status'], "Admin") == 0 ) { ?>
+			<a href="admin.php" class="w3-bar-item w3-button">Adminpanel</a>
+			<?php } ?>
+			<a href="rank.php" class="w3-bar-item w3-button">Rangliste</a>
+			<a href="addquestion.php" class="w3-bar-item w3-button">Fragen hinzufügen</a>
+			<a href="play.php" class="w3-bar-item w3-button">Quiz Starten</a>
+			<a href="logout.php" class="w3-bar-item w3-button">Ausloggen</a>
+			<?php } ?>
+		</div>
+		<!-- Content -->
+		<div style="margin-left:15%">
+			<div class="w3-container w3-teal">
+				<h1>Rangliste</h1>
+				<p>Est Quiz-Projekt von Benedikt Ross und Lukas Keller</p>
+			</div>
+			<hr />
+			<?php if( !$access ) { ?>
+				<center><p>Bitte zuerst <a href = "login.php">Einloggen</a>!</p></center>
+			<?php } else { ?>
+				<center>
+					<table class="w3-table-all w3-hoverable">
+						<thead>
+							<tr class="w3-light-grey">
+								<th>Platz</th>
+								<th>Username</th>
+								<th>Punkte</th>
+							</tr>
+							<?php 
+								$abfrage="SELECT `id`, `total_score` FROM `user` ORDER BY total_score DESC LIMIT 10;";
+								$platz = 1;
 		
-						foreach( $db->query($abfrage) as $row){
-						$id = $row["id"];
+								foreach( $db->query($abfrage) as $row){
+									$id = $row["id"];
 					
-						$idabfrage="SELECT `username`, `total_score` FROM `user` WHERE `id`='".$id."';";
-						foreach( $db->query($idabfrage) as $row2){
-							echo "<tr>";
-							$nameuser = "<td>".$row2["username"]."</td>";
-							$score_total = "<td>".$row2['total_score']."</td>";
-								if($username != $nameuser){
-								echo "<td>".$platz."</td>";
-								echo $nameuser;
-								echo $score_total;
-							}
-							else{
-								echo "<td>".$platz."/td>";
-								echo "<td>Du</td>";
-								echo "<td>".$score_total."</td>";
-							}
-							$platz += 1;
-							echo "</tr>";
-						}
+									$idabfrage="SELECT `username`, `total_score` FROM `user` WHERE `id`='".$id."';";
+									foreach( $db->query($idabfrage) as $row2){
+										echo "<tr>";
+										$nameuser = "<td>".$row2["username"]."</td>";
+										$score_total = "<td>".$row2['total_score']."</td>";
+										if($username != $nameuser){
+											echo "<td>".$platz."</td>";
+											echo $nameuser;
+											echo $score_total;
+										}
+										else {
+											echo "<td>".$platz."/td>";
+											echo "<td>Du</td>";
+											echo "<td>".$score_total."</td>";
+										}
+										$platz += 1;
+										echo "</tr>";
+									}
 	
-					}
-					?>
-				</tbody>
-			</table>
-		</center>
+								}
+							?>
+						</thead>
+					</table>
+				</center>
+			<?php } ?>
+		</div>
 	</body>
 </html>

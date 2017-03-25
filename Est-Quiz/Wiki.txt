@@ -1,0 +1,380 @@
+Hinweis: Aufgetretene Probleme werden in dem Bereich Issues protokolliert
+
+### 19.09.2016 Dauer: 30 Minuten, erledigt von: Benedikt
+* Erstellung eines Zeitplans für die Projektplanung
+
+***
+### 27.09.2016 Dauer: 5 Minuten, erledigt von: Benedikt, Lukas
+* Die Entscheidung getroffen das Projekt mit HTML5, CSS, der Datenbank MySQL und PHP technisch umzusetzen
+
+***
+### 4.10.2016 Dauer: 30 Minuten, erledigt von: Benedikt, Lukas
+* Aufteilung von PHP (Lukas) und MySQL (Benedikt)
+* Festlegung des nächsten Schritt:  
+* -> Aufsetzung des XAMPP Servers
+* -> Einarbeitung in die Technologien (PHP, MySQL)
+* Diverse PHP und HTML Beispiele hinzugefügt, um sich näher mit Sessions beschäftigen zu können (Sourcecode aus [Sessions](http://www.php-einfach.de/php-tutorial/php-sessions/))
+ 
+***
+### 8.10.2016 Dauer: 30 Minuten, erledigt von: Benedikt 
+* Einarbeitung in MySQL: Installation von MySQL und phpMyAdmin
+* Installation von XAMPP auf Linux
+* Nächste Schritte: Einarbeitung in die GUI von phpMyAdmin
+
+***                                 
+### 10.10.2016 Dauer: 45 Minuten, erledigt von: Lukas 
+* XAMPP nach diversen Rückschlägen (Server konnte nicht gestartet werden) zum starten gebracht
+* Einarbeitung in PHP begonnen (Nutzung der App [Learn PHP](https://play.google.com/store/apps/details?id=com.sololearn.php&hl=de))
+* Nächste Schritte: Test weise PHP-Skripte schreiben und diese mit dem Server zu verbinden
+
+*** 
+### 10.10.2016 Dauer: 1 Stunde, erledigt von: Benedikt
+* Übersicht verschaffen über die GUI von phpMyAdmin
+* Nutzung der App [Learn SQL](https://play.google.com/store/apps/details?id=com.sololearn.sql)
+* Nächste Schritte: Einarbeitung in die Verwendung der GUI von phpMyAdmin
+
+***
+### 10.10.2016 Dauer: 15 Minuten, erledigt von: Lukas
+* Erste Tests mit PHP in Verbindung mit dem Server
+* Weitere Schritte: Eigenes komplexes PHP-Skript schreiben, welches eine Session erstellen soll (später mit der Datenbank verbinden, User-Accounts etc.)
+
+***
+### 12.10.2016 Dauer: 30 Minuten, erledigt von: Benedikt
+* Einarbeitung in die Verwendung der GUI phpMyAdmin mit dem Tutorial [PHP-Einfach.de](https://www.php-einfach.de/mysql-tutorial/phpmyadmin-datenbank-verwalten/)
+* Nächste Schritte: Erstellen einer Datenbank
+
+***
+### 11.10.2016 Dauer: 30 Minuten, erledigt von: Lukas
+* Mit der App [Learn PHP](https://play.google.com/store/apps/details?id=com.sololearn.php&hl=de) Grundkenntnisse erarbeitet (Variablen, mit Variablen rechnen)
+
+***
+### 15.10.2016 Dauer: 30 Minuten, erledigt von: Benedikt
+* Erstellung einer testweisen Datenbank customers mit phpMyAdmin und Spalten wie id, name, city, email, ...
+* Erlernen des Befehls SELECT über die [Learn SQL](https://play.google.com/store/apps/details?id=com.sololearn.sql) App
+* Nächste Schritte: Erlernen der Befehle um eine Datenbank mit Daten füllen, diese aktualisieren, abrufen, löschen und diese dann testen 
+
+***
+### 16.10.2016 Dauer: 30 Minuten, erledigt von: Lukas
+* Mit der App [Learn PHP](https://play.google.com/store/apps/details?id=com.sololearn.php&hl=de) weitere Grundkenntnisse erarbeitet, bearbeiten von Dateien (Textdokumenten), beschreiben und auslesen
+
+***
+### 17.10.2016 Dauer 30 Minuten, erledigt von Benedikt
+* Einlernung in die Verwaltungsbefehle von MySQL wie INSERT INTO, UPDATE, DROP, DELETE, CREATE TABLE
+
+***
+### 18.10.2016 Dauer 30 Minuten, erledigt von Benedikt
+* Test von den Befehlen an einer testweisen Datenbank (siehe mySQL_test1)
+* AbSchluss der [Learn SQL](https://play.google.com/store/apps/details?id=com.sololearn.sql) App
+
+***
+Nächster gemeinsamer Schritt: Entwicklung eines Konzepts, welches die Anzahl der Datenbanken und  Zugriffsmöglichkeiten enthält
+
+***
+### 19.10.2016 Dauer: 45 Minuten, erledigt von Lukas, Benedikt
+* Planung des weiteren Vorgehens: Einarbeitung in die Herstellung einer DatenbankVerbindung mittels PHP Data Objects
+* Designen des Datenbankaufbaus (siehe Zeichnung)
+![](http://image.prntscr.com/image/cbc1d01971414af4b9bf7e95cc1d33ff.jpg)
+* Nächster Schritt: Testwebsite um die Verbindung zu einer Datenbank zu testen. (Session starten und beenden)
+
+
+***
+### 26.10.2016 Dauer: 60 Minuten, erledigt von: Lukas
+* App durchgearbeitet, keinen weiteren Lernstoff seitens der App [Learn PHP](https://play.google.com/store/apps/details?id=com.sololearn.php&hl=de)
+* Grundkenntnisse erfolgreich angeeignet
+* Nächster Schritt: Eigene kleine Test-Webseite erstellen und mit PHP darauf zugreifen (simulierter Login)
+![](http://image.prntscr.com/image/7c01ab9fd3e447e2b43b8d3ad95c9d0e.jpg)
+
+***
+Nächster gemeinsamer Schritt: Überlegung der Skripte um Daten aus der Datenbank zu holen.
+
+***
+### 2.11.2016 Dauer: 3 Stunden 40 Minuten, erledigt von: Lukas, Benedikt
+* Einarbeitung in php MySQL Verbindung
+* Verbindung zu einer Datenbank herstellen per php
+* Erweiterung des Wissens durch fachliche Videos durch Youtube-Videos
+* php Skript zum Herstellen einer Verbindung erstellt
+* Beratung über die notwendigen php Skripte
+* Nächste Schritte: Realisierung der php Skripte, Entwurf der Webseite zum Testen, Überlegung über das weitere Verfahren
+
+***
+### 3.11.2016 Dauer: 4 Stunden 30 Minuten, erledigt von: Benedikt, Lukas
+* Übersicht über die Webseite erstellt
+* Startseite erstellt
+* Registrierungsvorgang realisiert
+* Loginvorgang realisiert
+* Logoutvorgang realisiert
+* Aufgetretene Probleme erfolgreich gelöst
+* Besprechung der Lösung des Speichern eines Spielstandes
+* Nächste Schritte: Passwort zurücksetzen realisieren, Profil Übersicht erstellen, "Themengebiet auswählen -> Spielstarten"- realisieren
+* Benedikt: Themengebiete realisieren (in HTML), Datenbank abändern
+* Lukas: Profil Übersicht (Passwort zurücksetzen, E-Mail zurücksetzen, Allgemeine Informationen anzeigen)
+![](http://image.prntscr.com/image/446ed1f9f7aa46008b874cb9b2b46087.jpg)
+
+***
+### 4.11.2016 Dauer: 30 Minuten, erledigt von: Benedikt
+* Festlegung der Themen: Bibel, Sport und Freizeit, Essen und Trinken, Geographie und Länder, Film, Zeit und Geschichte, Kunst und Design, Musik, TV, Politik, Wissenschaft,Tiere und Natur, Technik
+* Erstellung einer HTML Datei die über die Themenauswahl anzeigt
+* Änderung der user Datenbank um die Themen und eine Score Spalte
+* Nächster Schritt: Erstellung der Datenbanken welche die Fragen für jedes Thema beinhalten 
+
+***
+### 8.11.2016 Dauer: 30 Minuten, erledigt von: Lukas
+* Passwort zurücksetzen realisiert, hierbei muss die E-Mail, das alte Password und das neue Password angegeben werden
+* Nächste Schritte: Passwort zurücksetzen testen, ob dies auch richtig funktioniert / "Angemeldet bleiben" mit Cookies realisieren, hierzu muss nur noch die login.php und die logout.php angepasst werden, index.php befindet sich bereits auf dem neuesten Stand
+* functions.php überarbeitet, die Funktion "add_question_to_db" hinzugefügt - muss noch getestet werden
+
+***
+### 8.11.2016 Dauer: 1 Stunde, erledigt von: Benedikt
+* Einarbeitung in die Normalisierung der Datenbak durch verschiedene Normen
+* Einarbeitung in die Strukturierung von Daten
+* Suche nach einer Lösung um die Datenbanken grafisch darzustellen (Access oder Dia)
+* Nächster Schritt: Grafische Darstellung der Datenbank erstellen. Datenbank umstrukturieren nach dem Norm( z.B. den Spielstand von der Datenbank der Benutzer entfernen und eine eigene Datenbank erstellen). Erstellung der Datenbank für die Fragen erstellen.
+
+***
+### 26.11.2016 Dauer: 1 Stunde, erledigt von: Benedikt
+* Neudesign der Datenbanken: Eine Datenbank enthält alle Fragen und die andere Datenbank einmal die Useraccounts und den Punktestand
+* Grafisches darstellen mit Dia (siehe datenbankdesign.dia)
+* Nächster Schritt: Erstellung der Datenbank mit phpMyAdmin 
+
+***
+### 29.11.2016 Dauer: 30 Minuten erledigt von: Benedikt
+* Erstellung neuer Datenbanken 
+* Änderung der bereits vorhandenen
+* Nächster Schritt: Füllen der question-Datenbank mit Testfragen
+
+***
+Nächster gemeinsamer Schritt: Gemeinsame Entwicklung des Skripts, welches die Fragen aus der Datenbank holt. Entwicklung eines graphischen Designs für die Webseiten.
+
+***
+### 16.11.2016 - 30.11.2016 Dauer: ~10 Stunden, erledigt von: Lukas
+* Kleiner Zwischenschritt, HTML/CSS
+* Mit HTML/CSS herumexperimentiert, nun ist es kein Problem mehr mit PHP zusammenzufügen
+* Nächster Schritt: provisorisch die gesamte Webseite aufbauen und mit PHP zu vollenden (Abschließung der Webseite in voraussehbarer Zeit!)
+
+***
+### 10.12.2016 Dauer: 35 Minuten Erledigt von : Benedikt
+* Erstellung einer Zeichnung mit den grafischen Konzepts der Benutzeroberfläche
+
+***
+### 13.12.2016 Dauer:1 Stunde Erledigt von: Lukas und Benedikt
+* Gestaltung der Login Webseite mit CSS und HTML
+* Erste Versuche Datei: indexTest.html
+
+***
+### 20.12.2016 Dauer 1 Stunde und 30 Minuten Erledigt von : Benedikt
+* Erstellung eines Zweiten Designentwurf der Login Webseite siehe. format_entwurf2.css
+* Nächster Schritt: Designen der anderen Webseiten
+
+***
+### 20.12.2016 Dauer 2 Stunde, erledigt von: Lukas
+* Fertigstellung der login.php, nun fehlerfrei
+* Nächster Schritt: Erarbeitung der anderen Funktionen, fragen auslesen, fragen einfügen
+
+***
+### 23.12.2016 Dauer: 4 Stunden und 30 Minuten erledigt von:Lukas und Benedikt
+* Positionierung des Logins Button in der Registierungsbox
+* Auswählungen und Bearbeiten von Bildern zu den jeweiligen Themenbereichen
+* Erstellung einer grafischen Darstellung der Themengebieten auf der Startseite
+* Auslesung des Usernamen aus der Datenbank per ID des Users
+
+***
+### 12.01.2017 Dauer: 4 Stunden und 30 Minuten erledigt von: Lukas und Benedikt
+* Layoutoptimierungungen
+* Hinzufügen von Auswahl-Buttons auf der Index2 Seite
+* Diverse Fehlerbehebung (Bilder) 
+* Erstellung eines Ablaufplan der Fragen-Seite (siehe dia Datei)
+* Erstellung der Fragen Hinzufügen Seite
+
+Nächste Schritte:
+Fragen hinzufügen fertigstellen, Erstellung der Fragen-Seite
+
+***
+### 19.01.2017 Dauer: 2 Stunden, erledigt von: Lukas
+* Komplette Neugestaltung des Layouts, so ist jetzt die Themenvorschau auf der Startseite
+* Die gesamte Seite hat einen neuen Hintergrund erhalten
+* Es wurde eine Navigationsleiste hinzugefügt, um die Darstellung zu verbessern
+* Die Buttons haben ein neues Layout erhalten
+* Nächste Schritte: die Funktion für das Fragen hinzufügen fertigstellen und Profil Übersicht (inklusive die Statistiken) hinzufügen, danach geht es dann in Richtung "Quiz Starten" erstellen
+* Problemstellung: eine Blacklist für die Fragen in die Datenbank einzuspeisen, hierbei wäre eine Array perfekt - das heißt, wir müssen uns erst einmal anschauen, ob dies überhaupt geht
+* Anmerkung: das Layout muss noch etwas verbessert werden, so ist es derzeitig etwas zu dunkel 
+
+***
+Das neue Design befindet sich in dem Unterordner Projekt. Das alte Design in dem Unterordner Quiz. 
+Jedoch haben wir uns entschieden an das alte Design zu erstmals zu behalten um das Projekt technisch fertigzustellen.
+Und später dann am Design arbeiten. 
+
+***
+### 25.01.2017 Dauer: 1 Stunde , erledigt von: Benedikt
+* Erstellung des Skriptes um die Bestenliste anzuzeigen
+* Die userid und der Score werden aus der Datenbank geholt
+* Jedoch um der username anhand der userid noch aus der user_accounts geholt werden
+
+***
+### 26.01.2017 Dauer: 30 Minuten, erledigt von: Benedikt
+* Fertigstellung des Bestenliste Skripts
+* Es wird der Platz, der Name und der Score angezeigt
+* Für den aktuell eingeloggten Benutzer wird nicht der Benutzername sondern "Du" angezeigt
+* Die Grafik müsste mit CSS noch angepasst werden
+
+***
+### Nächsten Schritte:
+* Fertigstellung der Profilübersicht, welches Benedikt übernimmt
+* Fertigstellung des Hinzufügen von Fragen, welches Lukas übernimmt
+* Sind diese Aufgaben erledigt, werden das Spielprinzip entwickelt
+
+***
+### 22.02.2017 Dauer: 30 min, erledigt von: Benedikt
+* Lösung zur Blacklist: In der Score Datenbank wird jeweils die ID der zuletzt beantworteten Frage gespeichert.
+  Um eine zufällige Reihenfolge zu gewähren, könnte man immer pro Spieldurchgang 10 Fragen aus der Datenbank holen und   dies in einer zufälligen Reihenfolge beantworten lassen. Danach wird die Nummer in der Datenbank um 10 erhöht. Beim nächsten Spieldurchgang werden dann wieder die nächsten 10 Fragen geholt.
+* Erstellung des HTML Teils der Seite Profilübersicht
+Nächster Schritt: Erstellung des PHP Teils
+
+***
+### 24.02.2017 Dauer 1 Stunde, erledigt von: Benedikt
+* Erweiterung des stats.php Skripts um den PHP teil
+* Es werden aktuell der Score des users und die jeweilig beantworteten Fragen aller anderen Themenbereiche angezeigt
+* Nächster Schritt:
+* Um ein Fortschritt in Prozent anzuzeigen müsst noch die Anzahl der Fragen aus der question-Datenbank geholt werden  
+
+***
+### 27.02.2017 Dauer: 1 Stunde 40 Minuten erledigt von: Benedikt
+* Fehlersuche zur Behebung des Problems ( siehe Issues #4 )
+* Sortierung des CSS Files für index.html, Login.php und Register.php
+* Nächster Schritt: Sortierung für alle Files, Lukas schaut sich den Fehler an 
+
+***
+### 01.03.2017 Dauer: 3 Stunde erledigt von: Benedikt
+* Restliche Sortierung des Stylesheet für alle HTML Seiten 
+* Auslagerung in seitenspezifische Stylesheets
+* Kommentierung der Stylesheets
+* Behebung des Problems ( Issue #4 ) siehe Kommentierung
+* Umdesignen der Question Datenbank: Die Kategorien einfach, mittel und schwer fallen weg. Es gibt je Themenbereich eine Kategorie. Das Hinzufügen von Schwerigkeitenskategorien wäre eine Erweiterungsmögichkeit
+* Erweiterung des Profilübersicht Skripts: Es wird die Anzahl des Vorhandenen Fragen aus der Questions Datenbank geholt
+* Um eine 'Devision by zero' zu verhindern wird geprüft ob eins der Werte ( beantwortete Fragen, max. Anzahl der verfügbare Fragen) null ist, wenn nicht wird der Prozentsatz berechnet und angzeigt, ansonsten wird null angezeigt. 
+* Nächster Schritt: Testen der Profilübersicht. Beginn mit dem Spielprinzip
+
+***
+### 01.03.2017 Dauer: 2 Stunde, erledigt von: Lukas
+* Aufbau der "Fragen Hinzufügen" Seite (zu 90% fertig)
+* Nächster Schritt: sämtliche Daten von Benedikt zusammenfassen und dann am Spielprinzip arbeiten
+
+***
+### 02.03.2017 Dauer: 30 Minuten erledigt von: Benedikt
+* Erstellung eines Skripts, in welchem der User über RadioButton den Themenbereich auswählen kann, welchen er Spielen will
+* Nächster Schritt : Entwicklung des Spielprinzip
+
+***
+### 03.03.2017 Dauer: 1 Stunde  erledigt von: Benedikt
+* Kurzer Test von von Der Profilübersicht ( Noch nicht komplett da noch die Fragen fehlen )
+* Die Idee des Spielprinzips: eine Skript das sich immer wieder selbst aufruft und das 10 Mal, dann kommt eine Übersicht über den Fortschritt und dann wiederholt es sich
+* Entwicklung der Festlegung von Variablen die den vorher Festgelegten Themenberich beinhalten, dies soll nur bei Spielbegin aufgerufen werden
+* Das Holen der ID von der zuletzt beantworteten Frage aus der Datenbank.
+* Problemstellung: Hat der Nutzer noch kein Thema ausgewählt, wiede eine Link zurück zur Auswahl angezeigt, jedoch auch die Fehlermeldungen
+* Nächster Schritt: Hinzufügen von Fragen, Testen von der Profilübersicht, Weiterentwicklung des Spielprinzips von Lukas oder Benedikt
+
+***
+### 06.03.2017 Dauer: 45 Minuten erledigt von: Benedikt
+* Erweiterung des Game Skripts:
+* Holen der Fragen aus der Datenbank
+* Anzeigen der Antworten mit Radio Buttons
+* Nächster Schritt: Zufällige Anordnung der Antworten
+
+***
+### 07.03.2017 Dauer:45 Minuten erledigt von: Benedikt
+* Umstellen der Variablen im Spiel Skript auf SESSION Variablen um sie bei den wiederaufrufen zu haben
+* Kleine Änderungen: wie Zentrierung des Textes der Webseite, Kommentierung des Codes , ...
+* Nächster Schritt: Genauere Planung und Designen des Skriptes mit Dia , da es sich als komplexer herausgestellt hat#
+
+***
+### 13.03.2017 Dauer: 1 Stunde und 10 Minuten erledigt von: Benedikt
+* Umgestaltung des UML Diagramm des Spielablaufs
+
+***
+### 14.03.2017 Dauer: 1 Stunde, erledigt von: Lukas
+* Umgestaltung der Datenbank
+* Somit ist nun alles auf einer Datenbank ausgelagert, welches den Zugriff auf die Dateien erleichtern sollte
+* Jedes Themengebiet hat nun seine eigene Tabelle
+* Die Tabelle ist wie folgend aufgeteilt: id | question | right_answer | wrong_answer_1 | wrong_answer_2 | wrong_answer_3
+
+***
+### 15.03.2017 - 18.03.2017 Dauer: 9 Stunden, erledigt von: Lukas
+* Das Project ist nun unter est-quiz.bplaced.com erreichbar
+* Fragen können jetzt hinzugefügt werden, hierbei kann man das Thema, die Frage, eine richtige und drei falsche Antworten angeben
+* Die Profilübersicht, welche Benedikt bereits gemacht hatte, wurde hier zusammengeführt (Anpassung an die neue Datenbank -> später mehr dazu)
+* Allgemeine Veränderung der Datenbank, um sie etwas übersichtlicher zu machen
+* Die User-Datenbank (Spalte) wurde verändert, so sind nun mehr Statistiken vorhanden, wie z.B, wie viele Fragen bereits beantwortet oder auch hinzugefügt wurden
+* Was noch gemacht werden muss: 
+* Profilübersicht mit Prozenten erweitern (wie viel Prozent der Fragen beantwortet wurden)
+* Den Counter für die hinzugefügten Fragen (hier unterlief ein Fehler, welcher sich nicht lösen möchte - sollte nicht mehr allzu lange dauern)
+* Ein Adminpanel (nicht jeder soll Fragen ohne Bestätigung hinzufügen dürfen)
+* Die Rangliste muss noch zusammengeführt werden (Benedikt hat diese bereits erstellt, es muss nur noch an die Datenbank angepasst werden)
+* Das Spielprinzip -> Sollte nicht mehr allzu lange dauern (voraussichtlich ist es Montag soweit fertig)
+* Das Design wird noch verbessert, das man die Seite auch besser auf der mobilen Ansicht bedienen kann (Soweit fertig, muss nur noch gegen das alte ausgetauscht werden -> erst nach dem Spielprinzip)
+
+***
+### 20.03.2017 Dauer: 6 Stunden, erledigt von: Benedikt, Lukas
+* Kurze Auflistung was mittlerweile alles funktioniert:
+* Es ist möglich einen Account zu erstellen
+* Es ist möglich sich einzuloggen
+* Man kann sich ausloggen
+* Man hat eine Profilübersicht, in welcher diverse Statistiken und Daten angezeigt werden
+* Man kann sich eine Rangliste der besten 10 Spieler anschauen, hierbei wird sie so angezeigt: rang | username | punktezahl 
+* Man kann, derzeitig nur mit der User-Gruppe "Admin", Fragen hinzufügen
+* Es ist bereits möglich das Spiel zu starten, jedoch ist die Anwendung noch nicht fertig
+* Was am 20.03.2017 gemacht wurde:
+* Die Anwendung um Fragen in die Datenbank einzufügen (addquestion.php) enthält nun auch ein Affenformular (Idee aus Bundy's Unterricht geklaut), ebenso ist es möglich das Formular zu resetten
+* Die Profilübersicht wurde so angepasst, das man nun die jeweiligen Scores sieht und wie viel Prozent der Fragen man bereits erledigt hat (Vorlage hierfür kam von Benedikt)
+* Ein Adminpanel wurde hinzugefügt, in welcher nur User mit der User-Gruppe "Admin" Zugang haben, allen anderen wird die Seite nicht angezeigt
+* Das Spielprinzip wird derzeitig von Benedikt gemacht (game.php und play.php), jedoch noch nicht ganz fertig - geschätzter Zeitaufwand für die Fertigstellung: 2 Stunden
+* Was noch gemacht werden muss:
+* Das Adminpanel, hier werden eingereichte Fragen und die User angezeigt - somit soll man die Möglichkeit haben, die Fragen in die Datenbank aufzunehmen oder nicht und User zu befördern oder degradieren (es ist geplant eine zweite User Gruppe zu erstellen, welche die Möglichkeit haben Fragen direkt ohne Bestätigung hinzuzufügen)
+* Das Spielprinzip, hierbei müssen wir die Antwort Möglichkeiten noch zufällig ausgeben, da derzeitig alles nach der Reihenfolge: right_answer, wrong_anwer_1, wrong_anwer_2 und wrong_anwer_3 ausgegeben wird
+* Sobald dies alles erledigt ist, kümmern wir uns noch um ein Design, welches der Webseite ein gutes Aussehen verpassen sollte und auch auf Mobilen Geräten einwandfrei funktioniert
+* Danach geht es dann ans Testen, es sollten möglichst alle Fehler aus dem Spiel entfernt werden, bevor wir die Dokumentation anfertigen (geschätzte Dauer: nicht mehr als eine Woche)
+
+***
+### 22.03.2017 Dauer: 4 Stunde, erledigt von: Lukas
+* Umstellung auf das neue Design
+* Letzte Dinge die noch Fehlen: 
+* Spielprinzip (arbeitet derzeitig Benedikt daran)
+* Adminpanel (sollte entweder am Donnerstag (23.03) oder am Freitag (24.03) fertig sein)
+
+***
+### 23.03.2017 Dauer: 20 Minuten, erledigt von: Lukas
+* Festlegung einer Domain (so ist die Webseite nun auch per quiz-project.tk erreichbar)
+* Einen Fehler behoben, welcher den Counter für das Fragen hinzufügen trotz einer nicht erfolgreich hinzugefügten Frage erhöht hat
+* Ein paar Textverbesserungen (Rechtschreibfehler etc.)
+* Nächste Etappe: Adminpanel fertigstellen, voraussichtlich am 24.03.2017 fertig
+
+***
+### 23.03.2017 Dauer: 1 Stunde, erledigt von: Benedikt
+* Auslagerung des Anzeigen der richtigen Antwort und die con Nutzer angeklickte Antwort in eine seperate
+Datei game_results.php dies erleichtert die Programmierung
+* In dem Skript game_results.php wird die vom Nutzer ausgewählt Antowrt angezeigt 
+* Erarbeitung des Algorithmus zur zufälligen Anordnug der Antwortmöglchkeiten:
+In einem Array sollen vier zufällig erzeugte Zahlen gespeichert werden, bevor eine reingeschreiben wird, wird geprüft ob sie nicht schon in den vorherigen Feldern steht. So sollen Antwortmöglichkeiten nach den Zahlen im Array angezeigt werden
+* Nächste Schritte: Fertigstellung des Algorithmus, das Ergebnis in die Datenbank schreiben, Erstellen der Übersicht über die richtigen und Falschen Fragen, welches alle 10 Durchläufe angezeigt wird
+
+***
+### 25.03.2017 Dauer: 2 Stunden, erledigt von: Lukas
+* Das Adminpanel ist soweit fertig, derzeitige Features:
+* Löschen von Accounts
+* Degradieren von Accounts (von Admin zu User)
+* Befördern von Accounts (von User zu Admin)
+* Noch nicht möglich, aufgrund eines kleinen Fehlers (sollte demnächst ausgebessert werden):
+* Hinzufügen von eingereichten Fragen, per ID (jede eingereichte Frage bekommt eine einzigartige ID)
+* Nächste Schritte: 
+* Das Einreichen von Fragen vollends ermöglichen (bereits möglich aber noch ein kleiner Anzeigefehler vorhanden & es muss noch was am Adminpanel abgeändert werden (so z.B. der Counter für die Hinzugefügten Fragen))
+* Voraussichtlich fertig am Sonntag den 26.03.2017
+
+***
+### 25.03.2017 Dauer: 1 Stunden, erledigt von: Lukas
+* Nachtrag:
+* Adminpanel ist soweit fertig, das einzige was noch nicht so funktioniert wie es soll, ist das editieren von eingereichten Fragen (hierbei handelt es sich um einen kleinen Datenbankfehler innerhalb des PHP-Files, jedoch ist die derzeitige Behebung aufgrund von Internetproblemen (zu langsam um was auf den Server zu laden) nicht möglich)
+* Vermutliche Fertigstellung des Adminpanels: heute Abend (25.03.2017)
+
+***
+### 25.03.2017 Dauer: 2 Stunden, erledigt von: Lukas
+* 2. Nachtrag:
+* Das Problem hatte sich als komplexer herausgestellt, als anfangs gedacht - jedoch nach vielen Hilfsvariablen, etlichen "echos" und nach viel Schokolade habe ich es endlich gelöst
+* Das Adminpanel ist nun voll funktionstüchtig 

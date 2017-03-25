@@ -1,18 +1,16 @@
-<?php session_start(); ?>
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
- 
-<?php
-	require 'php/functions.php'; 
+<?php 
+	session_start();
+	require('php/functions.php');
 	
-	if(!isset($_SESSION['userid'])) {
-		die('Bitte zuerst <a href="login.php">einloggen</a>');
+	if( isset($_SESSION['userid']) ) {
+		$access = true;
+	} else {
+		$access = false;
 	}
 	
-	$userid = $_SESSION['userid'];
+	$id = $_SESSION['userid'];
 	$statement = $db->prepare("SELECT * FROM user WHERE id = :id");
-	$result = $statement->execute(array('id' => $userid));
+	$result = $statement->execute(array('id' => $id));
 	$user  = $statement->fetch();
 	
 	$status = $user['status'];
@@ -33,7 +31,7 @@
 	$score_politics = $user['score_politics'];
 	$score_science = $user['score_science'];
 	$score_technology = $user['score_technology'];
-	$score_tvseries = $user['score_tvseries'];
+	$score_tvseries = $user['score_series'];
 	$score_art = $user['score_art'];
 	$questions_done = $user['counter_answers'];
 	$questions_right = $user['counter_right_answers'];
@@ -53,15 +51,6 @@
 		return $max_id;
 	}
 	
-	/* Die Anzahl der Eintrage in der Datenbank jedes Themas holen, 
-	die maximale Anzahl an Fragen zu haben */
-	
-	/*$statement = $db->prepare("SELECT * FROM art WHERE id = (SELECT MAX(id) FROM art)");
-	$statement->execute();
-	$row = $statement->fetch();
-	
-	$max_art = $row['id'];	*/
-	
 	$max_art = (getMaxQuestions( "art", $db ));
 	$max_bible = getMaxQuestions( "bible", $db );
 	$max_eating = getMaxQuestions( "eating", $db );
@@ -74,331 +63,269 @@
 	$max_politics = getMaxQuestions( "politics", $db );
 	$max_science = getMaxQuestions( "science", $db );
 	$max_technologie = getMaxQuestions( "technologie", $db );
-	$max_tvserie = getMaxQuestions( "serie", $db );
+	$max_tvserie = getMaxQuestions( "series", $db );
 	
 ?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
   
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" >
 	<head>
 		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 		<title>EST Quiz-Projekt</title>
-		<link rel="stylesheet" type="text/css" href="css/format.css"/>
-		<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet"> 
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://www.w3schools.com/w3css/3/w3.css">
 	</head>
-	<body class = "background">
-		<nav> <!-- Navigationsleitse -->
-			<ul>
-				<li>
-					<a href="profil.php">Profil</a>
-				</li>
-				<li>
-					<a href="rank.php">Rangliste</a>
-				</li>
-				<li>
-					<a href="addquestion.php">Fragen hinzuf&uuml;gen</a>
-				</li>
-				<li>
-					<a href="play.php">Spiel Starten</a>
-				</li>
-				<?php if( strcmp($status, "Admin") == 0 ) { ?>
-				<li>
-					<a href="admin.php">Adminpanel</a>
-				</li>
-				<?php } ?>
-				<li>
-					<a href="logout.php">Ausloggen</a>
-				</li>
-			</ul>
-		</nav>
-		<!-- Login -->	
-		<h1 class = "titel">Profil&uuml;bersicht von <?php echo $username; ?></h1>
-		<div class = 'box'>
-			<p>Registrierungdatum: <?php echo $registerdate; ?></p>
-			<p>Identifikationsnummer: <?php echo $id; ?></p>
-			<p>Rang: <?php echo $rank; ?></p><br /><br />
-			<p>Globaler Score: <?php echo $total_score; ?></p>
-			<p>Fragen hinzugefügt: <?php echo $questions_added; ?></p>
-			<p>Fragen beantwortet: <?php echo $questions_done; ?></p>
-			<p>Richtig: <?php echo $questions_right; ?></p>
-			<p>Falsch: <?php echo $questions_wrong; ?></p>
-			
-			<br />
-			
-			
-			<p>Kunst Score: <?php echo $score_art; ?></p>
-			
-				<?php
-				
-				if($max_art  == 0){
-					echo 'Es wurden noch keine Fragen hinzugefügt.';
-				}
-				else{
-					if( $score_art == 0){
-						echo '0%';
-					}
-					else{
-						echo (( $score_art / $max_art )*100).'%';
-					}
-					echo ' von 100 %';
-				}
-				
-				?>
-			
-				<br />
-				
-			
-			<p>Bibel Score: <?php echo $score_bible; ?></p>
-			
-				<?php
-				
-				if($max_bible  == 0){
-					echo 'Es wurden noch keine Fragen hinzugefügt.';
-				}
-				else{
-					if( $score_art == 0){
-						echo '0%';
-					}
-					else{
-						echo (( $score_bible / $max_bible )*100).'%';
-					}
-					echo ' von 100 %';
-				}
-				
-				?>
-				
-				<br />
-			
-			<p>Essens Score: <?php echo $score_eating; ?></p>
-			
-				<?php
-				
-				if($max_eating  == 0){
-					echo 'Es wurden noch keine Fragen hinzugefügt.';
-				}
-				else{
-					if( $score_eating == 0){
-						echo '0%';
-					}
-					else{
-						echo (( $score_eating / $max_eating )*100).'%';
-					}
-					echo ' von 100 %';
-				}
-				
-				?>
-				
-				<br />
-			
-			<p>Sport Score: <?php echo $score_freetime; ?></p>
-			
-				<?php
-				
-				if($max_freetime  == 0){
-					echo 'Es wurden noch keine Fragen hinzugefügt.';
-				}
-				else{
-					if( $score_freetime == 0){
-						echo '0%';
-					}
-					else{
-						echo (( $score_freetime / $max_freetime )*100).'%';
-					}
-					echo ' von 100 %';
-				}
-				
-				?>
-				
-				<br />
-			
-			<p>Kultur Score: <?php echo $score_geography; ?></p>
-			
-				<?php
-				
-				if($max_geography  == 0){
-					echo 'Es wurden noch keine Fragen hinzugefügt.';
-				}
-				else{
-					if( $score_geography == 0){
-						echo '0%';
-					}
-					else{
-						echo (( $score_geography / $max_geography )*100).'%';
-					}
-					echo ' von 100 %';
-				}
-				
-				?>
-				
-				<br />
-			
-			<p>Geschichte Score: <?php echo $score_history; ?></p>
-			
-				<?php
-				
-				if($max_history  == 0){
-					echo 'Es wurden noch keine Fragen hinzugefügt.';
-				}
-				else{
-					if( $score_history == 0){
-						echo '0%';
-					}
-					else{
-						echo (( $score_history / $max_history )*100).'%';
-					}
-					echo ' von 100 %';
-				}
-				
-				?>
-				
-				<br />
-			
-			<p>Filme Score: <?php echo $score_movies; ?></p>
-			
-				<?php
-				
-				if($max_movies  == 0){
-					echo 'Es wurden noch keine Fragen hinzugefügt.';
-				}
-				else{
-					if( $score_movies == 0){
-						echo '0%';
-					}
-					else{
-						echo (( $score_movies / $max_movies )*100).'%';
-					}
-					echo ' von 100 %';
-				}
-				
-				?>
-				
-				<br />
-			
-			<p>Musik Score: <?php echo $score_music; ?></p>
-			
-				<?php
-				
-				if($max_music  == 0){
-					echo 'Es wurden noch keine Fragen hinzugefügt.';
-				}
-				else{
-					if( $score_music == 0){
-						echo '0%';
-					}
-					else{
-						echo (( $score_music / $max_music )*100).'%';
-					}
-					echo ' von 100 %';
-				}
-				
-				?>
-				
-				<br />
-			
-			<p>Natur Score: <?php echo $score_nature; ?></p>
-			
-				<?php
-				
-				if($max_nature  == 0){
-					echo 'Es wurden noch keine Fragen hinzugefügt.';
-				}
-				else{
-					if( $score_nature == 0){
-						echo '0%';
-					}
-					else{
-						echo (( $score_nature / $max_nature )*100).'%';
-					}
-					echo ' von 100 %';
-				}
-				
-				?>
-				
-				<br />
-			
-			<p>Politiks Score: <?php echo $score_politics; ?></p>
-			
-				<?php
-				
-				if($max_politics  == 0){
-					echo 'Es wurden noch keine Fragen hinzugefügt.';
-				}
-				else{
-					if( $score_politics == 0){
-						echo '0%';
-					}
-					else{
-						echo (( $score_politics / $max_politics )*100).'%';
-					}
-					echo ' von 100 %';
-				}
-				
-				?>
-				
-				<br />
-			
-			<p>Wissenschafts Score: <?php echo $score_science; ?></p>
-			
-				<?php
-				
-				if($max_science  == 0){
-					echo 'Es wurden noch keine Fragen hinzugefügt.';
-				}
-				else{
-					if( $score_science == 0){
-						echo '0%';
-					}
-					else{
-						echo (( $score_science / $max_science )*100).'%';
-					}
-					echo ' von 100 %';
-				}
-				
-				?>
-				
-				<br />
-			
-			<p>Technologies Score: <?php echo $score_technology; ?></p>
-			
-				<?php
-				
-				if($max_technology  == 0){
-					echo 'Es wurden noch keine Fragen hinzugefügt.';
-				}
-				else{
-					if( $score_technology == 0){
-						echo '0%';
-					}
-					else{
-						echo (( $score_technology / $max_technology )*100).'%';
-					}
-					echo ' von 100 %';
-				}
-				
-				?>
-				
-				<br />
-			
-			<p>Serien Score: <?php echo $score_tvseries; ?></p>
-			
-				<?php
-				
-				if($max_tvserie  == 0){
-					echo 'Es wurden noch keine Fragen hinzugefügt.';
-				}
-				else{
-					if( $score_tvserie == 0){
-						echo '0%';
-					}
-					else{
-						echo (( $score_tvserie / $max_tvserie )*100).'%';
-					}
-					echo ' von 100 %';
-				}
-				
-				?>
-				
-				<br />
-			
-		</div><br />
+	<body>
+		<!-- Sidebar -->
+		<div class="w3-sidebar w3-light-grey w3-bar-block" style="width:15%">
+			<h3 class="w3-bar-item">Est Quiz-Project</h3>
+			<?php if( !$access) { ?>
+			<a href="index.php" class="w3-bar-item w3-button">Startseite</a>
+			<a href="login.php" class="w3-bar-item w3-button">Einloggen</a>
+			<a href="register.php" class="w3-bar-item w3-button">Registrieren</a>
+			<a href="https://github.com/benediktr/Quiz-Webseite/wiki/Projekttagebuch" class="w3-bar-item w3-button">Projekttagebuch</a>
+			<?php } else { ?>
+			<a href="index.php" class="w3-bar-item w3-button">Startseite</a>
+			<a href="profil.php" class="w3-bar-item w3-button">Profil</a>
+			<?php if( strcmp($user['status'], "Admin") == 0 ) { ?>
+			<a href="admin.php" class="w3-bar-item w3-button">Adminpanel</a>
+			<?php } ?>
+			<a href="rank.php" class="w3-bar-item w3-button">Rangliste</a>
+			<a href="addquestion.php" class="w3-bar-item w3-button">Fragen hinzufügen</a>
+			<a href="play.php" class="w3-bar-item w3-button">Quiz Starten</a>
+			<a href="logout.php" class="w3-bar-item w3-button">Ausloggen</a>
+			<?php } ?>
+		</div>
+		<!-- Content -->
+		<div style="margin-left:15%">
+			<div class="w3-container w3-teal">
+				<h1>Profil</h1>
+				<p>Est Quiz-Projekt von Benedikt Ross und Lukas Keller</p>
+			</div>
+			<hr />
+			<?php if( !$access ) { ?>
+				<center><p>Bitte zuerst <a href = "login.php">Einloggen</a>!</p></center>
+			<?php } else { ?>
+				<center>
+					<h2 class="w3-center w3-opacity">Pers&ouml;nliches</h2>
+					<table class="w3-table-all w3-hoverable">
+						<thead>
+							<tr class="w3-light-grey">
+								<th>Registrierungsdatum</th>
+								<th>Identifikationsnummer</th>
+								<th>Status</th>
+							</tr>
+							<?php 
+								echo "<td>$registerdate</td>";
+								echo "<td>$id</td>";
+								echo "<td>$status</td>";
+							?>
+						</thead>
+					</table>
+					<h2 class="w3-center w3-opacity">Globales</h2>
+					<table class="w3-table-all w3-hoverable">
+						<thead>
+							<tr class="w3-light-grey">
+								<th>Globaler Score</th>
+								<th>Fragen hinzugef&uuml;gt</th>
+								<th>Fragen beantwortet</th>
+								<th>Fragen richtig beantwortet</th>
+								<th>Fragen falsch beantwortet</th>
+							</tr>
+							<?php 
+								echo "<td>$total_score</td>";
+								echo "<td>$questions_added</td>";
+								echo "<td>$questions_done</td>";
+								echo "<td>$questions_right</td>";
+								echo "<td>$questions_wrong</td>";
+							?>
+						</thead>
+					</table>
+					<h2 class="w3-center w3-opacity">Themenstatistiken</h2>
+					<table class="w3-table-all w3-hoverable">
+						<thead>
+							<tr class="w3-light-grey">
+								<th>Thema</th>
+								<th>Punkte</th>
+								<th>Prozentual erledigt</th>
+							</tr>
+							<tr>
+								<?php 
+									/* Kunst */
+									echo "<td>Kunst</td>";
+									echo "<td>$score_art</td>";
+									
+									if( $score_art == 0 ) {
+										echo "<td>0%";
+									} else {
+										echo "<td>".( ( $score_art / $max_art ) *100 ).'%';
+									}
+									echo ' von 100%</td>';
+									
+									echo "</tr><tr>";
+									
+									/* Bibel */
+									echo "<td>Bibel</td>";
+									echo "<td>$score_bible</td>";
+									
+									if( $score_bible == 0 ) {
+										echo "<td>0%";
+									} else {
+										echo "<td>".( ( $score_bible / $max_bible ) *100 ).'%';
+									}
+									echo ' von 100%</td>';
+									
+									echo "</tr><tr>"; 
+									
+									/* Essen */
+									echo "<td>Essen</td>";
+									echo "<td>$score_eating</td>";
+									
+									if( $score_eating == 0 ) {
+										echo "<td>0%";
+									} else {
+										echo "<td>".( ( $score_eating / $max_eating ) *100 ).'%';
+									}
+									echo ' von 100%</td>';
+									
+									echo "</tr><tr>";
+									
+									/* Sport */
+									echo "<td>Sport</td>";
+									echo "<td>$score_freetime</td>";
+									
+									if( $score_freetime == 0 ) {
+										echo "<td>0%";
+									} else {
+										echo "<td>".( ( $score_freetime / $max_freetime ) *100 ).'%';
+									}
+									echo ' von 100%</td>';
+									
+									echo "</tr><tr>";
+									
+									/* Kultur */
+									echo "<td>Kultur</td>";
+									echo "<td>$score_geography</td>";
+									
+									if( $score_geography == 0 ) {
+										echo "<td>0%";
+									} else {
+										echo "<td>".( ( $score_geography / $max_geography ) *100 ).'%';
+									}
+									echo ' von 100%</td>';
+									
+									echo "</tr><tr>";
+									
+									/* Geschichte */
+									echo "<td>Geschichte</td>";
+									echo "<td>$score_history</td>";
+									
+									if( $score_history == 0 ) {
+										echo "<td>0%";
+									} else {
+										echo "<td>".( ( $score_history / $max_history ) *100 ).'%';
+									}
+									echo ' von 100%</td>';
+									
+									echo "</tr><tr>";
+									
+									/* Filme */
+									echo "<td>Filme</td>";
+									echo "<td>$score_movies</td>";
+									
+									if( $score_movies == 0 ) {
+										echo "<td>0%";
+									} else {
+										echo "<td>".( ( $score_movies / $max_movies ) *100 ).'%';
+									}
+									echo ' von 100%</td>';
+									
+									echo "</tr><tr>";
+									
+									/* Musik */
+									echo "<td>Musik</td>";
+									echo "<td>$score_music</td>";
+									
+									if( $score_music == 0 ) {
+										echo "<td>0%";
+									} else {
+										echo "<td>".( ( $score_music / $max_music ) *100 ).'%';
+									}
+									echo ' von 100%</td>';
+									
+									echo "</tr><tr>";
+									
+									/* Natur */
+									echo "<td>Natur</td>";
+									echo "<td>$score_nature</td>";
+									
+									if( $score_nature == 0 ) {
+										echo "<td>0%";
+									} else {
+										echo "<td>".( ( $score_nature / $max_nature ) *100 ).'%';
+									}
+									echo ' von 100%</td>';
+									
+									echo "</tr><tr>";
+									
+									/* Politik */
+									echo "<td>Politik</td>";
+									echo "<td>$score_politics</td>";
+									
+									if( $score_politics == 0 ) {
+										echo "<td>0%";
+									} else {
+										echo "<td>".( ( $score_politics / $max_politics ) *100 ).'%';
+									}
+									echo ' von 100%</td>';
+									
+									echo "</tr><tr>";
+									
+									/* Wissenschaft */
+									echo "<td>Wissenschaft</td>";
+									echo "<td>$score_science</td>";
+									
+									if( $score_science == 0 ) {
+										echo "<td>0%";
+									} else {
+										echo "<td>".( ( $score_science / $max_science ) *100 ).'%';
+									}
+									echo ' von 100%</td>';
+									
+									echo "</tr><tr>";
+									
+									/* Technologien */
+									echo "<td>Technologien</td>";
+									echo "<td>$score_technology</td>";
+									
+									if( $score_technology == 0 ) {
+										echo "<td>0%";
+									} else {
+										echo "<td>".( ( $score_technology / $max_technologie ) *100 ).'%';
+									}
+									echo ' von 100%</td>';
+								
+									echo "</tr><tr>";
+								
+									/* Serien */
+									echo "<td>Serien</td>";
+									echo "<td>$score_tvseries</td>";
+								
+									if( $score_tvseries == 0 ) {
+										echo "<td>0%";
+									} else {
+										echo "<td>".( ( $score_tvseries / $max_tvserie ) *100 ).'%';
+									}
+									echo ' von 100%</td>';
+								?>
+							</tr>
+						</thead>
+					</table>
+					<br />
+				</center>
+			<?php } ?>
+		</div>
 	</body>
 </html>

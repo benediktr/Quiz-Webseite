@@ -1,4 +1,19 @@
-<?php session_start(); ?>
+<?php 
+	session_start();
+	require('php/functions.php');
+	
+	if( isset($_SESSION['userid']) ) {
+		$access = true;
+	} else {
+		$access = false;
+	}
+	
+	$id = $_SESSION['userid'];
+	$statement = $db->prepare("SELECT * FROM user WHERE id = :id");
+	$result = $statement->execute(array('id' => $id));
+	$user  = $statement->fetch();
+	
+?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
@@ -7,114 +22,79 @@
 	<head>
 		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 		<title>EST Quiz-Projekt</title>
-		<link rel="stylesheet" type="text/css" href="css/format.css"/>
-		<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet"> 
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://www.w3schools.com/w3css/3/w3.css">
 	</head>
-	<body class = "background">
-		<nav> <!-- Navigationsleitse -->
-			<ul>
-				<li>
-					<a href="index.php">Startseite</a>
-				</li>
-				<li>
-					<a href="login.php">Login</a>
-				</li>
-				<li>
-					<a href="register.php">Registrieren</a>
-				</li>
-				<li>
-					<a href="https://github.com/benediktr/Quiz-Webseite/wiki/Projekttagebuch">Projekttagebuch</a>
-				</li>
-			</ul>
-		</nav>
-		<!--<h1 class = "titel">EST Quiz-Projekt</h1> <!-- Überschrift -->
-		<p class = "text">EST Quiz Projekt von Benedikt Ross &#38; Lukas Keller</p>
-		
-		<!-- Test -->
-		<div class = "zentrieren">
-			<ul>
-				<input type="radio" name="slider" id="1" class="slider" checked>
-				<input type="radio" name="slider" id="2" class="slider">
-				<input type="radio" name="slider" id="3" class="slider">
-				<input type="radio" name="slider" id="4" class="slider">
-				<input type="radio" name="slider" id="5" class="slider">
-				<input type="radio" name="slider" id="6" class="slider">
-				<input type="radio" name="slider" id="7" class="slider">
-				<input type="radio" name="slider" id="8" class="slider">
-				<input type="radio" name="slider" id="9" class="slider">
-				<input type="radio" name="slider" id="10" class="slider">
-				<input type="radio" name="slider" id="11" class="slider">
-				<input type="radio" name="slider" id="12" class="slider">
-				<input type="radio" name="slider" id="13" class="slider">
-				<li class="slide1">
-					<img src="images/topic_art_design.jpg">
-					<h2>Kunst</h2>
-				</li>
-				<li class="slide1">
-					<img src="images/topic_bible.jpg">
-					<h2>Bibel</h2>
-				</li>
-				<li class="slide1">
-					<img src="images/topic_eating_drinking.jpg">
-					<h2>Essen</h2>
-				</li>
-				<li class="slide1">
-					<img src="images/topic_freetime_sport.jpg">
-					<h2>Sport</h2>
-				</li>
-				<li class="slide1">
-					<img src="images/topic_geographie.jpg">
-					<h2>Kulturen</h2>
-				</li>
-				<li class="slide1">
-					<img src="images/topic_history.jpg">
-					<h2>Geschichte</h2>
-				</li>
-				<li class="slide1">
-					<img src="images/topic_movies.jpg">
-					<h2>Filme</h2>
-				</li>
-				<li class="slide1">
-					<img src="images/topic_music.jpg">
-					<h2>Musik</h2>
-				</li>
-				<li class="slide1">
-					<img src="images/topic_nature_animals.jpg">
-					<h2>Natur</h2>
-				</li>
-				<li class="slide1">
-					<img src="images/topic_politics.jpg">
-					<h2>Politik</h2>
-				</li>
-				<li class="slide1">
-					<img src="images/topic_science.jpg">
-					<h2>Wissenschaft</h2>
-				</li>
-				<li class="slide1">
-					<img src="images/topic_technology.jpg">
-					<h2>Technologien</h2>
-				</li>
-				<li class="slide1">
-					<img src="images/topic_tv.jpg">
-					<h2>Serien</h2>
-				</li>
-			</ul>
+	<body>
+		<!-- Sidebar -->
+		<div class="w3-sidebar w3-light-grey w3-bar-block" style="width:15%">
+			<h3 class="w3-bar-item">Est Quiz-Project</h3>
+			<?php if( !$access) { ?>
+			<a href="index.php" class="w3-bar-item w3-button">Startseite</a>
+			<a href="login.php" class="w3-bar-item w3-button">Einloggen</a>
+			<a href="register.php" class="w3-bar-item w3-button">Registrieren</a>
+			<a href="https://github.com/benediktr/Quiz-Webseite/wiki/Projekttagebuch" class="w3-bar-item w3-button">Projekttagebuch</a>
+			<?php } else { ?>
+			<a href="index.php" class="w3-bar-item w3-button">Startseite</a>
+			<a href="profil.php" class="w3-bar-item w3-button">Profil</a>
+			<?php if( strcmp($user['status'], "Admin") == 0 ) { ?>
+			<a href="admin.php" class="w3-bar-item w3-button">Adminpanel</a>
+			<?php } ?>
+			<a href="rank.php" class="w3-bar-item w3-button">Rangliste</a>
+			<a href="addquestion.php" class="w3-bar-item w3-button">Fragen hinzufügen</a>
+			<a href="play.php" class="w3-bar-item w3-button">Quiz Starten</a>
+			<a href="logout.php" class="w3-bar-item w3-button">Ausloggen</a>
+			<?php } ?>
 		</div>
-		
-		<div class="selector">
-			<label for="1"></label>
-			<label for="2"></label>
-			<label for="3"></label>
-			<label for="4"></label>
-			<label for="5"></label>
-			<label for="6"></label>
-			<label for="7"></label>
-			<label for="8"></label>
-			<label for="9"></label>
-			<label for="10"></label>
-			<label for="11"></label>
-			<label for="12"></label>
-			<label for="13"></label>
-		</div>		
+		<!-- Content -->
+		<div style="margin-left:15%">
+			<div class="w3-container w3-teal">
+				<h1>Startseite</h1>	
+				<p>Est Quiz-Projekt von Benedikt Ross und Lukas Keller</p>
+			</div>
+			<hr />
+			<?php if( !$access ) { ?>
+			<center>
+				<p>
+					Herzlich Willkommen auf der Projekt Webseite!
+				</p>
+			</center>
+			<br />
+			<?php } else { ?>
+			<center><h2 class="w3-opacity">Herzlich Willkommen, <?php echo $user['username']; ?>!</h2></center>
+			<h2 class="w3-center w3-opacity">Themengebiete</h2>
+			<div class="w3-content w3-section" style="max-width:500px">
+				<img class="mySlides" src="images/topic_art_design.jpg" style="width:100%">
+				<img class="mySlides" src="images/topic_bible.jpg" style="width:100%">
+				<img class="mySlides" src="images/topic_eating_drinking.jpg" style="width:100%">
+				<img class="mySlides" src="images/topic_freetime_sport.jpg" style="width:100%">
+				<img class="mySlides" src="images/topic_geographie.jpg" style="width:100%">
+				<img class="mySlides" src="images/topic_history.jpg" style="width:100%">
+				<img class="mySlides" src="images/topic_movies.jpg" style="width:100%">
+				<img class="mySlides" src="images/topic_music.jpg" style="width:100%">
+				<img class="mySlides" src="images/topic_nature_animals.jpg" style="width:100%">
+				<img class="mySlides" src="images/topic_politics.jpg" style="width:100%">
+				<img class="mySlides" src="images/topic_science.jpg" style="width:100%">
+				<img class="mySlides" src="images/topic_technology.jpg" style="width:100%">
+				<img class="mySlides" src="images/topic_tv.jpg" style="width:100%">
+			</div>
+			<script>
+				var myIndex = 0;
+				carousel();
+
+				function carousel() {
+					var i;
+					var x = document.getElementsByClassName("mySlides");
+					for (i = 0; i < x.length; i++) {
+						x[i].style.display = "none";  
+					}
+					myIndex++;
+					if (myIndex > x.length) {myIndex = 1}    
+						x[myIndex-1].style.display = "block";  
+						setTimeout(carousel, 2000); // Change image every 2 seconds
+					}
+			</script>
+			<?php } ?>
+		</div>
 	</body>
 </html>

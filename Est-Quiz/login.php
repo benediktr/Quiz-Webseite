@@ -1,76 +1,101 @@
-<?php session_start(); ?>
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-  
-<?php
-	require 'php/functions.php';
-	$error_exist = false;
-	$successfull = false; 
+<?php 
+	session_start();
+	require('php/functions.php');
 	
-	if(isset($_GET['login'])) {
-		// Variablen werden aus dem HTML Teil übernommen werden bzw eingelesen
-		$error_exist = false;
-		$username = ($_POST['username']);
-		$password = ($_POST['password']);
-		// Überprüfe ob der User vorhanden ist
+	if( isset($_SESSION['userid']) ) {
+		$access = true;
+	} else {
+		$access = false;
+	}
+	
+	$id = $_SESSION['userid'];
+	$statement = $db->prepare("SELECT * FROM user WHERE id = :id");
+	$result = $statement->execute(array('id' => $id));
+	$user  = $statement->fetch();
+	
+	/* Login überprüfung */
+	
+	$error = false;
+	$successfull = false;
+	
+	if( isset($_GET['login']) ) {
+		$username = $_POST['username'];
+		$password = $_POST['password'];
+		/* Überprüfe ob der Username vorhanden ist */
 		$statement = $db->prepare("SELECT * FROM user WHERE username = :username");
 		$result = $statement->execute(array('username' => $username));
 		$user  = $statement->fetch();
-		if($user == false){
+		
+		if( $user == false ){
 			$error_message = 'Dieser Username ist nicht vorhanden!';
-			$error_exist = true;
+			$error = true;
 		}
+		
 		if ($user !== false && password_verify($password, $user['password'])) {
 			$_SESSION['userid'] = $user['id'];
 			$successfull = true;
+		} else {
+			$error_message = 'Der Username oder das Passwort ist falsch!';
+			$error = true;
 		}
-		else {
-			$error_message = 'Username oder Passwort ist ungültig!';
-		}
-	}
+	} 
+	
 ?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
   
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" >
 	<head>
 		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 		<title>EST Quiz-Projekt</title>
-		<link rel="stylesheet" type="text/css" href="css/format.css"/>
-		<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet"> 
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://www.w3schools.com/w3css/3/w3.css">
 	</head>
-	<body class = "background">
-		<nav> <!-- Navigationsleitse -->
-			<ul>
-				<li>
-					<a href="index.php">Startseite</a>
-				</li>
-				<li>
-					<a href="login.php">Login</a>
-				</li>
-				<li>
-					<a href="register.php">Registrieren</a>
-				</li>
-				<li>
-					<a href="https://github.com/benediktr/Quiz-Webseite/wiki/Projekttagebuch">Projekttagebuch</a>
-				</li>
-			</ul>
-		</nav>
-		<!-- Login -->	
-		<h1 class = "titel">Login</h1>
-		<?php
-			if ($error_exist) {
-				echo "<div class = 'box'><span class = 'red'>$error_message</span></div><br />";
-			}
-			if ($successfull) {
-				echo "<div class = 'box'><span class = 'green'>Willkommen <span class = 'gross'>$username</span>, du hast dich erfolgreich eingeloggt, weiter ins  <a href = 'profil.php'>Spiel!</a></span></div><br />";
-			}
-		?>
-		<div class = "box">
-			<form action= "?login=1" method= "post" class = "form">
-				<input type = "name" placeholder = "Username" size= "30" maxlength ="15" name = "username"><br>
-				<input type = "password" placeholder = "Passwort" size = "30" maxlength ="30" name = "password"><br>
-				<input class = "button" type = "submit" value ="Einloggen">
-			</form>
+	<body>
+		<!-- Sidebar -->
+		<div class="w3-sidebar w3-light-grey w3-bar-block" style="width:15%">
+			<h3 class="w3-bar-item">Est Quiz-Project</h3>
+			<?php if( !$access) { ?>
+			<a href="index.php" class="w3-bar-item w3-button">Startseite</a>
+			<a href="login.php" class="w3-bar-item w3-button">Einloggen</a>
+			<a href="register.php" class="w3-bar-item w3-button">Registrieren</a>
+			<a href="https://github.com/benediktr/Quiz-Webseite/wiki/Projekttagebuch" class="w3-bar-item w3-button">Projekttagebuch</a>
+			<?php } else { ?>
+			<a href="index.php" class="w3-bar-item w3-button">Startseite</a>
+			<a href="profil.php" class="w3-bar-item w3-button">Profil</a>
+			<?php if( strcmp($user['status'], "Admin") == 0 ) { ?>
+			<a href="admin.php" class="w3-bar-item w3-button">Adminpanel</a>
+			<?php } ?>
+			<a href="rank.php" class="w3-bar-item w3-button">Rangliste</a>
+			<a href="addquestion.php" class="w3-bar-item w3-button">Fragen hinzufügen</a>
+			<a href="play.php" class="w3-bar-item w3-button">Quiz Starten</a>
+			<a href="logout.php" class="w3-bar-item w3-button">Ausloggen</a>
+			<?php } ?>
+		</div>
+		<!-- Content -->
+		<div style="margin-left:15%">
+			<div class="w3-container w3-teal">
+				<h1>Einloggen</h1>
+				<p>Est Quiz-Projekt von Benedikt Ross und Lukas Keller</p>
+			</div>
+			<hr />
+			<?php if( $successfull ) { ?>
+				<center><p class = "w3-text-green">Du hast dich erfolgreich eingeloggt! Weiter zur <a href = "index.php">Startseite</a></p></center>
+			<?php } if( $error ) { ?>
+				<center><p class = "w3-text-red">Fehler beim einloggen!</p></center>
+				<center><p class = "w3-text-red"><?php echo $error_message; ?></p></center>
+			<?php } if( !$successfull ) { ?>
+			<div class="w3-display-middle">
+				<form action= "?login=1" method= "post">
+					<label class="w3-label w3-text-green"><b>Username</b></label>
+					<input type = "name" size= "30" maxlength ="15" name = "username" class = "w3-input w3-border"/><br>
+					<label class="w3-label w3-text-green"><b>Passwort</b></label>
+					<input type = "password" size = "30" maxlength ="30" name = "password" class = "w3-input w3-border"/><br>
+					<center><input class = "w3-button w3-white w3-border w3-border-red w3-round-large" type = "submit" value ="Einloggen"/></center>
+				</form>
+				<?php } ?>
+			</div>
 		</div>
 	</body>
 </html>

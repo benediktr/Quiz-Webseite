@@ -49,14 +49,20 @@
 		<div class="zentrieren" >
 		<?php
 		
+
+		
+		//Formular Kopf
+		//Wenn es unter 10 Mal ist soll sich das Skript selbst nochmals aufrufen, beim 10 Mal soll das Ergebnis 
+			
+		
+		echo $_POST['antworten'];
 		// Radio Button mit der Antworten
 			
 			//Frage
 			echo '<h1>'.$_SESSION['aktuelleFrage'].' </h1>';
-			
 			//--------------- Antwort 1 ----------------------------------
 			echo '<input type="radio" name="antworten" value="antwort1" ';
-			// Wenn Antwort 1 ausgwählt wurde diesen anzeigen
+			// Wenn Modus == Antworten anzeigen und Antwort 1 ausgwählt wurde diesen anzeigen
 			if($_POST['antworten'] == "antwort1"){
 				echo ' checked ';
 			}
@@ -64,27 +70,24 @@
 			
 			echo $_SESSION['rantwort']. '<br />';
 			//--------------- Antwort 2 -----------------------------------
-			
 			echo '<input type="radio" name="antworten" value="antwort2" ';
-			// Wenn Antwort 2 ausgwählt wurde diesen anzeigen
+			// Wenn Modus == Antworten anzeigen und Antwort 2 ausgwählt wurde diesen anzeigen
 			if($_POST['antworten'] == "antwort2"){
 				echo ' checked ';
 			}
 			echo ' >';
 			echo $_SESSION['fantwort1'] .'<br />';
-			
 			//--------------- Antwort 3 -----------------------------------
 			echo '<input type="radio" name="antworten" value="antwort3" ';
-			// Wenn Antwort 3 ausgwählt wurde diesen anzeigen
+			// Wenn Modus == Antworten anzeigen und Antwort 3 ausgwählt wurde diesen anzeigen
 			if(['antworten'] == "antwort3"){
 				echo ' checked ';
 			}
 			echo ' >';
 			echo $_SESSION['fantwort2'] .'<br />';
-			
 			//---------------- Antwort 4 ----------------------------------
 			echo '<input type="radio" name="antworten" value="antwort4" ';
-			// Wenn Antwort 1 ausgwählt wurde diesen anzeigen
+			// Wenn Modus == Antworten anzeigen und Antwort 1 ausgwählt wurde diesen anzeigen
 			if($_POST['antworten'] == "antwort4"){
 				echo ' checked ';
 			}
