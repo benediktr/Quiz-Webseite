@@ -128,7 +128,7 @@
 			foreach($db->query($abfrageLetzteId) as $ergebnisLetzteId ){
 				$letzteID = $ergebnisLetzteId[ ''.$_SESSION['themaScore'] ];
 			}
-			echo $letzteID;
+			
 			
 			//Zur der ID der letzten Frage eins dazuzaehlen um die ID der naechsten Frage zu haben
 			$_SESSION['IDaktuelleFrage']= $letzteID + 1;
@@ -175,46 +175,76 @@
 		// Radio Button mit der Frage und den Antworten
 			
 			//Algorithmus um festzustellen das jede Radomzahl nur einmal vorkommt
+			// Variabeln zahlEins, zahlZwei, ZahlDrei, ZahlVier
 			$fertig = false;
-			$zahlenreihenfolge = array( 0 => rand( 1 , 4));
+			$zahlNull = rand( 1 , 4);
+			
 			
 			for($i = 1; $i<4; $i++){
 				
 				while($fertig == false){
 					$randomzahl = rand( 1 , 4);
-					if($randomzahl != $zahlenreihenfolge(0)){}
-						$zahlenreihenfolge =  array( 1 => $randomzahl);
+					
+					if(($i == 1)&($randomzahl != $zahlNull)){
+						$zahlEins =  $randomzahl;
 						$fertig = true;
 					}
-					if($i == 2 && (($randomzahl != $zahlenfolge(0))&(($randomzahl != $zahlenfolge(1)))){
-						$zahlenreihenfolge =  array( 2=> $randomzahl);
+					if(($i == 2 & $randomzahl != $zahlEins) & ( $randomzahl != $zahlNull )){
+						$zahlZwei =  $randomzahl;
 						$fertig = true;
 					}
-					if(($i == 3 && $randomzahl != $zahlenfolge(2)) && (($randomzahl != $zahlenfolge(0))&(($randomzahl != $zahlenfolge(1))) ){
-						$zahlenreihenfolge =  array( 3=> $randomzahl);
+					if( ($i == 3 & $randomzahl != $zahlZwei) & ( ($randomzahl != $zahlNull) & ($randomzahl != $zahlEins ) ) ){
+						$zahlDrei =  $randomzahl;
 						$fertig = true;
 					}
 				}
+				
+				//Fertig wieder auf False setzten, das solange die Schleife wiederholt wird bis eine ander Zahl gefunden wurde
+				$fertig = false;
 			}
-			for($i = 0; $i<4; $i++){
-				echo $zahlenreihenfolge($i);
+			
+			//Zahl der richtigen Antwort festlegen
+			//Die Zahl für die erste Stelle gibt die Stelle der richtigen Antwort vor
+			$_SESSION['richtigeAntwortZahl'] = $zahlNull;
+			
+			
+			//Array erstellen um die richtigen Antworten der Zahl zurueckgibt
+			function zurueckgebenAntwort($zahl, $antwort1, $antwort2, $antwort3, $antwort4){
+				if($zahl == 1){
+					return $antwort1;
+				}
+				if($zahl == 2){
+					return $antwort2;
+				}
+				if($zahl == 3){
+					return $antwort3;
+				}
+				if($zahl == 4){
+					return $antwort4;
+				}
 			}
+			
+			//Antworten in Session Variablen speichern um sie und der gleichen Reihenfolge, zur Übersicht zu haben
+			$_SESSION['antwort1'] = zurueckgebenAntwort($zahlNull,$_SESSION['rantwort'],$_SESSION['fantwort1'],$_SESSION['fantwort2'],$_SESSION['fantwort3'] );
+			$_SESSION['antwort2'] = zurueckgebenAntwort($zahlEins,$_SESSION['rantwort'],$_SESSION['fantwort1'],$_SESSION['fantwort2'],$_SESSION['fantwort3'] );
+			$_SESSION['antwort3'] = zurueckgebenAntwort($zahlZwei,$_SESSION['rantwort'],$_SESSION['fantwort1'],$_SESSION['fantwort2'],$_SESSION['fantwort3'] );
+			$_SESSION['antwort4'] = zurueckgebenAntwort($zahlDrei,$_SESSION['rantwort'],$_SESSION['fantwort1'],$_SESSION['fantwort2'],$_SESSION['fantwort3'] );
 			
 			//Frage
 			echo '<h1>'.$_SESSION['aktuelleFrage'].' </h1>';
 			
 			//--------------- Antwort 1 ----------------------------------
-			echo '<input type="radio" name="antworten" value="antwort1" >';
-			echo $_SESSION['rantwort']. '<br />';
+			echo '<input type="radio" name="antworten" value="1" >';
+			echo $_SESSION['antwort1']. '<br />';
 			//--------------- Antwort 2 -----------------------------------
-			echo '<input type="radio" name="antworten" value="antwort2"  >';
-			echo $_SESSION['fantwort1'] .'<br />';
+			echo '<input type="radio" name="antworten" value="2"  >';
+			echo $_SESSION['antwort2'] .'<br />';
 			//--------------- Antwort 3 -----------------------------------
-			echo '<input type="radio" name="antworten" value="antwort3" >';
-			echo $_SESSION['fantwort2'] .'<br />';
+			echo '<input type="radio" name="antworten" value="3" >';
+			echo $_SESSION['antwort3'] .'<br />';
 			//---------------- Antwort 4 ----------------------------------
-			echo '<input type="radio" name="antworten" value="antwort4" >';
-			echo $_SESSION['fantwort3'] .'<br />';
+			echo '<input type="radio" name="antworten" value="4" >';
+			echo $_SESSION['antwort4'] .'<br />';
 			
 		   
 		?>

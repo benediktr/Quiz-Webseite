@@ -49,50 +49,88 @@
 		<div class="zentrieren" >
 		<?php
 		
-
-		
-		//Formular Kopf
-		//Wenn es unter 10 Mal ist soll sich das Skript selbst nochmals aufrufen, beim 10 Mal soll das Ergebnis 
-			
-		
-		echo $_POST['antworten'];
 		// Radio Button mit der Antworten
 			
 			//Frage
 			echo '<h1>'.$_SESSION['aktuelleFrage'].' </h1>';
+			
 			//--------------- Antwort 1 ----------------------------------
 			echo '<input type="radio" name="antworten" value="antwort1" ';
-			// Wenn Modus == Antworten anzeigen und Antwort 1 ausgwählt wurde diesen anzeigen
-			if($_POST['antworten'] == "antwort1"){
+			// Wenn Antwort 1 ausgwählt wurde diesen anzeigen
+			if($_POST['antworten'] == "1"){
+				echo ' checked ';
+			}
+			
+			echo ' >';
+			
+			
+			//Div um den Text machen um ihn farbig zu machen
+			echo '<div ';
+			if(1 == $_SESSION['richtigeAntwortZahl']){
+				echo ' style="color:green;" >';
+			}
+			else{
+				echo ' style="color:red;" >';
+			}
+			echo $_SESSION['antwort1']. '</div> <br />';
+			
+			//--------------- Antwort 2 -----------------------------------
+			
+			echo '<input type="radio" name="antworten" value="antwort2" ';
+			// Wenn Antwort 2 ausgwählt wurde diesen anzeigen
+			if($_POST['antworten'] == "2"){
 				echo ' checked ';
 			}
 			echo ' >';
 			
-			echo $_SESSION['rantwort']. '<br />';
-			//--------------- Antwort 2 -----------------------------------
-			echo '<input type="radio" name="antworten" value="antwort2" ';
-			// Wenn Modus == Antworten anzeigen und Antwort 2 ausgwählt wurde diesen anzeigen
-			if($_POST['antworten'] == "antwort2"){
-				echo ' checked ';
+			//Div um den Text machen um ihn farbig zu machen
+			echo '<div ';
+			if(2 == $_SESSION['richtigeAntwortZahl']){
+				echo ' style="color:green;" >';
 			}
-			echo ' >';
-			echo $_SESSION['fantwort1'] .'<br />';
+			else{
+				echo ' style="color:red;" >';
+			}
+			echo $_SESSION['antwort2'] .'</div> <br />';
+			
 			//--------------- Antwort 3 -----------------------------------
 			echo '<input type="radio" name="antworten" value="antwort3" ';
-			// Wenn Modus == Antworten anzeigen und Antwort 3 ausgwählt wurde diesen anzeigen
-			if(['antworten'] == "antwort3"){
+			// Wenn Antwort 3 ausgwählt wurde diesen anzeigen
+			if(['antworten'] == "3"){
 				echo ' checked ';
 			}
 			echo ' >';
-			echo $_SESSION['fantwort2'] .'<br />';
+			
+			//Div um den Text machen um ihn farbig zu machen
+			echo '<div ';
+			if(3 == $_SESSION['richtigeAntwortZahl']){
+				echo ' style="color:green;" >';
+			}
+			else{
+				echo ' style="color:red;" >';
+			}
+			echo $_SESSION['antwort3'] .'</div> <br />';
+			
 			//---------------- Antwort 4 ----------------------------------
 			echo '<input type="radio" name="antworten" value="antwort4" ';
-			// Wenn Modus == Antworten anzeigen und Antwort 1 ausgwählt wurde diesen anzeigen
-			if($_POST['antworten'] == "antwort4"){
+			// Wenn Antwort 1 ausgwählt wurde diesen anzeigen
+			if($_POST['antworten'] == "4"){
 				echo ' checked ';
 			}
 			echo ' >';
-			echo $_SESSION['fantwort3'] .'<br />';
+			
+			//Div um den Text machen um ihn farbig zu machen
+			echo '<div ';
+			if(4 == $_SESSION['richtigeAntwortZahl']){
+				echo ' style="color:green;" >';
+			}
+			else{
+				echo ' style="color:red;" >';
+			}
+			echo $_SESSION['antwort4'] .'</div> <br />';
+			
+			
+			//Wenn es die richtige Antwort war den Score in der Datenbank erhöhen
 			
 		   
 		?>
