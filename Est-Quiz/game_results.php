@@ -55,7 +55,7 @@
 			echo '<h1>'.$_SESSION['aktuelleFrage'].' </h1>';
 			
 			//--------------- Antwort 1 ----------------------------------
-			echo '<input type="radio" name="antworten" value="antwort1" ';
+			echo '<input type="radio" name="antworten" value="1" ';
 			// Wenn Antwort 1 ausgwählt wurde diesen anzeigen
 			if($_POST['antworten'] == "1"){
 				echo ' checked ';
@@ -76,7 +76,7 @@
 			
 			//--------------- Antwort 2 -----------------------------------
 			
-			echo '<input type="radio" name="antworten" value="antwort2" ';
+			echo '<input type="radio" name="antworten" value="2" ';
 			// Wenn Antwort 2 ausgwählt wurde diesen anzeigen
 			if($_POST['antworten'] == "2"){
 				echo ' checked ';
@@ -94,7 +94,7 @@
 			echo $_SESSION['antwort2'] .'</div> <br />';
 			
 			//--------------- Antwort 3 -----------------------------------
-			echo '<input type="radio" name="antworten" value="antwort3" ';
+			echo '<input type="radio" name="antworten" value="3" ';
 			// Wenn Antwort 3 ausgwählt wurde diesen anzeigen
 			if(['antworten'] == "3"){
 				echo ' checked ';
@@ -112,7 +112,7 @@
 			echo $_SESSION['antwort3'] .'</div> <br />';
 			
 			//---------------- Antwort 4 ----------------------------------
-			echo '<input type="radio" name="antworten" value="antwort4" ';
+			echo '<input type="radio" name="antworten" value="4" ';
 			// Wenn Antwort 1 ausgwählt wurde diesen anzeigen
 			if($_POST['antworten'] == "4"){
 				echo ' checked ';
@@ -130,9 +130,35 @@
 			echo $_SESSION['antwort4'] .'</div> <br />';
 			
 			
-			//Wenn es die richtige Antwort war den Score in der Datenbank erhöhen
-			
 		   
+		   
+		   //Ergebnis in die Score-Datenbank des Nutzer schreiben
+			if($_POST['antworten'] == $_SESSION['richtigeAntwortZahl']){
+				//Totalen Score erhoehen, 
+				//Anzahl richtig beantworteter Fragen erhoehen  
+				//ID der zuletztbeantworteten Frage erhoehen
+				$abfrage_richtig = "UPDATE  `user` SET  `total_score` =  `total_score` +1, `".$_SESSION['themaScore']."` =  `".$_SESSION['themaScore']."`+1, `counter_right_answers` =  `counter_right_answers` +1, `counter_answers` =  `counter_answers` +1 WHERE ".$id."";
+				$statement_right = $db->prepare($abfrage_richtig);
+				$statement_right->execute();
+				
+				//Variable für die Übersicht
+				$_SESSION['richtigBeantworteteFragen']=$_SESSION['richtigBeantworteteFragen']+1;
+			}
+			else{
+				//Anzahl beantworteter Fragen erhoehen
+				//Anzahl falsch beantworteter Fragen erhoehen  
+				//ID der zuletztbeantworteten Frage erhoehen
+				$abfrage_falsch ="UPDATE  `user` SET  `counter_answers` =  `counter_answers` +1,`".$_SESSION['themaScore']."` =  `".$_SESSION['themaScore']."`+1, `counter_wrong_anwers` =  `counter_wrong_anwers` +1 WHERE ".$id."";
+				$statement_false = $db->prepare($abfrage_falsch);
+				$statement_false->execute();			
+				
+				//Variable für die Übersicht
+				$_SESSION['falschBeantworteteFragen']=$_SESSION['falschBeantworteteFragen']+1;
+			}
+			
+			// ID der letzt beantworteten Frage erhoehen
+			$_SESSION['IDaktuelleFrage'] = $_SESSION['IDaktuelleFrage']+1;
+			
 		?>
 		
 			<a href="game.php"> Weiter </a>

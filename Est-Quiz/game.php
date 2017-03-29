@@ -137,7 +137,7 @@
 			$_SESSION['ersteMal'] = false;
 			
 			//Durchlaufe Variable auf null setzen
-			$_SESSION['durchlauf']=0;
+			$_SESSION['durchlauf'] = 0;
 		}
 		//------- ENDE Erstes Mal ---------
 		
@@ -151,31 +151,32 @@
 		//Die Fragen in SESSION Variabeln speichern, um sie bei dem Wiederaufruf, der Auswertung zu haben
 		foreach($db->query($abfragefrage) as $ergebnisFrage ){
 			$_SESSION['aktuelleFrage'] = $ergebnisFrage['question'];
-			$_SESSION['rantwort'] = $ergebnisFrage['right_answer'];
-			$_SESSION['fantwort1'] = $ergebnisFrage['wrong_answer_1'];
-			$_SESSION['fantwort2'] = $ergebnisFrage['wrong_answer_2'];
-			$_SESSION['fantwort3'] = $ergebnisFrage['wrong_answer_3'];
+
 		}
 		
 		
 		//Formular Kopf
 		//Wenn es unter 10 Mal ist soll sich das Skript selbst nochmals aufrufen, beim 10 Mal soll das Ergebnis 
 			
-		if($_SESSION["durchlauf"]<= 10){
+		if($_SESSION["durchlauf"]< 10){
 			// ZU der Seite die anzeiget ob das von Nutzer angklickte, das Richtige war
 			echo '<form action="game_results.php" method="POST">';
 			$_SESSION['durchlauf'] = $_SESSION['durchlauf'] +1;
+			
+			
 		}
 		else{
 			// Zu einer Uebersicht mit den Richtig beantworteten Fragen
-			echo '<form action="results_game.php" method="POST" >';
+			echo '<form action="game_overview.php" method="POST" >';
 			$_SESSION['durchlauf'] = 0;
+			
+			
 		}
 			
 		// Radio Button mit der Frage und den Antworten
 			
 			//Algorithmus um festzustellen das jede Radomzahl nur einmal vorkommt
-			// Variabeln zahlEins, zahlZwei, ZahlDrei, ZahlVier
+			// Variabeln zahlNull , zahlEins, zahlZwei, ZahlDrei
 			$fertig = false;
 			$zahlNull = rand( 1 , 4);
 			
@@ -208,27 +209,30 @@
 			$_SESSION['richtigeAntwortZahl'] = $zahlNull;
 			
 			
-			//Array erstellen um die richtigen Antworten der Zahl zurueckgibt
-			function zurueckgebenAntwort($zahl, $antwort1, $antwort2, $antwort3, $antwort4){
+			//Eine Funktion um die Antworten an die Stelle der Zahl zuzuordnen z.B. Erste Antwort an die vierte Stelle weil die Zahl 4 ist
+			function zurordnenAntworten($zahl, $antwort){
 				if($zahl == 1){
-					return $antwort1;
+					$_SESSION['antwort1'] = $antwort;
 				}
 				if($zahl == 2){
-					return $antwort2;
+					$_SESSION['antwort2'] = $antwort;
 				}
 				if($zahl == 3){
-					return $antwort3;
+					$_SESSION['antwort3'] = $antwort;
 				}
 				if($zahl == 4){
-					return $antwort4;
+					$_SESSION['antwort4'] = $antwort;
 				}
 			}
 			
-			//Antworten in Session Variablen speichern um sie und der gleichen Reihenfolge, zur Übersicht zu haben
-			$_SESSION['antwort1'] = zurueckgebenAntwort($zahlNull,$_SESSION['rantwort'],$_SESSION['fantwort1'],$_SESSION['fantwort2'],$_SESSION['fantwort3'] );
-			$_SESSION['antwort2'] = zurueckgebenAntwort($zahlEins,$_SESSION['rantwort'],$_SESSION['fantwort1'],$_SESSION['fantwort2'],$_SESSION['fantwort3'] );
-			$_SESSION['antwort3'] = zurueckgebenAntwort($zahlZwei,$_SESSION['rantwort'],$_SESSION['fantwort1'],$_SESSION['fantwort2'],$_SESSION['fantwort3'] );
-			$_SESSION['antwort4'] = zurueckgebenAntwort($zahlDrei,$_SESSION['rantwort'],$_SESSION['fantwort1'],$_SESSION['fantwort2'],$_SESSION['fantwort3'] );
+			
+			//Antworten aus der Datenbank abfrage abhand den Zahlen zuordnen
+			zurordnenAntworten($zahlNull,$ergebnisFrage['right_answer']);
+			zurordnenAntworten($zahlEins,$ergebnisFrage['wrong_answer_1']);
+			zurordnenAntworten($zahlZwei,$ergebnisFrage['wrong_answer_2']);
+			zurordnenAntworten($zahlDrei,$ergebnisFrage['wrong_answer_3']);
+			
+			
 			
 			//Frage
 			echo '<h1>'.$_SESSION['aktuelleFrage'].' </h1>';
