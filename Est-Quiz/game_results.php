@@ -1,13 +1,11 @@
-<?php session_start(); ?>
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
- 
-<?php
+<?php 
+	session_start(); 
 	require 'php/functions.php'; 
 	
-	if(!isset($_SESSION['userid'])) {
-		die('Bitte zuerst <a href="login.php">einloggen</a>');
+	if( isset($_SESSION['userid']) ) {
+		$access = true;
+	} else {
+		$access = false;
 	}
 	
 	$userid = $_SESSION['userid'];
@@ -18,156 +16,188 @@
 	$username = $user['username'];
 	$id = $user['id'];
 ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
   
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" >
 	<head>
 		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 		<title>EST Quiz-Projekt</title>
-		<link rel="stylesheet" type="text/css" href="css/format.css"/>
-		<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet"> 
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://www.w3schools.com/w3css/3/w3.css">
 	</head>
-	<body class = "background">
-		<nav> <!-- Navigationsleitse -->
-			<ul>
-				<li>
-					<a href="profil.php">Profil</a>
-				</li>
-				<li>
-					<a href="rank.php">Rangliste</a>
-				</li>
-				<li>
-					<a href="addquestion.php">Fragen hinzuf&uuml;genn</a>
-				</li>
-				<li>
-					<a href="play.php">Spiel Starten</a>
-				</li>
-				<li>
-					<a href="logout.php">Ausloggen</a>
-				</li>
-			</ul>
-		</nav>
-		<div class="zentrieren" >
-		<?php
-		
-		// Radio Button mit der Antworten
-			
-			//Frage
-			echo '<h1>'.$_SESSION['aktuelleFrage'].' </h1>';
-			
-			//--------------- Antwort 1 ----------------------------------
-			echo '<input type="radio" name="antworten" value="1" ';
-			// Wenn Antwort 1 ausgwählt wurde diesen anzeigen
-			if($_POST['antworten'] == "1"){
-				echo ' checked ';
-			}
-			
-			echo ' >';
-			
-			
-			//Div um den Text machen um ihn farbig zu machen
-			echo '<div ';
-			if(1 == $_SESSION['richtigeAntwortZahl']){
-				echo ' style="color:green;" >';
-			}
-			else{
-				echo ' style="color:red;" >';
-			}
-			echo $_SESSION['antwort1']. '</div> <br />';
-			
-			//--------------- Antwort 2 -----------------------------------
-			
-			echo '<input type="radio" name="antworten" value="2" ';
-			// Wenn Antwort 2 ausgwählt wurde diesen anzeigen
-			if($_POST['antworten'] == "2"){
-				echo ' checked ';
-			}
-			echo ' >';
-			
-			//Div um den Text machen um ihn farbig zu machen
-			echo '<div ';
-			if(2 == $_SESSION['richtigeAntwortZahl']){
-				echo ' style="color:green;" >';
-			}
-			else{
-				echo ' style="color:red;" >';
-			}
-			echo $_SESSION['antwort2'] .'</div> <br />';
-			
-			//--------------- Antwort 3 -----------------------------------
-			echo '<input type="radio" name="antworten" value="3" ';
-			// Wenn Antwort 3 ausgwählt wurde diesen anzeigen
-			if(['antworten'] == "3"){
-				echo ' checked ';
-			}
-			echo ' >';
-			
-			//Div um den Text machen um ihn farbig zu machen
-			echo '<div ';
-			if(3 == $_SESSION['richtigeAntwortZahl']){
-				echo ' style="color:green;" >';
-			}
-			else{
-				echo ' style="color:red;" >';
-			}
-			echo $_SESSION['antwort3'] .'</div> <br />';
-			
-			//---------------- Antwort 4 ----------------------------------
-			echo '<input type="radio" name="antworten" value="4" ';
-			// Wenn Antwort 1 ausgwählt wurde diesen anzeigen
-			if($_POST['antworten'] == "4"){
-				echo ' checked ';
-			}
-			echo ' >';
-			
-			//Div um den Text machen um ihn farbig zu machen
-			echo '<div ';
-			if(4 == $_SESSION['richtigeAntwortZahl']){
-				echo ' style="color:green;" >';
-			}
-			else{
-				echo ' style="color:red;" >';
-			}
-			echo $_SESSION['antwort4'] .'</div> <br />';
-			
-			
-		   
-		   
-		   //Ergebnis in die Score-Datenbank des Nutzer schreiben
-			if($_POST['antworten'] == $_SESSION['richtigeAntwortZahl']){
-				//Totalen Score erhoehen, 
-				//Anzahl richtig beantworteter Fragen erhoehen  
-				//ID der zuletztbeantworteten Frage erhoehen
-				$abfrage_richtig = "UPDATE  `user` SET  `total_score` =  `total_score` +1, `".$_SESSION['themaScore']."` =  `".$_SESSION['themaScore']."`+1, `counter_right_answers` =  `counter_right_answers` +1, `counter_answers` =  `counter_answers` +1 WHERE ".$id."";
-				$statement_right = $db->prepare($abfrage_richtig);
-				$statement_right->execute();
-				
-				//Variable für die Übersicht
-				$_SESSION['richtigBeantworteteFragen']=$_SESSION['richtigBeantworteteFragen']+1;
-			}
-			else{
-				//Anzahl beantworteter Fragen erhoehen
-				//Anzahl falsch beantworteter Fragen erhoehen  
-				//ID der zuletztbeantworteten Frage erhoehen
-				$abfrage_falsch ="UPDATE  `user` SET  `counter_answers` =  `counter_answers` +1,`".$_SESSION['themaScore']."` =  `".$_SESSION['themaScore']."`+1, `counter_wrong_anwers` =  `counter_wrong_anwers` +1 WHERE ".$id."";
-				$statement_false = $db->prepare($abfrage_falsch);
-				$statement_false->execute();			
-				
-				//Variable für die Übersicht
-				$_SESSION['falschBeantworteteFragen']=$_SESSION['falschBeantworteteFragen']+1;
-			}
-			
-			// ID der letzt beantworteten Frage erhoehen
-			$_SESSION['IDaktuelleFrage'] = $_SESSION['IDaktuelleFrage']+1;
-			
-		?>
-		
-			<a href="game.php"> Weiter </a>
-			
-		</form>
+	<body>
+		<!-- Sidebar -->
+		<div class="w3-sidebar w3-light-grey w3-bar-block" style="width:15%">
+			<h3 class="w3-bar-item">Est Quiz-Projekt</h3>
+			<?php if( !$access) { ?>
+			<a href="index.php" class="w3-bar-item w3-button">Startseite</a>
+			<a href="login.php" class="w3-bar-item w3-button">Einloggen</a>
+			<a href="register.php" class="w3-bar-item w3-button">Registrieren</a>
+			<a href="https://github.com/benediktr/Quiz-Webseite/wiki/Projekttagebuch" class="w3-bar-item w3-button">Projekttagebuch</a>
+			<?php } else { ?>
+			<a href="index.php" class="w3-bar-item w3-button">Startseite</a>
+			<a href="profil.php" class="w3-bar-item w3-button">Profil</a>
+			<a href="logout.php" class="w3-bar-item w3-button">Ausloggen</a>
+			<?php } ?>
 		</div>
+		<!-- Content -->
+		<div style="margin-left:15%">
+			<div class="w3-container w3-teal">
+				<h1>Profil</h1>
+				<p>Est Quiz-Projekt von Benedikt Ross und Lukas Keller</p>
+			</div>
+			<hr />
+			<?php if( !$access ) { ?>
+				<center>
+					<p>Bitte zuerst <a href = "login.php">Einloggen</a>!</p>
+				</center>
+			<?php } else { ?>
 		
-		
-		
-		
+			
+			<div class="w3-container"> 
+				<center>
+					<?php
+					
+					//Wenn keine Fragen verfuegbar sind Warnung anzeigen...
+					if($_SESSION['maximaleAnzahlAnFragen'] < $_SESSION['IDaktuelleFrage']){
+					?>
+						<div class="w3-panel w3-green">
+							<h3> Fehler </h3>
+							<p> Es sind keine weiteren Fragen in diesem Themenbereich verf&uuml;gbar. F&uuml;ge weitere hinzu oder spiele in einem anderen Themenbereich weiter.</p>
+						</div>
+						
+						<form action="addquestion.php">
+							<input  type="submit" class = "w3-button w3-white w3-border w3-border-red w3-round-large" style="margin:2%;" value="Fragen hinzuf&uuml;gen" />
+						</form>
+						<form action="index.php">
+							<input  type="submit" class = "w3-button w3-white w3-border w3-border-red w3-round-large" style="margin:2%;" value="Startseite" />
+						</form>
+					<?php	
+						
+					}
+					else {
+						// Radio Button mit der Antworten
+				
+						//Frage
+						echo '<h1>'.$_SESSION['aktuelleFrage'].' </h1>';
+						
+						echo '<div style="margin-left:40%; margin-right:40%; text-align:left;">';
+							//--------------- Antwort 1 ----------------------------------
+							echo '<input class="w3-radio" type="radio" name="antworten" value="1" ';
+							// Wenn Antwort 1 ausgwählt wurde diesen anzeigen
+							if($_POST['antworten'] == "1"){
+								echo ' checked ';
+							}
+					
+							echo ' > &nbsp;';
+					
+					
+							//Div um den Text machen um ihn farbig zu machen
+							echo '<span ';
+							if(1 == $_SESSION['richtigeAntwortZahl']){
+								echo ' style="color:green;" >';
+							}
+							else{
+								echo ' style="color:red;" >';
+							}
+							echo $_SESSION['antwort1']. '</span> <hr /> ';
+							
+					
+							//--------------- Antwort 2 -----------------------------------
+					
+							echo '<input class="w3-radio" type="radio" name="antworten" value="2" ';
+							// Wenn Antwort 2 ausgwählt wurde diesen anzeigen
+							if($_POST['antworten'] == "2"){
+								echo ' checked ';
+							}
+							echo ' > &nbsp;';
+					
+							//Div um den Text machen um ihn farbig zu machen
+							echo '<span ';
+							if(2 == $_SESSION['richtigeAntwortZahl']){
+								echo ' style="color:green;" >';
+							}
+							else{
+								echo ' style="color:red;" >';
+							}
+							echo $_SESSION['antwort2'] .'</span> <hr />  ';
+					
+							//--------------- Antwort 3 -----------------------------------
+							echo '<input class="w3-radio" type="radio" name="antworten" value="3" ';
+							// Wenn Antwort 3 ausgwählt wurde diesen anzeigen
+							if($_POST['antworten'] == "3"){
+								echo ' checked ';
+							}
+							echo ' > &nbsp;';
+					
+							//Div um den Text machen um ihn farbig zu machen
+							echo '<span ';
+							if(3 == $_SESSION['richtigeAntwortZahl']){
+								echo ' style="color:green;" >';
+							}
+							else{
+								echo ' style="color:red;" >';
+							}
+							echo $_SESSION['antwort3'] .'</span> <hr /> ';
+							
+							//---------------- Antwort 4 ----------------------------------
+							echo '<input class="w3-radio" type="radio" name="antworten" value="4" ';
+							// Wenn Antwort 1 ausgwählt wurde diesen anzeigen
+							if($_POST['antworten'] == "4"){
+								echo ' checked ';
+							}
+							echo ' > &nbsp;';
+							
+							//Div um den Text machen um ihn farbig zu machen
+							echo '<span ';
+							if(4 == $_SESSION['richtigeAntwortZahl']){
+								echo ' style="color:green;" >';
+							}
+							else{
+								echo ' style="color:red;" >';
+							}
+							echo $_SESSION['antwort4'] .'</span> <hr /> ';
+						echo '</div>';
+
+					   
+					   //Ergebnis in die Score-Datenbank des Nutzer schreiben
+						if($_POST['antworten'] == $_SESSION['richtigeAntwortZahl']){
+							//Totalen Score erhoehen, 
+							//Anzahl richtig beantworteter Fragen erhoehen  
+							//ID der zuletztbeantworteten Frage erhoehen
+							$abfrage_richtig = "UPDATE  `user` SET  `total_score` =  `total_score` +1, `".$_SESSION['themaScore']."` =  `".$_SESSION['themaScore']."`+1, `counter_right_answers` =  `counter_right_answers` +1, `counter_answers` =  `counter_answers` +1 WHERE `id`=".$_SESSION['userid']."";
+							$statement_right = $db->prepare($abfrage_richtig);
+							$statement_right->execute();
+							
+							echo $abfrage_right;
+							//Variable für die Übersicht
+							$_SESSION['richtigBeantworteteFragen']=$_SESSION['richtigBeantworteteFragen']+1;
+						}
+						else{
+							//Anzahl beantworteter Fragen erhoehen
+							//Anzahl falsch beantworteter Fragen erhoehen  
+							//ID der zuletztbeantworteten Frage erhoehen
+							$abfrage_falsch ="UPDATE  `user` SET  `counter_answers` =  `counter_answers` +1,`".$_SESSION['themaScore']."` =  `".$_SESSION['themaScore']."`+1, `counter_wrong_anwers` =  `counter_wrong_anwers` +1 WHERE `id`=".$_SESSION['userid']."";
+							$statement_false = $db->prepare($abfrage_falsch);
+							$statement_false->execute();	
+							echo $abfrage_false;							
+							
+							//Variable für die Übersicht
+							$_SESSION['falschBeantworteteFragen']=$_SESSION['falschBeantworteteFragen']+1;
+						}
+						
+						// ID der letzt beantworteten Frage erhoehen
+						$_SESSION['IDaktuelleFrage'] = $_SESSION['IDaktuelleFrage']+1;
+						
+					?>
+						<form action="game.php">
+							<input  type="submit" class = "w3-button w3-white w3-border w3-border-red w3-round-large" style="margin:2%;" value="Weiter" />
+						</form>
+					
+				</center>
+			<?php } } ?>
+			</div>
+		</div>
 	</body>
 </html>
