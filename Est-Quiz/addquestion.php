@@ -43,12 +43,12 @@
 	if( isset($_GET['addquestion']) ) {
 		if( isset($_POST['add']) ) {
 			$done = true;
-			$topic = $_POST['topics'];
-			$question = $_POST['question'];
-			$right_answer = $_POST['r_answer'];
-			$wrong_answer_1 = $_POST['f_answer_1'];
-			$wrong_answer_2 = $_POST['f_answer_2'];
-			$wrong_answer_3 = $_POST['f_answer_3'];
+			$topic = htmlentities($_POST['topics']);
+			$question = htmlentities($_POST['question']);
+			$right_answer = htmlentities($_POST['r_answer']);
+			$wrong_answer_1 = htmlentities($_POST['f_answer_1']);
+			$wrong_answer_2 = htmlentities($_POST['f_answer_2']);
+			$wrong_answer_3 = htmlentities($_POST['f_answer_3']);
 			$_SESSION['question'] = $question;
 			$_SESSION['right_answer'] = $right_answer;
 			$_SESSION['wrong_answer_1'] = $wrong_answer_1;
@@ -78,6 +78,8 @@
 				$_SESSION['wrong_answer_2'] = null;
 				$_SESSION['wrong_answer_3'] = null;
 				
+				$done4 = true;
+				
 				$id = $_SESSION['userid'];
 		
 				$_SESSION['added'] += 1;
@@ -92,6 +94,7 @@
 			else {
 				$ausgabe = "Frage nicht erfolgreich hinzugefügt.";
 				$fehler = true;
+				$done4 = false;
 			}
 			
 		}
@@ -134,10 +137,12 @@
 				$_SESSION['wrong_answer_2'] = null;
 				$_SESSION['wrong_answer_3'] = null;		
 				$erfolgreichEingereicht = true;
+				$fail = false;
 			} else {
 				$ausgabe = "Frage nicht erfolgreich hinzugefügt.";
 				$fehler2 = true;
 				$erfolgreichEingereicht = false;
+				$fail = true;
 			}
 			
 		}
@@ -158,7 +163,7 @@
 	<body>
 		<!-- Sidebar -->
 		<div class="w3-sidebar w3-light-grey w3-bar-block" style="width:15%">
-			<h3 class="w3-bar-item">Est Quiz-Project</h3>
+			<h3 class="w3-bar-item">Est Quiz-Projekt</h3>
 			<?php if( !$access) { ?>
 			<a href="index.php" class="w3-bar-item w3-button">Startseite</a>
 			<a href="login.php" class="w3-bar-item w3-button">Einloggen</a>
@@ -266,7 +271,7 @@
 						</select>
 						<br /><br />
 						<label class = "w3-label w3-text-green">Quiz Frage</label>
-						<input type = "name" class = "w3-input w3-border" size = "60" maxlength = "100" name = "question"
+						<input type = "name" class = "w3-input w3-border" size = "60" maxlength = "150" name = "question"
 							<?php 
 							
 								if( !empty($_SESSION['question']) ) {
@@ -276,7 +281,7 @@
 							?> />
 						</input><br /><br />
 						<label class = "w3-label w3-text-green">Richtige Antwort</label>
-						<input type = "name" class = "w3-input w3-border" size = "30" maxlength = "30" name = "r_answer" 					
+						<input type = "name" class = "w3-input w3-border" size = "60" maxlength = "60" name = "r_answer" 					
 						<?php 
 						
 							if( !empty($_SESSION['right_answer']) ) {
@@ -287,7 +292,7 @@
 						
 						</input><br>
 						<label class = "w3-label w3-text-green">1. Falsche Antwort</label>
-						<input type = "name" class = "w3-input w3-border" size = "30" maxlength = "30" name = "f_answer_1" 
+						<input type = "name" class = "w3-input w3-border" size = "60" maxlength = "60" name = "f_answer_1" 
 						<?php 
 						
 							if( !empty($_SESSION['wrong_answer_1']) && !isset($_GET['res']) ) {
@@ -296,7 +301,7 @@
 						
 						</input><br>
 						<label class = "w3-label w3-text-green">2. Falsche Antwort</label>
-						<input type = "name" class = "w3-input w3-border" size = "30" maxlength = "30" name = "f_answer_2" 
+						<input type = "name" class = "w3-input w3-border" size = "60" maxlength = "60" name = "f_answer_2" 
 						<?php 
 						
 							if( !empty($_SESSION['wrong_answer_2']) && !isset($_GET['res']) ) {
@@ -305,7 +310,7 @@
 							?>>
 						</input><br>
 						<label class = "w3-label w3-text-green">3. Falsche Antwort</label>
-						<input type = "name" class = "w3-input w3-border" size = "30" maxlength = "30" name = "f_answer_3" 
+						<input type = "name" class = "w3-input w3-border" size = "60" maxlength = "60" name = "f_answer_3" 
 						<?php 
 						
 							if( !empty($_SESSION['wrong_answer_3']) && !isset($_GET['res']) ) {
@@ -348,7 +353,7 @@
 				<center>
 					<p class = "w3-text-red">Fehler beim hinzufügen der Frage!</p>
 				</center>
-			<?php } if( !$fehler && $adminAccess ) { ?>
+			<?php } if( !$fehler && $adminAccess && $done4 ) { ?>
 				<center>
 					<p class = "w3-text-green">Du hast die Frage erfolgreich hinzugefügt!</p>
 				</center>
@@ -356,7 +361,7 @@
 			
 			<!-- Falls der User kein Admin ist -->
 			
-			<?php if( !$adminAccess && !$done2 ) { ?>
+			<?php if( !$adminAccess && !$done2 && $access ) { ?>
 			
 				<div class="w3-container"> 
 				<center>
@@ -431,7 +436,7 @@
 						</select>
 						<br /><br />
 						<label class = "w3-label w3-text-green">Quiz Frage</label>
-						<input type = "name" class = "w3-input w3-border" size = "60" maxlength = "100" name = "question"
+						<input type = "name" class = "w3-input w3-border" size = "60" maxlength = "150" name = "question"
 							<?php 
 							
 								if( !empty($_SESSION['question']) ) {
@@ -441,7 +446,7 @@
 							?> />
 						</input><br /><br />
 						<label class = "w3-label w3-text-green">Richtige Antwort</label>
-						<input type = "name" class = "w3-input w3-border" size = "30" maxlength = "30" name = "r_answer" 					
+						<input type = "name" class = "w3-input w3-border" size = "60" maxlength = "60" name = "r_answer" 					
 						<?php 
 						
 							if( !empty($_SESSION['right_answer']) ) {
@@ -452,7 +457,7 @@
 						
 						</input><br>
 						<label class = "w3-label w3-text-green">1. Falsche Antwort</label>
-						<input type = "name" class = "w3-input w3-border" size = "30" maxlength = "30" name = "f_answer_1" 
+						<input type = "name" class = "w3-input w3-border" size = "60" maxlength = "60" name = "f_answer_1" 
 						<?php 
 						
 							if( !empty($_SESSION['wrong_answer_1']) && !isset($_GET['res']) ) {
@@ -461,7 +466,7 @@
 						
 						</input><br>
 						<label class = "w3-label w3-text-green">2. Falsche Antwort</label>
-						<input type = "name" class = "w3-input w3-border" size = "30" maxlength = "30" name = "f_answer_2" 
+						<input type = "name" class = "w3-input w3-border" size = "60" maxlength = "60" name = "f_answer_2" 
 						<?php 
 						
 							if( !empty($_SESSION['wrong_answer_2']) && !isset($_GET['res']) ) {
@@ -470,7 +475,7 @@
 							?>>
 						</input><br>
 						<label class = "w3-label w3-text-green">3. Falsche Antwort</label>
-						<input type = "name" class = "w3-input w3-border" size = "30" maxlength = "30" name = "f_answer_3" 
+						<input type = "name" class = "w3-input w3-border" size = "60" maxlength = "60" name = "f_answer_3" 
 						<?php 
 						
 							if( !empty($_SESSION['wrong_answer_3']) && !isset($_GET['res']) ) {
@@ -489,7 +494,7 @@
 						</center>
 					</div>
 			
-			<?php } if( $einreichen ) { ?>
+			<?php } if( $einreichen && $access ) { ?>
 				<center>
 					<form action = "?add=1" method = "POST">
 						<label class = "w3-label w3-text-green">Thema</label><br />
@@ -509,7 +514,7 @@
 							<input class = "w3-button w3-white w3-border w3-border-red w3-round-large" type = "submit" value ="Einreichen" name = "einreichen"/></center>
 						</form>
 						</center>
-			<?php } if( !$erfolgreichEingereicht ) { ?>
+			<?php } if( !$erfolgreichEingereicht && !$adminAccess && $fail ) { ?>
 				<center>
 					<p class = "w3-text-red"><?php echo $ausgabe; ?></p>
 				</center>
