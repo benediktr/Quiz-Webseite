@@ -41,7 +41,7 @@
 		if( isset($_POST['delete']) ) {
 			$statement = $db->prepare("DELETE FROM submit WHERE id = ?");
 			$statement->execute(array($_POST['delete']));
-			$_POST['delete'] = null;
+			header('Location: admin.php'); 
 		}
 		if( isset($_POST['add']) ) {
 			$statement = $db->prepare("SELECT * FROM submit WHERE id = :id");
@@ -147,7 +147,7 @@
 	<body>
 		<!-- Sidebar -->
 		<div class="w3-sidebar w3-light-grey w3-bar-block" style="width:15%">
-			<h3 class="w3-bar-item">Est Quiz-Project</h3>
+			<h3 class="w3-bar-item">Est Quiz-Projekt</h3>
 			<?php if( !$access) { ?>
 			<a href="index.php" class="w3-bar-item w3-button">Startseite</a>
 			<a href="login.php" class="w3-bar-item w3-button">Einloggen</a>

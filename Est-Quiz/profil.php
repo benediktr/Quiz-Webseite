@@ -80,7 +80,7 @@
 	<body>
 		<!-- Sidebar -->
 		<div class="w3-sidebar w3-light-grey w3-bar-block" style="width:15%">
-			<h3 class="w3-bar-item">Est Quiz-Project</h3>
+			<h3 class="w3-bar-item">Est Quiz-Projekt</h3>
 			<?php if( !$access) { ?>
 			<a href="index.php" class="w3-bar-item w3-button">Startseite</a>
 			<a href="login.php" class="w3-bar-item w3-button">Einloggen</a>
@@ -110,7 +110,7 @@
 			<?php } else { ?>
 				<center>
 					<h2 class="w3-center w3-opacity">Pers&ouml;nliches</h2>
-					<table class="w3-table-all w3-hoverable">
+					<table class="w3-table-all w3-hoverable" style = "width: 90%">
 						<thead>
 							<tr class="w3-light-grey">
 								<th>Registrierungsdatum</th>
@@ -125,7 +125,7 @@
 						</thead>
 					</table>
 					<h2 class="w3-center w3-opacity">Globales</h2>
-					<table class="w3-table-all w3-hoverable">
+					<table class="w3-table-all w3-hoverable" style = "width: 90%">
 						<thead>
 							<tr class="w3-light-grey">
 								<th>Globaler Score</th>
@@ -144,11 +144,11 @@
 						</thead>
 					</table>
 					<h2 class="w3-center w3-opacity">Themenstatistiken</h2>
-					<table class="w3-table-all w3-hoverable">
+					<table class="w3-table-all w3-hoverable" style = "width: 90%">
 						<thead>
 							<tr class="w3-light-grey">
 								<th>Thema</th>
-								<th>Punkte</th>
+								<th>Fragen beantwortet</th>
 								<th>Prozentual erledigt</th>
 							</tr>
 							<tr>

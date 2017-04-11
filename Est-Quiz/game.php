@@ -41,6 +41,12 @@
 			<?php } else { ?>
 			<a href="index.php" class="w3-bar-item w3-button">Startseite</a>
 			<a href="profil.php" class="w3-bar-item w3-button">Profil</a>
+			<?php if( strcmp($user['status'], "Admin") == 0 ) { ?>
+			<a href="admin.php" class="w3-bar-item w3-button">Adminpanel</a>
+			<?php } ?>
+			<a href="rank.php" class="w3-bar-item w3-button">Rangliste</a>
+			<a href="addquestion.php" class="w3-bar-item w3-button">Fragen hinzufügen</a>
+			<a href="play.php" class="w3-bar-item w3-button">Quiz Starten</a>
 			<a href="logout.php" class="w3-bar-item w3-button">Ausloggen</a>
 			<?php } ?>
 		</div>
@@ -149,26 +155,36 @@
 						$_SESSION['IDaktuelleFrage']= $letzteID + 1;
 			
 				
-						$_SESSION['ersteMal'] = false;
+						
 			
-						//Durchlaufe Variable auf null setzen
-						$_SESSION['durchlauf'] = 0;
+						//Durchlaufe Variable auf eins setzen
+						$_SESSION['durchlauf'] = 1;
+						
+						//Maximale Anzahl fragen holen
+						$statement_max_question = $db->prepare("SELECT * FROM ".$_SESSION['themaQuestion']." WHERE id = (SELECT MAX(id) FROM ".$_SESSION['themaQuestion'].")");
+						$statement_max_question->execute();
+						$row = $statement_max_question->fetch();
+						$_SESSION['maximaleAnzahlAnFragen']= $row['id'];
+					
+						
+						$_SESSION['zuWenigFragen']= false;
+						if(($_SESSION['maximaleAnzahlAnFragen']-$_SESSION['IDaktuelleFrage'])<10){
+							$_SESSION['zuWenigFragen'] = true;
+						}
+						
+						$_SESSION['ersteMal'] = false;
+					
 					}
 					//------- ENDE Erstes Mal ---------
-		
-					//Maximale Anzahl fragen holen
-					$statement_max_question = $db->prepare("SELECT * FROM ".$_SESSION['themaQuestion']." WHERE id = (SELECT MAX(id) FROM ".$_SESSION['themaQuestion'].")");
-					$statement_max_question->execute();
-					$row = $statement_max_question->fetch();
-					$_SESSION['maximaleAnzahlAnFragen']= $row['id'];
 					
+		
 					
 					//Wenn keine Fragen verfuegbar sind Warnung anzeigen...
-					if($_SESSION['maximaleAnzahlAnFragen'] < $_SESSION['IDaktuelleFrage']){
+					if($_SESSION['zuWenigFragen']){
 					?>
-						<div class="w3-panel w3-green">
-							<h3> Fehler </h3>
-							<p> Es sind keine weiteren Fragen in diesem Themenbereich verf&uuml;gbar. F&uuml;ge weitere hinzu oder spiele in einem anderen Themenbereich weiter.</p>
+						<div class="w3-panel w3-red">
+							<h3> Fehler!</h3>
+							<p>Es sind nicht genug Fragen in diesem Themenbereich verf&uuml;gbar um eine neue Runde zu starten. F&uuml;ge weitere hinzu oder spiele in einem anderen Themenbereich weiter.</p>
 						</div>
 						
 						<form action="addquestion.php">
@@ -196,20 +212,10 @@
 						//Formular Kopf
 						//Wenn es unter 10 Mal ist soll sich das Skript selbst nochmals aufrufen, beim 10 Mal soll das Ergebnis 
 				
-						if($_SESSION["durchlauf"]< 10){
-							// ZU der Seite die anzeiget ob das von Nutzer angklickte, das Richtige war
-							echo '<form action="game_results.php" method="POST">';
-							$_SESSION['durchlauf'] = $_SESSION['durchlauf'] +1;
 				
+						echo '<form action="game_results.php" method="POST">';
+						
 				
-						}
-						else{
-							// Zu einer Uebersicht mit den Richtig beantworteten Fragen
-							echo '<form action="game_overview.php" method="POST" >';
-							$_SESSION['durchlauf'] = 0;
-				
-				
-						}
 				
 						// Radio Button mit der Frage und den Antworten
 				

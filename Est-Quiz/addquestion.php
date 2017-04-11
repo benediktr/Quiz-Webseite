@@ -188,7 +188,50 @@
 				<p>Est Quiz-Projekt von Benedikt Ross und Lukas Keller</p>
 			</div>
 			<hr />
-			<?php if( !$access ) { ?>
+			<?php
+			if( !$erfolgreichEingereicht && !$adminAccess && $fail ) { ?>
+				<center>
+					<div class="w3-panel w3-red w3-display-container">
+					<span onclick="this.parentElement.style.display='none'"
+					class="w3-button w3-red w3-large w3-display-topright">&times;</span>
+						<h3>Fehler!</h3>
+						<p>Die Frage wurde nicht hinzugefügt!</p>
+					</div> 
+				</center>
+			<?php } 
+			
+			if( $erfolgreichEingereicht ) { ?>
+				<center>
+					<div class="w3-panel w3-green w3-display-container">
+					<span onclick="this.parentElement.style.display='none'"
+					class="w3-button w3-red w3-large w3-display-topright">&times;</span>
+						<h3>Erfolgreich!</h3>
+						<p>Die Frage wurde erfolgreich eingereichte! Ein Admin wird sich in kürze darum kümmern.</p>
+					</div> 
+				</center>
+			<?php } 
+			
+			if( $fehler && $adminAccess ) { ?>
+				<center>
+					<div class="w3-panel w3-red w3-display-container">
+					<span onclick="this.parentElement.style.display='none'"
+					class="w3-button w3-red w3-large w3-display-topright">&times;</span>
+						<h3>Fehler!</h3>
+						<p>Die Frage wurde nicht erfolgreich hinzugefügt!</p>
+					</div> 
+				</center>
+			<?php } if( !$fehler && $adminAccess && $done4 ) { ?>
+				<center>
+					<div class="w3-panel w3-green w3-display-container">
+					<span onclick="this.parentElement.style.display='none'"
+					class="w3-button w3-red w3-large w3-display-topright">&times;</span>
+						<h3>Erfolreich!</h3>
+						<p>Die Frage wurde erfolgreich hinzugefügt!</p>
+					</div> 
+				</center>
+			<?php }  
+			
+			if( !$access ) { ?>
 			
 				<center>
 					<p>Bitte zuerst <a href = "login.php">Einloggen</a>!</p>
@@ -349,7 +392,7 @@
 							</form>
 						</center>
 				</center>
-			<?php } if( $fehler && $adminAccess ) { ?>
+			<?php } /* if( $fehler && $adminAccess ) { ?>
 				<center>
 					<p class = "w3-text-red">Fehler beim hinzufügen der Frage!</p>
 				</center>
@@ -357,7 +400,7 @@
 				<center>
 					<p class = "w3-text-green">Du hast die Frage erfolgreich hinzugefügt!</p>
 				</center>
-			<?php }  ?>
+			<?php } */ ?>
 			
 			<!-- Falls der User kein Admin ist -->
 			
@@ -514,7 +557,7 @@
 							<input class = "w3-button w3-white w3-border w3-border-red w3-round-large" type = "submit" value ="Einreichen" name = "einreichen"/></center>
 						</form>
 						</center>
-			<?php } if( !$erfolgreichEingereicht && !$adminAccess && $fail ) { ?>
+			<?php } /* if( !$erfolgreichEingereicht && !$adminAccess && $fail ) { ?>
 				<center>
 					<p class = "w3-text-red"><?php echo $ausgabe; ?></p>
 				</center>
@@ -522,6 +565,6 @@
 				<center>
 					<p class = "w3-text-green">Du hast die Frage erfolgreich eingereicht!</p>
 				</center>
-			<?php } ?>
+			<?php } */ ?>
 	</body>
 </html>

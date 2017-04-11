@@ -368,13 +368,63 @@ In einem Array sollen vier zufällig erzeugte Zahlen gespeichert werden, bevor ei
 * Voraussichtlich fertig am Sonntag den 26.03.2017
 
 ***
-### 25.03.2017 Dauer: 1 Stunden, erledigt von: Lukas
-* Nachtrag:
+### 25.03.2017 Dauer: 1:30 Stunden, erledigt von: Lukas
+* Erster Nachtrag:
 * Adminpanel ist soweit fertig, das einzige was noch nicht so funktioniert wie es soll, ist das editieren von eingereichten Fragen (hierbei handelt es sich um einen kleinen Datenbankfehler innerhalb des PHP-Files, jedoch ist die derzeitige Behebung aufgrund von Internetproblemen (zu langsam um was auf den Server zu laden) nicht möglich)
 * Vermutliche Fertigstellung des Adminpanels: heute Abend (25.03.2017)
 
 ***
 ### 25.03.2017 Dauer: 2 Stunden, erledigt von: Lukas
-* 2. Nachtrag:
+* Zweiter Nachtrag:
 * Das Problem hatte sich als komplexer herausgestellt, als anfangs gedacht - jedoch nach vielen Hilfsvariablen, etlichen "echos" und nach viel Schokolade habe ich es endlich gelöst
 * Das Adminpanel ist nun voll funktionstüchtig 
+
+***
+### 27.03.2017 Dauer: 5 Minuten, erledigt von: Lukas
+* Kleine Fehlerkorrektur beim einreichen der Fragen, so wurde eine Fehlermeldung ausgegeben obwohl man nur die Seite betreten hat (mit einer kleinen Hilfsvariable behoben)
+
+***
+### 28.08.2017 Dauer: 1 Stunde und 15 Minuten erledigt von Benedikt
+* Fertigstellung der Funktionsweise des game.php Skripts, die Antwortmöglichkeiten werden Random angezeigt
+* Es fehlt aber noch das CSS Styling zu dem aktuellen Design
+* Erweiterung des game_result.php Skripts, die richtige Antwort wird grün angezeigt die falschen rot
+* Nächster Schritt: CSS-Styling beider Skripte, Eintragung der Spiel-Ergebnisse in die Datenbank
+
+***
+### 29.03.2017 Dauer: 1 Stunde und 30 Minuten erledigt von: Benedikt
+* Fertigstellung des Spielprinzips
+* Die Ergebnisse werden jetzt in die Datenbank geschrieben
+* Behebung von Fehlern
+* Erstellung von der Übersichtseite, welche alle 10 Durchläufe angezeigt wird
+* Nächster Schritt: CSS-Styling der Spiel-Seiten
+
+***
+### 05.04.2017 Dauer: 1 Stunde und 15 Minuten erledigt von: Benedikt
+* Anpassung der Spielseiten an CSS
+* Behebung kleiner Fehler
+* Nächster Schritt: Wenn keine Fragen mehr verfügbar sind, sollte dies angezeigt werden
+
+***
+### 06.04.2017 Dauer: 1 Stunde und 25 Minuten erledigt von Benedikt
+* Implementierung einer Meldung wenn keine Fragen mehr verfügbar sind
+* Behebung des Fehlers, das die Scores aller Nutzer erhöht werden wenn einer spielt
+* Behebung keiner Fehler
+* Nächster Schritt: Testen des Quiz und das hinzufügen von Fragen
+
+***
+### 07.04.2017 Dauer: 5 Minuten, erledigt von: Lukas
+* Sicherheitsvorkehrungen bei den Formularen hinzugefügt mittels der Funktion 'htmlentities'
+* Sobald eine Frage beantwortet wurde, folgt die Lösung, hierbei wurde geändert das die Radio-Buttons deaktiviert wurden (mit disabled)
+* Behebung kleinerer Rechtschreibfehler
+* Nächste Schritte: weiter Testen und Fragen hinzufügen
+
+***
+### 10.04.2017 Dauer: 1 Stunde und 30 Minuten erledigt von Benedikt
+* Überlegen von Fragen zu den Bereich Natur, Kunst, Bibel
+* Vergrößerung der Eingabefelder des addquestions-Skripts: Frage auf 150 Zeichen und Antworten auf 60 Zeichen
+
+***
+### 10.04.2017 Dauer: 30 Minuten, erledigt von: Lukas
+* Grafische Aufbesserung der Spielübersicht (game_overview.php), der Rangliste (rank.php) und der Startseite (index.php - hier wird nun ausgegeben, wenn man nicht eingeloggt ist, wie viele User sich bereits registriert haben)
+![Overview](http://image.prntscr.com/image/1c8d8a6e3f334ef78007e0d793477743.png)
+![Rank](http://image.prntscr.com/image/7da16e0a3cca47549c930c2539ab53e6.png)

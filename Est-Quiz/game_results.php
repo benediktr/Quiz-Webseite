@@ -38,6 +38,12 @@
 			<?php } else { ?>
 			<a href="index.php" class="w3-bar-item w3-button">Startseite</a>
 			<a href="profil.php" class="w3-bar-item w3-button">Profil</a>
+			<?php if( strcmp($user['status'], "Admin") == 0 ) { ?>
+			<a href="admin.php" class="w3-bar-item w3-button">Adminpanel</a>
+			<?php } ?>
+			<a href="rank.php" class="w3-bar-item w3-button">Rangliste</a>
+			<a href="addquestion.php" class="w3-bar-item w3-button">Fragen hinzufügen</a>
+			<a href="play.php" class="w3-bar-item w3-button">Quiz Starten</a>
 			<a href="logout.php" class="w3-bar-item w3-button">Ausloggen</a>
 			<?php } ?>
 		</div>
@@ -84,7 +90,7 @@
 						
 						echo '<div style="margin-left:40%; margin-right:40%; text-align:left;">';
 							//--------------- Antwort 1 ----------------------------------
-							echo '<input class="w3-radio" type="radio" name="antworten" value="1" ';
+							echo '<input class="w3-radio" type="radio" name="antworten" value="1" disabled ';
 							// Wenn Antwort 1 ausgwählt wurde diesen anzeigen
 							if($_POST['antworten'] == "1"){
 								echo ' checked ';
@@ -106,7 +112,7 @@
 					
 							//--------------- Antwort 2 -----------------------------------
 					
-							echo '<input class="w3-radio" type="radio" name="antworten" value="2" ';
+							echo '<input class="w3-radio" type="radio" name="antworten" value="2" disabled ';
 							// Wenn Antwort 2 ausgwählt wurde diesen anzeigen
 							if($_POST['antworten'] == "2"){
 								echo ' checked ';
@@ -124,7 +130,7 @@
 							echo $_SESSION['antwort2'] .'</span> <hr />  ';
 					
 							//--------------- Antwort 3 -----------------------------------
-							echo '<input class="w3-radio" type="radio" name="antworten" value="3" ';
+							echo '<input class="w3-radio" type="radio" name="antworten" value="3" disabled ';
 							// Wenn Antwort 3 ausgwählt wurde diesen anzeigen
 							if($_POST['antworten'] == "3"){
 								echo ' checked ';
@@ -142,7 +148,7 @@
 							echo $_SESSION['antwort3'] .'</span> <hr /> ';
 							
 							//---------------- Antwort 4 ----------------------------------
-							echo '<input class="w3-radio" type="radio" name="antworten" value="4" ';
+							echo '<input class="w3-radio" type="radio" name="antworten" value="4" disabled ';
 							// Wenn Antwort 1 ausgwählt wurde diesen anzeigen
 							if($_POST['antworten'] == "4"){
 								echo ' checked ';
@@ -190,11 +196,26 @@
 						// ID der letzt beantworteten Frage erhoehen
 						$_SESSION['IDaktuelleFrage'] = $_SESSION['IDaktuelleFrage']+1;
 						
-					?>
-						<form action="game.php">
-							<input  type="submit" class = "w3-button w3-white w3-border w3-border-red w3-round-large" style="margin:2%;" value="Weiter" />
-						</form>
 					
+						//Wenn es unter 10 Mal ist soll sich das Skript selbst nochmals aufrufen, beim 10 Mal soll das Ergebnis 
+						if($_SESSION['durchlauf'] < 10){
+							// Zum Spiel
+							echo '<form action="game.php" method="POST">';
+							$_SESSION['durchlauf'] = $_SESSION['durchlauf'] +1;
+				
+						}
+						else{
+							// Zu einer Uebersicht mit den Richtig beantworteten Fragen
+							echo '<form action="game_overview.php" method="POST" >';
+							// Wieder zurücksetzen
+							$_SESSION['durchlauf'] = 1;
+				
+				
+						}
+						
+						echo'<input  type="submit" class = "w3-button w3-white w3-border w3-border-red w3-round-large" style="margin:2%;" value="Weiter" />';
+						echo '</form>';
+						?>
 				</center>
 			<?php } } ?>
 			</div>

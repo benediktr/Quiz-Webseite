@@ -19,8 +19,8 @@
 	$successfull = false;
 	
 	if( isset($_GET['login']) ) {
-		$username = $_POST['username'];
-		$password = $_POST['password'];
+		$username = htmlentities($_POST['username']);
+		$password = htmlentities($_POST['password']);
 		/* Überprüfe ob der Username vorhanden ist */
 		$statement = $db->prepare("SELECT * FROM user WHERE username = :username");
 		$result = $statement->execute(array('username' => $username));
@@ -34,6 +34,8 @@
 		if ($user !== false && password_verify($password, $user['password'])) {
 			$_SESSION['userid'] = $user['id'];
 			$successfull = true;
+			header("Location: index.php");
+			exit;
 		} else {
 			$error_message = 'Der Username oder das Passwort ist falsch!';
 			$error = true;
@@ -55,7 +57,7 @@
 	<body>
 		<!-- Sidebar -->
 		<div class="w3-sidebar w3-light-grey w3-bar-block" style="width:15%">
-			<h3 class="w3-bar-item">Est Quiz-Project</h3>
+			<h3 class="w3-bar-item">Est Quiz-Projekt</h3>
 			<?php if( !$access) { ?>
 			<a href="index.php" class="w3-bar-item w3-button">Startseite</a>
 			<a href="login.php" class="w3-bar-item w3-button">Einloggen</a>

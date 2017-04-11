@@ -2,6 +2,9 @@
 	session_start();
 	session_destroy();
 	$access = false;
+	
+	header("Location: index.php");
+	exit;
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
@@ -17,7 +20,7 @@
 	<body>
 		<!-- Sidebar -->
 		<div class="w3-sidebar w3-light-grey w3-bar-block" style="width:15%">
-			<h3 class="w3-bar-item">Est Quiz-Project</h3>
+			<h3 class="w3-bar-item">Est Quiz-Projekt</h3>
 			<?php if( !$access) { ?>
 			<a href="index.php" class="w3-bar-item w3-button">Startseite</a>
 			<a href="login.php" class="w3-bar-item w3-button">Einloggen</a>

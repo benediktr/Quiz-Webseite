@@ -7,10 +7,10 @@
 	$error = false;
 	
 	if( isset($_GET['register']) ) {
-			$username = $_POST['username'];
-			$email = $_POST['email'];
-			$password = $_POST['password'];
-			$password2 = $_POST['password2'];
+			$username = htmlentities($_POST['username']);
+			$email = htmlentities($_POST['email']);
+			$password = htmlentities($_POST['password']);
+			$password2 = htmlentities($_POST['password2']);
 			$rank = "User";
 		
 			if( !filter_var($email, FILTER_VALIDATE_EMAIL) ) {
@@ -66,6 +66,14 @@
 				$error_message = 'Fehler bei der Registrierung!<br>';
 			}
 			
+			$statement = $db->prepare("SELECT * FROM user WHERE username = :username");
+			$result = $statement->execute(array('username' => $username));
+			$user  = $statement->fetch();
+			
+			$_SESSION['userid'] = $user['id'];
+			
+			header("Location: index.php");
+			exit;
 		} 
 	}
 	
@@ -84,7 +92,7 @@
 	<body>
 		<!-- Sidebar -->
 		<div class="w3-sidebar w3-light-grey w3-bar-block" style="width:15%">
-			<h3 class="w3-bar-item">Est Quiz-Project</h3>
+			<h3 class="w3-bar-item">Est Quiz-Projekt</h3>
 			<?php if( !$access) { ?>
 			<a href="index.php" class="w3-bar-item w3-button">Startseite</a>
 			<a href="login.php" class="w3-bar-item w3-button">Einloggen</a>
@@ -113,7 +121,7 @@
 				<form action = "?register=1" method = "post">
 					<label class="w3-label w3-text-green"><b>Username</b></label>
 					<input type = "name"  size = "30" maxlength = "15" name = "username" class = "w3-input w3-border"/><br>
-					<label class="w3-label w3-text-green"><b>Paswort</b></label>
+					<label class="w3-label w3-text-green"><b>Passwort</b></label>
 					<input type = "password" size = "30" maxlength = "255" name = "password" class = "w3-input w3-border"/><br>
 					<label class="w3-label w3-text-green"><b>Passwort wiederholen</b></label>
 					<input type = "password" size = "30" maxlength = "255" name = "password2" class = "w3-input w3-border"/><br>

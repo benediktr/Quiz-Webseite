@@ -15,6 +15,17 @@
 	
 	$username = $user['username'];
 	$id = $user['id'];
+	
+	//Maximale Anzahl fragen holen
+	$statement_max_question = $db->prepare("SELECT * FROM ".$_SESSION['themaQuestion']." WHERE id = (SELECT MAX(id) FROM ".$_SESSION['themaQuestion'].")");
+	$statement_max_question->execute();
+	$row = $statement_max_question->fetch();
+	$_SESSION['maximaleAnzahlAnFragen']= $row['id'];
+	
+	//Pruefen ob noch eine Runde moeglich ist
+	if(($_SESSION['maximaleAnzahlAnFragen']-$_SESSION['IDaktuelleFrage'])<10){
+		$_SESSION['zuWenigFragen'] = true;
+	}
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
@@ -60,16 +71,13 @@
 			<?php } else { ?>
 			<div class="w3-container" >
 				<center>
-					<h1> &Uuml;bersicht des letzten Spieldurchlaufes</h1>
+					<div class="w3-panel w3-blue">
+ 						 <h1 class="w3-opacity">Ergebnis der <?php echo $_SESSION['runden']; ?>. Runde</h2>
+					</div> 
+					
+					<p>Richtige Antworten <span class="w3-badge w3-green"><?php echo $_SESSION['richtigBeantworteteFragen']; ?></span></p>
+					<p>Falsche Antworten <span class="w3-badge w3-red"><?php echo $_SESSION['falschBeantworteteFragen']; ?></span></p>
 		
-					<?php
-			
-						echo "Richtig beantwortete Fragen: ".$_SESSION['richtigBeantworteteFragen'];
-						echo "&nbsp; | &nbsp;";
-						echo "Falsch beantwortete Fragen: ".$_SESSION['falschBeantworteteFragen'];
-						echo "<br />";
-						echo "Runde:".$_SESSION['runden'];
-					?>
 					<form action="index.php">
 						<input  type="submit" class = "w3-button w3-white w3-border w3-border-red w3-round-large" style="margin:2%;" value="Startseite" />
 					</form>

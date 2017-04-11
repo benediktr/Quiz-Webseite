@@ -13,6 +13,12 @@
 	$result = $statement->execute(array('id' => $id));
 	$user  = $statement->fetch();
 	
+	$statement2 = $db->prepare("SELECT * FROM user WHERE id = (SELECT MAX(id) FROM user)");
+	$result2 = $statement2->execute(array('id' => $id));
+	$maxID  = $statement2->fetch();
+	
+	$usersRegistered = $maxID['id'];
+	
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
@@ -28,7 +34,7 @@
 	<body>
 		<!-- Sidebar -->
 		<div class="w3-sidebar w3-light-grey w3-bar-block" style="width:15%">
-			<h3 class="w3-bar-item">Est Quiz-Project</h3>
+			<h3 class="w3-bar-item">Est Quiz-Projekt</h3>
 			<?php if( !$access) { ?>
 			<a href="index.php" class="w3-bar-item w3-button">Startseite</a>
 			<a href="login.php" class="w3-bar-item w3-button">Einloggen</a>
@@ -52,49 +58,141 @@
 				<h1>Startseite</h1>	
 				<p>Est Quiz-Projekt von Benedikt Ross und Lukas Keller</p>
 			</div>
+			<center>
 			<hr />
 			<?php if( !$access ) { ?>
 			<center>
 				<p>
-					Herzlich Willkommen auf der Projekt Webseite!
+					Herzlich Willkommen auf der Projekt Webseite! <br />
+					Du möchtest dein Wissen auf die Probe stellen und dich gleizeitig mit anderen messen? Dann bist du <b>hier</b> genau richtig! <br />
+					Es haben sich bereits <b><?php echo $usersRegistered; ?></b> User registriert!<br />
 				</p>
 			</center>
 			<br />
 			<?php } else { ?>
 			<center><h2 class="w3-opacity">Herzlich Willkommen, <?php echo $user['username']; ?>!</h2></center>
 			<h2 class="w3-center w3-opacity">Themengebiete</h2>
-			<div class="w3-content w3-section" style="max-width:500px">
-				<img class="mySlides" src="images/topic_art_design.jpg" style="width:100%">
-				<img class="mySlides" src="images/topic_bible.jpg" style="width:100%">
-				<img class="mySlides" src="images/topic_eating_drinking.jpg" style="width:100%">
-				<img class="mySlides" src="images/topic_freetime_sport.jpg" style="width:100%">
-				<img class="mySlides" src="images/topic_geographie.jpg" style="width:100%">
-				<img class="mySlides" src="images/topic_history.jpg" style="width:100%">
-				<img class="mySlides" src="images/topic_movies.jpg" style="width:100%">
-				<img class="mySlides" src="images/topic_music.jpg" style="width:100%">
-				<img class="mySlides" src="images/topic_nature_animals.jpg" style="width:100%">
-				<img class="mySlides" src="images/topic_politics.jpg" style="width:100%">
-				<img class="mySlides" src="images/topic_science.jpg" style="width:100%">
-				<img class="mySlides" src="images/topic_technology.jpg" style="width:100%">
-				<img class="mySlides" src="images/topic_tv.jpg" style="width:100%">
-			</div>
-			<script>
-				var myIndex = 0;
-				carousel();
 
-				function carousel() {
-					var i;
-					var x = document.getElementsByClassName("mySlides");
-					for (i = 0; i < x.length; i++) {
-						x[i].style.display = "none";  
-					}
-					myIndex++;
-					if (myIndex > x.length) {myIndex = 1}    
-						x[myIndex-1].style.display = "block";  
-						setTimeout(carousel, 2000); // Change image every 2 seconds
-					}
+			<div class="w3-content w3-display-container">
+
+				<div class="w3-display-container mySlides">
+				  <img src="images/topic_art_design.jpg" style="width:100%">
+				  <div class="w3-display-bottomleft w3-large w3-container w3-padding-16 w3-black">
+					Kunst
+				  </div>
+				</div>
+
+				<div class="w3-display-container mySlides">
+				  <img src="images/topic_bible.jpg" style="width:100%">
+				  <div class="w3-display-bottomright w3-large w3-container w3-padding-16 w3-black">
+					Bibel
+				  </div>
+				</div>
+
+				<div class="w3-display-container mySlides">
+				  <img src="images/topic_eating_drinking.jpg" style="width:100%">
+				  <div class="w3-display-topleft w3-large w3-container w3-padding-16 w3-black">
+					Essen
+				  </div>
+				</div>
+
+				<div class="w3-display-container mySlides">
+				  <img src="images/topic_freetime_sport.jpg" style="width:100%">
+				  <div class="w3-display-topright w3-large w3-container w3-padding-16 w3-black">
+					Sport
+				  </div>
+				</div>
+
+				<div class="w3-display-container mySlides">
+				  <img src="images/topic_geographie.jpg" style="width:100%">
+				  <div class="w3-display-middle w3-large w3-container w3-padding-16 w3-black">
+					Kulturen
+				  </div>
+				</div>
+				
+				<div class="w3-display-container mySlides">
+				  <img src="images/topic_history.jpg" style="width:100%">
+				  <div class="w3-display-middle w3-large w3-container w3-padding-16 w3-black">
+					Geschichte
+				  </div>
+				</div>
+				
+				<div class="w3-display-container mySlides">
+				  <img src="images/topic_movies.jpg" style="width:100%">
+				  <div class="w3-display-middle w3-large w3-container w3-padding-16 w3-black">
+					Filme
+				  </div>
+				</div>
+				
+				<div class="w3-display-container mySlides">
+				  <img src="images/topic_music.jpg" style="width:100%">
+				  <div class="w3-display-middle w3-large w3-container w3-padding-16 w3-black">
+					Musik
+				  </div>
+				</div>
+				
+				<div class="w3-display-container mySlides">
+				  <img src="images/topic_nature_animals.jpg" style="width:100%">
+				  <div class="w3-display-middle w3-large w3-container w3-padding-16 w3-black">
+					Natur
+				  </div>
+				</div>
+				
+				<div class="w3-display-container mySlides">
+				  <img src="images/topic_politics.jpg" style="width:100%">
+				  <div class="w3-display-middle w3-large w3-container w3-padding-16 w3-black">
+					Politik
+				  </div>
+				</div>
+				
+				<div class="w3-display-container mySlides">
+				  <img src="images/topic_science.jpg" style="width:100%">
+				  <div class="w3-display-middle w3-large w3-container w3-padding-16 w3-black">
+					Wissenschaft
+				  </div>
+				</div>
+				
+				<div class="w3-display-container mySlides">
+				  <img src="images/topic_technology.jpg" style="width:100%">
+				  <div class="w3-display-middle w3-large w3-container w3-padding-16 w3-black">
+					Technologien
+				  </div>
+				</div>
+				
+				<div class="w3-display-container mySlides">
+				  <img src="images/topic_tv.jpg" style="width:100%">
+				  <div class="w3-display-middle w3-large w3-container w3-padding-16 w3-black">
+					Serien
+				  </div>
+				</div>
+
+				<button class="w3-button w3-display-left w3-black" onclick="plusDivs(-1)">&#10094;</button>
+				<button class="w3-button w3-display-right w3-black" onclick="plusDivs(1)">&#10095;</button>
+
+			</div>
+			
+			<script>
+				var slideIndex = 1;
+				showDivs(slideIndex);
+
+				function plusDivs(n) {
+				  showDivs(slideIndex += n);
+				}
+
+				function showDivs(n) {
+				  var i;
+				  var x = document.getElementsByClassName("mySlides");
+				  if (n > x.length) {slideIndex = 1}    
+				  if (n < 1) {slideIndex = x.length}
+				  for (i = 0; i < x.length; i++) {
+					 x[i].style.display = "none";  
+				  }
+				  x[slideIndex-1].style.display = "block";  
+				}
 			</script>
 			<?php } ?>
 		</div>
+		<br />
+		<br />
 	</body>
 </html>
