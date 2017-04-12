@@ -243,7 +243,7 @@
 			
 			<div class="w3-container"> 
 				<center>
-					<form action = "?addquestion=1" method= "post" name = "form">
+					<form action = "?addquestion=1" method= "post" name = "form" style = "width: 50%;">
 						<label class="w3-label w3-text-green">Themenauswahl</label>
 						<select name = "topics" class="w3-select">
 							<option value = "art" <?php if( isset($_SESSION['topic']) ) {
@@ -301,8 +301,8 @@
 									echo "SELECTED";
 								}
 							} ?>>Wissenschaft</option>
-							<option value = "technologie" <?php if( isset($_SESSION['topic']) ) {
-								if( strcmp($_SESSION['topic'], "technologie") == 0 ) {
+							<option value = "technology" <?php if( isset($_SESSION['topic']) ) {
+								if( strcmp($_SESSION['topic'], "technology") == 0 ) {
 									echo "SELECTED";
 								}
 							} ?>>Technologien</option>

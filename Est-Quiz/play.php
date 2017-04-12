@@ -78,7 +78,7 @@
 					<div class = 'box'><span class = 'green'>Wähle aus einer der Themengebiete das Thema für dein Quiz</a></span></div><br />
 				
 					<form action = "game.php" method = "post">
-						<select name = "topics" class="w3-select">
+						<select name = "topics" class="w3-select" style = "width: 50%;">
 							<option value = "art">Kunst</option>
 							<option value = "bible">Bibel</option>
 							<option value = "eating">Essen</option>
@@ -94,7 +94,8 @@
 							<option value = "technology">Technologien</option>
 						
 						</select>
-						
+						<br />
+						<br />
 						<input class = "w3-button w3-white w3-border w3-border-red w3-round-large" type="submit" value="Weiter" style="margin: 2%;"/>
 					</form>
 			

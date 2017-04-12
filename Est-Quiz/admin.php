@@ -338,8 +338,8 @@
 									echo "SELECTED";
 								}
 							?>>Wissenschaft</option>
-							<option value = "technologie" <?php 
-							if( strcmp($topic, "technologie") == 0 ) {
+							<option value = "technology" <?php 
+							if( strcmp($topic, "technology") == 0 ) {
 									echo "SELECTED";
 								}
 								?>>Technologien</option>
