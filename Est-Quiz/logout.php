@@ -14,8 +14,8 @@
 	<head>
 		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 		<title>EST Quiz-Projekt</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" href="https://www.w3schools.com/w3css/3/w3.css">
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="https://www.w3schools.com/w3css/3/w3.css" />
 	</head>
 	<body>
 		<!-- Sidebar -->
@@ -45,7 +45,7 @@
 				<p>Est Quiz-Projekt von Benedikt Ross und Lukas Keller</p>
 			</div>
 			<hr />
-			<center><p>Du hast dich erfolgreich ausgeloggt! Zur&uuml;ck zur <a href = "index.php">Startseite</a></p></center>
+			<p style="text-align:center;">Du hast dich erfolgreich ausgeloggt! Zur&uuml;ck zur <a href = "index.php">Startseite</a></p>
 		</div>
 	</body>
 </html>

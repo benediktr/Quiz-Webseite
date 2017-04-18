@@ -28,8 +28,8 @@
 	<head>
 		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 		<title>EST Quiz-Projekt</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" href="https://www.w3schools.com/w3css/3/w3.css">
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="https://www.w3schools.com/w3css/3/w3.css" />
 	</head>
 	<body>
 		<!-- Sidebar -->
@@ -58,109 +58,109 @@
 				<h1>Startseite</h1>	
 				<p>Est Quiz-Projekt von Benedikt Ross und Lukas Keller</p>
 			</div>
-			<center>
 			<hr />
 			<?php if( !$access ) { ?>
-			<center>
-				<p>
-					Herzlich Willkommen auf der Projekt Webseite! <br />
-					Du möchtest dein Wissen auf die Probe stellen und dich gleizeitig mit anderen messen? Dann bist du <b>hier</b> genau richtig! <br />
-					Es haben sich bereits <b><?php echo $usersRegistered; ?></b> User registriert!<br />
-				</p>
-			</center>
-			<br />
+			
+			<p style="text-align: center;">
+				Herzlich Willkommen auf der Projekt Webseite! <br />
+				Du möchtest dein Wissen auf die Probe stellen und dich gleizeitig mit anderen messen? Dann bist du <b>hier</b> genau richtig! <br />
+				Es haben sich bereits <b> <?php echo $usersRegistered; ?></b> User registriert!<br />
+			</p>
+			
 			<?php } else { ?>
-			<center><h2 class="w3-opacity">Herzlich Willkommen, <?php echo $user['username']; ?>!</h2></center>
+			<div style="text-align: center;">
+				<h2 class="w3-opacity">Herzlich Willkommen, <?php echo $user['username']; ?>!</h2>
+			</div>
 			<h2 class="w3-center w3-opacity">Themengebiete</h2>
 
-			<div class="w3-content w3-display-container">
+			<div class="w3-content w3-display-container" style="margin-bottom: 5%;">
 
 				<div class="w3-display-container mySlides">
-				  <img src="images/topic_art_design.jpg" style="width:100%">
+				  <img src="images/topic_art_design.jpg" alt="kunst_design" style="width:100%" />
 				  <div class="w3-display-bottomleft w3-large w3-container w3-padding-16 w3-black">
 					Kunst
 				  </div>
 				</div>
 
 				<div class="w3-display-container mySlides">
-				  <img src="images/topic_bible.jpg" style="width:100%">
+				  <img src="images/topic_bible.jpg" alt="bibel" style="width:100%" />
 				  <div class="w3-display-bottomright w3-large w3-container w3-padding-16 w3-black">
 					Bibel
 				  </div>
 				</div>
 
 				<div class="w3-display-container mySlides">
-				  <img src="images/topic_eating_drinking.jpg" style="width:100%">
+				  <img src="images/topic_eating_drinking.jpg" alt="essen_drinken" style="width:100%" />
 				  <div class="w3-display-topleft w3-large w3-container w3-padding-16 w3-black">
 					Essen
 				  </div>
 				</div>
 
 				<div class="w3-display-container mySlides">
-				  <img src="images/topic_freetime_sport.jpg" style="width:100%">
+				  <img src="images/topic_freetime_sport.jpg" alt="sport" style="width:100%" />
 				  <div class="w3-display-topright w3-large w3-container w3-padding-16 w3-black">
 					Sport
 				  </div>
 				</div>
 
 				<div class="w3-display-container mySlides">
-				  <img src="images/topic_geographie.jpg" style="width:100%">
+				  <img src="images/topic_geographie.jpg" alt="kulturen" style="width:100%" />
 				  <div class="w3-display-middle w3-large w3-container w3-padding-16 w3-black">
 					Kulturen
 				  </div>
 				</div>
 				
 				<div class="w3-display-container mySlides">
-				  <img src="images/topic_history.jpg" style="width:100%">
+				  <img src="images/topic_history.jpg" alt="Geschichte" style="width:100%" />
 				  <div class="w3-display-middle w3-large w3-container w3-padding-16 w3-black">
 					Geschichte
 				  </div>
 				</div>
 				
 				<div class="w3-display-container mySlides">
-				  <img src="images/topic_movies.jpg" style="width:100%">
+				  <img src="images/topic_movies.jpg" alt="filme" style="width:100%" />
 				  <div class="w3-display-middle w3-large w3-container w3-padding-16 w3-black">
 					Filme
 				  </div>
 				</div>
 				
 				<div class="w3-display-container mySlides">
-				  <img src="images/topic_music.jpg" style="width:100%">
+				  <img src="images/topic_music.jpg" alt="musik" style="width:100%" />
 				  <div class="w3-display-middle w3-large w3-container w3-padding-16 w3-black">
 					Musik
 				  </div>
 				</div>
 				
 				<div class="w3-display-container mySlides">
-				  <img src="images/topic_nature_animals.jpg" style="width:100%">
+				  <img src="images/topic_nature_animals.jpg" alt="natur_tiere" style="width:100%" />
 				  <div class="w3-display-middle w3-large w3-container w3-padding-16 w3-black">
 					Natur
 				  </div>
 				</div>
 				
 				<div class="w3-display-container mySlides">
-				  <img src="images/topic_politics.jpg" style="width:100%">
+				  <img src="images/topic_politics.jpg" alt="politik" style="width:100%" />
 				  <div class="w3-display-middle w3-large w3-container w3-padding-16 w3-black">
 					Politik
 				  </div>
 				</div>
 				
 				<div class="w3-display-container mySlides">
-				  <img src="images/topic_science.jpg" style="width:100%">
+				  <img src="images/topic_science.jpg" alt="wissenschaft" style="width:100%" />
 				  <div class="w3-display-middle w3-large w3-container w3-padding-16 w3-black">
 					Wissenschaft
 				  </div>
 				</div>
 				
 				<div class="w3-display-container mySlides">
-				  <img src="images/topic_technology.jpg" style="width:100%">
+				  <img src="images/topic_technology.jpg" alt="technologie" style="width:100%" />
 				  <div class="w3-display-middle w3-large w3-container w3-padding-16 w3-black">
 					Technologien
 				  </div>
 				</div>
 				
 				<div class="w3-display-container mySlides">
-				  <img src="images/topic_tv.jpg" style="width:100%">
+				  <img src="images/topic_tv.jpg" alt="serien" style="width:100%" />
 				  <div class="w3-display-middle w3-large w3-container w3-padding-16 w3-black">
 					Serien
 				  </div>
@@ -171,7 +171,7 @@
 
 			</div>
 			
-			<script>
+			<script type="text/javascript">
 				var slideIndex = 1;
 				showDivs(slideIndex);
 
@@ -192,7 +192,5 @@
 			</script>
 			<?php } ?>
 		</div>
-		<br />
-		<br />
 	</body>
 </html>

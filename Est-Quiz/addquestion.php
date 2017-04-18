@@ -157,8 +157,8 @@
 	<head>
 		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 		<title>EST Quiz-Projekt</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" href="https://www.w3schools.com/w3css/3/w3.css">
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="https://www.w3schools.com/w3css/3/w3.css" />
 	</head>
 	<body>
 		<!-- Sidebar -->
@@ -190,60 +190,45 @@
 			<hr />
 			<?php
 			if( !$erfolgreichEingereicht && !$adminAccess && $fail ) { ?>
-				<center>
-					<div class="w3-panel w3-red w3-display-container">
-					<span onclick="this.parentElement.style.display='none'"
-					class="w3-button w3-red w3-large w3-display-topright">&times;</span>
-						<h3>Fehler!</h3>
-						<p>Die Frage wurde nicht hinzugefügt!</p>
-					</div> 
-				</center>
+				<div class="w3-panel w3-red w3-display-container" style="text-align:center;" >
+					<span onclick="this.parentElement.style.display='none'" class="w3-button w3-red w3-large w3-display-topright">&times;</span>
+					<h3>Fehler!</h3>
+					<p>Die Frage wurde nicht hinzugefügt!</p>
+				</div> 
 			<?php } 
 			
-			if( $erfolgreichEingereicht ) { ?>
-				<center>
-					<div class="w3-panel w3-green w3-display-container">
-					<span onclick="this.parentElement.style.display='none'"
-					class="w3-button w3-red w3-large w3-display-topright">&times;</span>
-						<h3>Erfolgreich!</h3>
-						<p>Die Frage wurde erfolgreich eingereichte! Ein Admin wird sich in kürze darum kümmern.</p>
-					</div> 
-				</center>
+			if( $erfolgreichEingereicht ) { ?>		
+				<div class="w3-panel w3-green w3-display-container" style="text-align:center;">
+					<span onclick="this.parentElement.style.display='none'" class="w3-button w3-red w3-large w3-display-topright">&times;</span>
+					<h3>Erfolgreich!</h3>
+					<p>Die Frage wurde erfolgreich eingereichte! Ein Admin wird sich in kürze darum kümmern.</p>
+				</div> 
 			<?php } 
 			
-			if( $fehler && $adminAccess ) { ?>
-				<center>
-					<div class="w3-panel w3-red w3-display-container">
-					<span onclick="this.parentElement.style.display='none'"
-					class="w3-button w3-red w3-large w3-display-topright">&times;</span>
-						<h3>Fehler!</h3>
-						<p>Die Frage wurde nicht erfolgreich hinzugefügt!</p>
-					</div> 
-				</center>
+			if( $fehler && $adminAccess ) { ?>	
+				<div class="w3-panel w3-red w3-display-container" style="text-align:center;">
+				<span onclick="this.parentElement.style.display='none'" class="w3-button w3-red w3-large w3-display-topright">&times;</span>
+					<h3>Fehler!</h3>
+					<p>Die Frage wurde nicht erfolgreich hinzugefügt!</p>
+				</div> 
 			<?php } if( !$fehler && $adminAccess && $done4 ) { ?>
-				<center>
-					<div class="w3-panel w3-green w3-display-container">
-					<span onclick="this.parentElement.style.display='none'"
-					class="w3-button w3-red w3-large w3-display-topright">&times;</span>
-						<h3>Erfolreich!</h3>
-						<p>Die Frage wurde erfolgreich hinzugefügt!</p>
-					</div> 
-				</center>
+				<div class="w3-panel w3-green w3-display-container" style="text-align:center;">
+					<span onclick="this.parentElement.style.display='none'" class="w3-button w3-red w3-large w3-display-topright">&times;</span>
+					<h3>Erfolreich!</h3>
+					<p>Die Frage wurde erfolgreich hinzugefügt!</p>
+				</div> 
 			<?php }  
 			
 			if( !$access ) { ?>
-			
-				<center>
-					<p>Bitte zuerst <a href = "login.php">Einloggen</a>!</p>
-				</center>
+				<p style="text-align:center;">Bitte zuerst <a href = "login.php">Einloggen</a>!</p>
 				
 			<?php } if( $adminAccess && !$done ) { ?>
 			
 			<!-- Falls der User Admin ist -->
 			
-			<div class="w3-container"> 
-				<center>
-					<form action = "?addquestion=1" method= "post" name = "form" style = "width: 50%;">
+			<div class="w3-container" style="margin-left:25%; margin-right:25%; width:50%;"> 
+					<form action = "?addquestion=1" method= "post" >
+						<fieldset style="border-style:none;">
 						<label class="w3-label w3-text-green">Themenauswahl</label>
 						<select name = "topics" class="w3-select">
 							<option value = "art" <?php if( isset($_SESSION['topic']) ) {
@@ -281,11 +266,11 @@
 									echo "SELECTED";
 								}
 							} ?>>Filme</option>
-							<option value = "musik" <?php if( isset($_SESSION['topic']) ) {
-								if( strcmp($_SESSION['topic'], "musik") == 0 ) {
+							<option value = "music" <?php if( isset($_SESSION['topic']) ) {
+								if( strcmp($_SESSION['topic'], "music") == 0 ) {
 									echo "SELECTED";
 								}
-							} ?>>Musik</option>
+							} ?>>music</option>
 							<option value = "nature" <?php if( isset($_SESSION['topic']) ) {
 								if( strcmp($_SESSION['topic'], "nature") == 0 ) {
 									echo "SELECTED";
@@ -314,7 +299,7 @@
 						</select>
 						<br /><br />
 						<label class = "w3-label w3-text-green">Quiz Frage</label>
-						<input type = "name" class = "w3-input w3-border" size = "60" maxlength = "150" name = "question"
+						<input type="text" class = "w3-input w3-border" size = "60" maxlength = "150" name = "question"
 							<?php 
 							
 								if( !empty($_SESSION['question']) ) {
@@ -322,76 +307,81 @@
 								}
 								
 							?> />
-						</input><br /><br />
+						<br /><br />
 						<label class = "w3-label w3-text-green">Richtige Antwort</label>
-						<input type = "name" class = "w3-input w3-border" size = "60" maxlength = "60" name = "r_answer" 					
+						<input type="text" class = "w3-input w3-border" size = "60" maxlength = "60" name = "r_answer" 					
 						<?php 
 						
 							if( !empty($_SESSION['right_answer']) ) {
 								echo " value='".$_SESSION['right_answer']."'";
 							}		
 							
-						?> >
+						?> />
 						
-						</input><br>
+						<br />
 						<label class = "w3-label w3-text-green">1. Falsche Antwort</label>
-						<input type = "name" class = "w3-input w3-border" size = "60" maxlength = "60" name = "f_answer_1" 
+						<input type="text" class = "w3-input w3-border" size = "60" maxlength = "60" name = "f_answer_1" 
 						<?php 
 						
 							if( !empty($_SESSION['wrong_answer_1']) && !isset($_GET['res']) ) {
 								echo "value='".$_SESSION['wrong_answer_1']."'";
-							} ?>>
+							} ?>/>
 						
-						</input><br>
+						<br />
 						<label class = "w3-label w3-text-green">2. Falsche Antwort</label>
-						<input type = "name" class = "w3-input w3-border" size = "60" maxlength = "60" name = "f_answer_2" 
+						<input type="text" class = "w3-input w3-border" size = "60" maxlength = "60" name = "f_answer_2" 
 						<?php 
 						
 							if( !empty($_SESSION['wrong_answer_2']) && !isset($_GET['res']) ) {
 								echo "value='".$_SESSION['wrong_answer_2']."'";
 							}	
-							?>>
-						</input><br>
+							?>/>
+						<br />
 						<label class = "w3-label w3-text-green">3. Falsche Antwort</label>
-						<input type = "name" class = "w3-input w3-border" size = "60" maxlength = "60" name = "f_answer_3" 
+						<input type="text" class = "w3-input w3-border" size = "60" maxlength = "60" name = "f_answer_3" 
 						<?php 
 						
 							if( !empty($_SESSION['wrong_answer_3']) && !isset($_GET['res']) ) {
 								echo "value='".$_SESSION['wrong_answer_3']."'";
 							}					
 							
-						?>>
-						</input>
-						<br>
-						<center>
+						?>/>
+						
+						<br />
+						<div style="text-align:center">
 							<input class = "w3-button w3-white w3-border w3-border-red w3-round-large" type = "submit" value ="Zurücksetzen" name = "res"/><br /><br />
-						</center>
-						<center>
+						</div>
+						<div style="text-align:center">
 							<input class = "w3-button w3-white w3-border w3-border-red w3-round-large" type = "submit" value ="Eintragen" name = "add"/><br />
-							</form>
-						</center>
-					</div>
-					<?php } if( $done ) { ?>
-					<center>
+							
+						
+						</div>
+						</fieldset>
+					</form>
+				</div>
+				<?php } if( $done ) { ?>
+					<div style="text-align:center;">
 						<form action = "?add=1" method = "POST">
-							<label class = "w3-label w3-text-green">Thema</label><br />
-							<?php echo "$topic <br /><br />" ?>
-							<label class = "w3-label w3-text-green">Frage</label><br />
-							<?php echo "$question <br /><br />" ?>
-							<label class = "w3-label w3-text-green">Richtige Antwort</label><br />
-							<?php echo "$right_answer <br /><br />" ?>
-							<label class = "w3-label w3-text-green">1. Falsche Antwort</label><br />
-							<?php echo "$wrong_answer_1 <br /><br />" ?>
-							<label class = "w3-label w3-text-green">2. Falsche Antwort</label><br />
-							<?php echo "$wrong_answer_2 <br /><br />" ?>
-							<label class = "w3-label w3-text-green">3. Falsche Antwort</label><br />
-							<?php echo "$wrong_answer_3 <br /><br />" ?>
-							<p>Eingabe nicht richtig? <a href = "addquestion.php">zur&uuml;ck!</a></p><br />
-							<center>
-								<input class = "w3-button w3-white w3-border w3-border-red w3-round-large" type = "submit" value ="Eintragen" name = "abschicken"/></center>
-							</form>
-						</center>
-				</center>
+							<fieldset style="border-style:none;">
+								<label class = "w3-label w3-text-green">Thema</label><br />
+								<?php echo "$topic <br /><br />" ?>
+								<label class = "w3-label w3-text-green">Frage</label><br />
+								<?php echo "$question <br /><br />" ?>
+								<label class = "w3-label w3-text-green">Richtige Antwort</label><br />
+								<?php echo "$right_answer <br /><br />" ?>
+								<label class = "w3-label w3-text-green">1. Falsche Antwort</label><br />
+								<?php echo "$wrong_answer_1 <br /><br />" ?>
+								<label class = "w3-label w3-text-green">2. Falsche Antwort</label><br />
+								<?php echo "$wrong_answer_2 <br /><br />" ?>
+								<label class = "w3-label w3-text-green">3. Falsche Antwort</label><br />
+								<?php echo "$wrong_answer_3 <br /><br />" ?>
+								<p>Eingabe nicht richtig? <a href = "addquestion.php">zur&uuml;ck!</a></p><br />
+								<div style="text-align:center">
+									<input class = "w3-button w3-white w3-border w3-border-red w3-round-large" type = "submit" value ="Eintragen" name = "abschicken"/>
+								</div>
+							</fieldset>
+						</form>
+					</div>	
 			<?php } /* if( $fehler && $adminAccess ) { ?>
 				<center>
 					<p class = "w3-text-red">Fehler beim hinzufügen der Frage!</p>
@@ -406,157 +396,163 @@
 			
 			<?php if( !$adminAccess && !$done2 && $access ) { ?>
 			
-				<div class="w3-container"> 
-				<center>
-					<form action = "?addquestion=1" method= "post" name = "form">
-						<label class="w3-label w3-text-green">Themenauswahl</label>
-						<select name = "topics" class="w3-select">
-							<option value = "art" <?php if( isset($_SESSION['topic']) ) {
-								if( strcmp($_SESSION['topic'], "art") == 0 ) {
-									echo "SELECTED";
-								}
-							} ?>>Kunst</option>
-							<option value = "bible" <?php if( isset($_SESSION['topic']) ) {
-								if( strcmp($_SESSION['topic'], "bible") == 0 ) {
-									echo "SELECTED";
-								}
-							} ?>>Bibel</option>
-							<option value = "eating" <?php if( isset($_SESSION['topic']) ) {
-								if(strcmp($_SESSION['topic'], "eating") == 0 ) {
-									echo "SELECTED";
+				<div class="w3-container" style="margin-left:25%;margin-right:25%;width:50%;"> 
+				
+					<form action = "?addquestion=1" method= "post" >
+						<fieldset style="border-style:none;">
+							<label class="w3-label w3-text-green">Themenauswahl</label>
+							<select name = "topics" class="w3-select">
+								<option value = "art" <?php if( isset($_SESSION['topic']) ) {
+									if( strcmp($_SESSION['topic'], "art") == 0 ) {
+										echo "SELECTED";
 									}
-							} ?>>Essen</option>
-							<option value = "freetime" <?php if( isset($_SESSION['topic']) ) {
-								if( strcmp($_SESSION['topic'], "freetime") == 0 ) {
-									echo "SELECTED";
-								}
-							} ?>>Sport</option>
-							<option value = "geography" <?php if( isset($_SESSION['topic']) ) {
-								if( strcmp($_SESSION['topic'], "geography") == 0 ) {
-									echo "SELECTED";
-								}
-							} ?>>Kulturen</option>
-							<option value = "history" <?php if( isset($_SESSION['topic']) ) {
-								if( strcmp($_SESSION['topic'], "history") == 0 ) {
-									echo "SELECTED";
-								}
-							} ?>>Geschichte</option>
-							<option value = "movies" <?php if( isset($_SESSION['topic']) ) {
-								if( strcmp($_SESSION['topic'], "movies") == 0 ) {
-									echo "SELECTED";
-								}
-							} ?>>Filme</option>
-							<option value = "musik" <?php if( isset($_SESSION['topic']) ) {
-								if( strcmp($_SESSION['topic'], "musik") == 0 ) {
-									echo "SELECTED";
-								}
-							} ?>>Musik</option>
-							<option value = "nature" <?php if( isset($_SESSION['topic']) ) {
-								if( strcmp($_SESSION['topic'], "nature") == 0 ) {
-									echo "SELECTED";
-								}
-							} ?>>Natur</option>
-							<option value = "politics" <?php if( isset($_SESSION['topic']) ) {
-								if( strcmp($_SESSION['topic'], "politics") == 0 ) {
-									echo "SELECTED";
-								}
-							} ?>>Politik</option>
-							<option value = "science" <?php if( isset($_SESSION['topic']) ) {
-								if( strcmp($_SESSION['topic'], "science") == 0 ) {
-									echo "SELECTED";
-								}
-							} ?>>Wissenschaft</option>
-							<option value = "technologie" <?php if( isset($_SESSION['topic']) ) {
-								if( strcmp($_SESSION['topic'], "technologie") == 0 ) {
-									echo "SELECTED";
-								}
-							} ?>>Technologien</option>
-							<option value = "serie" <?php if( isset($_SESSION['topic']) ) {
-								if( strcmp($_SESSION['topic'], "serie") == 0 ) {
-									echo "SELECTED";
-								}
-							} ?>>Serien</option>
-						</select>
-						<br /><br />
-						<label class = "w3-label w3-text-green">Quiz Frage</label>
-						<input type = "name" class = "w3-input w3-border" size = "60" maxlength = "150" name = "question"
+								} ?>>Kunst</option>
+								<option value = "bible" <?php if( isset($_SESSION['topic']) ) {
+									if( strcmp($_SESSION['topic'], "bible") == 0 ) {
+										echo "SELECTED";
+									}
+								} ?>>Bibel</option>
+								<option value = "eating" <?php if( isset($_SESSION['topic']) ) {
+									if(strcmp($_SESSION['topic'], "eating") == 0 ) {
+										echo "SELECTED";
+										}
+								} ?>>Essen</option>
+								<option value = "freetime" <?php if( isset($_SESSION['topic']) ) {
+									if( strcmp($_SESSION['topic'], "freetime") == 0 ) {
+										echo "SELECTED";
+									}
+								} ?>>Sport</option>
+								<option value = "geography" <?php if( isset($_SESSION['topic']) ) {
+									if( strcmp($_SESSION['topic'], "geography") == 0 ) {
+										echo "SELECTED";
+									}
+								} ?>>Kulturen</option>
+								<option value = "history" <?php if( isset($_SESSION['topic']) ) {
+									if( strcmp($_SESSION['topic'], "history") == 0 ) {
+										echo "SELECTED";
+									}
+								} ?>>Geschichte</option>
+								<option value = "movies" <?php if( isset($_SESSION['topic']) ) {
+									if( strcmp($_SESSION['topic'], "movies") == 0 ) {
+										echo "SELECTED";
+									}
+								} ?>>Filme</option>
+								<option value = "music" <?php if( isset($_SESSION['topic']) ) {
+									if( strcmp($_SESSION['topic'], "music") == 0 ) {
+										echo "SELECTED";
+									}
+								} ?>>music</option>
+								<option value = "nature" <?php if( isset($_SESSION['topic']) ) {
+									if( strcmp($_SESSION['topic'], "nature") == 0 ) {
+										echo "SELECTED";
+									}
+								} ?>>Natur</option>
+								<option value = "politics" <?php if( isset($_SESSION['topic']) ) {
+									if( strcmp($_SESSION['topic'], "politics") == 0 ) {
+										echo "SELECTED";
+									}
+								} ?>>Politik</option>
+								<option value = "science" <?php if( isset($_SESSION['topic']) ) {
+									if( strcmp($_SESSION['topic'], "science") == 0 ) {
+										echo "SELECTED";
+									}
+								} ?>>Wissenschaft</option>
+								<option value = "technologie" <?php if( isset($_SESSION['topic']) ) {
+									if( strcmp($_SESSION['topic'], "technologie") == 0 ) {
+										echo "SELECTED";
+									}
+								} ?>>Technologien</option>
+								<option value = "serie" <?php if( isset($_SESSION['topic']) ) {
+									if( strcmp($_SESSION['topic'], "serie") == 0 ) {
+										echo "SELECTED";
+									}
+								} ?>>Serien</option>
+							</select>
+							<br /><br />
+							<label class = "w3-label w3-text-green">Quiz Frage</label>
+							<input type="text" class = "w3-input w3-border" size = "60" maxlength = "150" name = "question"
+								<?php 
+								
+									if( !empty($_SESSION['question']) ) {
+										echo "value='".$_SESSION['question']."'";
+									}
+									
+								?> />
+							<br /><br />
+							<label class = "w3-label w3-text-green">Richtige Antwort</label>
+							<input type="text" class = "w3-input w3-border" size = "60" maxlength = "60" name = "r_answer" 					
 							<?php 
 							
-								if( !empty($_SESSION['question']) ) {
-									echo "value='".$_SESSION['question']."'";
-								}
+								if( !empty($_SESSION['right_answer']) ) {
+									echo " value='".$_SESSION['right_answer']."'";
+								}		
 								
 							?> />
-						</input><br /><br />
-						<label class = "w3-label w3-text-green">Richtige Antwort</label>
-						<input type = "name" class = "w3-input w3-border" size = "60" maxlength = "60" name = "r_answer" 					
-						<?php 
-						
-							if( !empty($_SESSION['right_answer']) ) {
-								echo " value='".$_SESSION['right_answer']."'";
-							}		
 							
-						?> >
-						
-						</input><br>
-						<label class = "w3-label w3-text-green">1. Falsche Antwort</label>
-						<input type = "name" class = "w3-input w3-border" size = "60" maxlength = "60" name = "f_answer_1" 
-						<?php 
-						
-							if( !empty($_SESSION['wrong_answer_1']) && !isset($_GET['res']) ) {
-								echo "value='".$_SESSION['wrong_answer_1']."'";
-							} ?>>
-						
-						</input><br>
-						<label class = "w3-label w3-text-green">2. Falsche Antwort</label>
-						<input type = "name" class = "w3-input w3-border" size = "60" maxlength = "60" name = "f_answer_2" 
-						<?php 
-						
-							if( !empty($_SESSION['wrong_answer_2']) && !isset($_GET['res']) ) {
-								echo "value='".$_SESSION['wrong_answer_2']."'";
-							}	
-							?>>
-						</input><br>
-						<label class = "w3-label w3-text-green">3. Falsche Antwort</label>
-						<input type = "name" class = "w3-input w3-border" size = "60" maxlength = "60" name = "f_answer_3" 
-						<?php 
-						
-							if( !empty($_SESSION['wrong_answer_3']) && !isset($_GET['res']) ) {
-								echo "value='".$_SESSION['wrong_answer_3']."'";
-							}					
+							<br />
+							<label class = "w3-label w3-text-green">1. Falsche Antwort</label>
+							<input type="text" class = "w3-input w3-border" size = "60" maxlength = "60" name = "f_answer_1" 
+							<?php 
 							
-						?>>
-						</input>
-						<br>
-						<center>
-							<input class = "w3-button w3-white w3-border w3-border-red w3-round-large" type = "submit" value ="Zurücksetzen" name = "res"/><br /><br />
-						</center>
-						<center>
-							<input class = "w3-button w3-white w3-border w3-border-red w3-round-large" type = "submit" value ="Einreichen" name = "addToAdmin"/><br />
-							</form>
-						</center>
-					</div>
+								if( !empty($_SESSION['wrong_answer_1']) && !isset($_GET['res']) ) {
+									echo "value='".$_SESSION['wrong_answer_1']."'";
+								} ?> />
+							
+							<br />
+							<label class = "w3-label w3-text-green">2. Falsche Antwort</label>
+							<input type="text" class = "w3-input w3-border" size = "60" maxlength = "60" name = "f_answer_2" 
+							<?php 
+							
+								if( !empty($_SESSION['wrong_answer_2']) && !isset($_GET['res']) ) {
+									echo "value='".$_SESSION['wrong_answer_2']."'";
+								}	
+								?>/>
+							<br />
+							<label class = "w3-label w3-text-green">3. Falsche Antwort</label>
+							<input type="text" class = "w3-input w3-border" size = "60" maxlength = "60" name = "f_answer_3" 
+							<?php 
+							
+								if( !empty($_SESSION['wrong_answer_3']) && !isset($_GET['res']) ) {
+									echo "value='".$_SESSION['wrong_answer_3']."'";
+								}					
+								
+							?>/>
+							
+							<br />
+							<div style="text-align:center">
+								<input class = "w3-button w3-white w3-border w3-border-red w3-round-large" type = "submit" value ="Zurücksetzen" name = "res"/><br /><br />
+							</div>
+							<div style="text-align:center">
+								<input class = "w3-button w3-white w3-border w3-border-red w3-round-large" type = "submit" value ="Einreichen" name = "addToAdmin"/><br />
+								
+							</div>
+					</fieldset>
+				</form>
+			</div>
 			
 			<?php } if( $einreichen && $access ) { ?>
-				<center>
+				<div style="text-align:center">
 					<form action = "?add=1" method = "POST">
-						<label class = "w3-label w3-text-green">Thema</label><br />
-						<?php echo "$topic <br /><br />" ?>
-						<label class = "w3-label w3-text-green">Frage</label><br />
-						<?php echo "$question <br /><br />" ?>
-						<label class = "w3-label w3-text-green">Richtige Antwort</label><br />
-						<?php echo "$right_answer <br /><br />" ?>
-						<label class = "w3-label w3-text-green">1. Falsche Antwort</label><br />
-						<?php echo "$wrong_answer_1 <br /><br />" ?>
-						<label class = "w3-label w3-text-green">2. Falsche Antwort</label><br />
-						<?php echo "$wrong_answer_2 <br /><br />" ?>
-						<label class = "w3-label w3-text-green">3. Falsche Antwort</label><br />
-						<?php echo "$wrong_answer_3 <br /><br />" ?>
-						<p>Eingabe nicht richtig? <a href = "addquestion.php">zur&uuml;ck!</a></p><br />
-						<center>
-							<input class = "w3-button w3-white w3-border w3-border-red w3-round-large" type = "submit" value ="Einreichen" name = "einreichen"/></center>
-						</form>
-						</center>
+						<fieldset style="border-style:none;">
+							<label class = "w3-label w3-text-green">Thema</label><br />
+							<?php echo "$topic <br /><br />" ?>
+							<label class = "w3-label w3-text-green">Frage</label><br />
+							<?php echo "$question <br /><br />" ?>
+							<label class = "w3-label w3-text-green">Richtige Antwort</label><br />
+							<?php echo "$right_answer <br /><br />" ?>
+							<label class = "w3-label w3-text-green">1. Falsche Antwort</label><br />
+							<?php echo "$wrong_answer_1 <br /><br />" ?>
+							<label class = "w3-label w3-text-green">2. Falsche Antwort</label><br />
+							<?php echo "$wrong_answer_2 <br /><br />" ?>
+							<label class = "w3-label w3-text-green">3. Falsche Antwort</label><br />
+							<?php echo "$wrong_answer_3 <br /><br />" ?>
+							<p>Eingabe nicht richtig? <a href = "addquestion.php">zur&uuml;ck!</a></p><br />
+							<div style="text-align:center">
+								<input class = "w3-button w3-white w3-border w3-border-red w3-round-large" type = "submit" value ="Einreichen" name = "einreichen"/>
+							</div>
+						</fieldset>
+					</form>
+				</div>
 			<?php } /* if( !$erfolgreichEingereicht && !$adminAccess && $fail ) { ?>
 				<center>
 					<p class = "w3-text-red"><?php echo $ausgabe; ?></p>
@@ -566,5 +562,6 @@
 					<p class = "w3-text-green">Du hast die Frage erfolgreich eingereicht!</p>
 				</center>
 			<?php } */ ?>
+		</div>
 	</body>
 </html>

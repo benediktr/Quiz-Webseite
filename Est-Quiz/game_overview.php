@@ -26,6 +26,7 @@
 	if(($_SESSION['maximaleAnzahlAnFragen']-$_SESSION['IDaktuelleFrage'])<10){
 		$_SESSION['zuWenigFragen'] = true;
 	}
+	
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
@@ -35,8 +36,8 @@
 	<head>
 		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 		<title>EST Quiz-Projekt</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" href="https://www.w3schools.com/w3css/3/w3.css">
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="https://www.w3schools.com/w3css/3/w3.css" />
 	</head>
 	<body>
 		<!-- Sidebar -->
@@ -67,28 +68,28 @@
 			</div>
 			<hr />
 			<?php if( !$access ) { ?>
-				<center><p>Bitte zuerst <a href = "login.php">Einloggen</a>!</p></center>
+				<p style="text-align:center;">Bitte zuerst <a href = "login.php">Einloggen</a>!</p>
 			<?php } else { ?>
-			<div class="w3-container" >
-				<center>
-					<div class="w3-panel w3-blue">
- 						 <h1 class="w3-opacity">Ergebnis der <?php echo $_SESSION['runden']; ?>. Runde</h2>
-					</div> 
+			<div class="w3-container" style="text-align:center;">	
+				<div class="w3-panel w3-blue" >
+ 					 <h1 class="w3-opacity">Ergebnis der <?php echo $_SESSION['runden']; ?>. Runde</h1>
+				</div> 
 					
-					<p>Richtige Antworten <span class="w3-badge w3-green"><?php echo $_SESSION['richtigBeantworteteFragen']; ?></span></p>
-					<p>Falsche Antworten <span class="w3-badge w3-red"><?php echo $_SESSION['falschBeantworteteFragen']; ?></span></p>
+				<p>Richtige Antworten <span class="w3-badge w3-green"><?php echo $_SESSION['richtigBeantworteteFragen']; ?></span></p>
+				<p>Falsche Antworten <span class="w3-badge w3-red"><?php echo $_SESSION['falschBeantworteteFragen']; ?></span></p>
 		
-					<form action="index.php">
-						<input  type="submit" class = "w3-button w3-white w3-border w3-border-red w3-round-large" style="margin:2%;" value="Startseite" />
-					</form>
-					<form action="game.php">
+				<form action="index.php">
+					<fieldset style="border-style:none;">
+						<input type="submit" class = "w3-button w3-white w3-border w3-border-red w3-round-large" style="margin:2%;" value="Startseite" />
+					</fieldset>
+				</form>
+				<form action="game.php">
+					<fieldset style="border-style:none;">
 						<input  type="submit" class = "w3-button w3-white w3-border w3-border-red w3-round-large" style="margin:2%;" value="Weiter" />
-					</form>
-				<center>	
+					</fieldset>
+				</form>		
 			</div>
-			<?php } 
-			$_SESSION['runden'] = $_SESSION['runden'] +1;
-			?>
+			<?php } ?>
 		</div>
 	</body>
 </html>

@@ -74,8 +74,8 @@
 	<head>
 		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 		<title>EST Quiz-Projekt</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" href="https://www.w3schools.com/w3css/3/w3.css">
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="https://www.w3schools.com/w3css/3/w3.css" />
 	</head>
 	<body>
 		<!-- Sidebar -->
@@ -106,46 +106,45 @@
 			</div>
 			<hr />
 			<?php if( !$access ) { ?>
-				<center><p>Bitte zuerst <a href = "login.php">Einloggen</a>!</p></center>
+				<p style="text-align:center;">Bitte zuerst <a href = "login.php">Einloggen</a>!</p>
 			<?php } else { ?>
-				<center>
+				<div style="text-align:center">
 					<h2 class="w3-center w3-opacity">Pers&ouml;nliches</h2>
 					<table class="w3-table-all w3-hoverable" style = "width: 90%">
-						<thead>
-							<tr class="w3-light-grey">
-								<th>Registrierungsdatum</th>
-								<th>Identifikationsnummer</th>
-								<th>Status</th>
-							</tr>
-							<?php 
-								echo "<td>$registerdate</td>";
-								echo "<td>$id</td>";
-								echo "<td>$status</td>";
-							?>
-						</thead>
+						<tr class="w3-light-grey">
+							<th>Registrierungsdatum</th>
+							<th>Identifikationsnummer</th>
+							<th>Status</th>
+						</tr>
+						<tr>
+						<?php 
+							echo "<td>".$registerdate."</td>";
+							echo "<td>".$id."</td>";
+							echo "<td>".$status."</td>";
+						?>
+						</tr>				
 					</table>
 					<h2 class="w3-center w3-opacity">Globales</h2>
 					<table class="w3-table-all w3-hoverable" style = "width: 90%">
-						<thead>
-							<tr class="w3-light-grey">
-								<th>Globaler Score</th>
-								<th>Fragen hinzugef&uuml;gt</th>
-								<th>Fragen beantwortet</th>
-								<th>Fragen richtig beantwortet</th>
-								<th>Fragen falsch beantwortet</th>
-							</tr>
-							<?php 
-								echo "<td>$total_score</td>";
-								echo "<td>$questions_added</td>";
-								echo "<td>$questions_done</td>";
-								echo "<td>$questions_right</td>";
-								echo "<td>$questions_wrong</td>";
-							?>
-						</thead>
+						<tr class="w3-light-grey">
+							<th>Globaler Score</th>
+							<th>Fragen hinzugef&uuml;gt</th>
+							<th>Fragen beantwortet</th>
+							<th>Fragen richtig beantwortet</th>
+							<th>Fragen falsch beantwortet</th>
+						</tr>
+						<tr>
+						<?php 
+							echo "<td>".$total_score."</td>";
+							echo "<td>".$questions_added."</td>";
+							echo "<td>".$questions_done."</td>";
+							echo "<td>".$questions_right."</td>";
+							echo "<td>".$questions_wrong."</td>";
+						?>
+						</tr>
 					</table>
 					<h2 class="w3-center w3-opacity">Themenstatistiken</h2>
 					<table class="w3-table-all w3-hoverable" style = "width: 90%">
-						<thead>
 							<tr class="w3-light-grey">
 								<th>Thema</th>
 								<th>Fragen beantwortet</th>
@@ -155,7 +154,7 @@
 								<?php 
 									/* Kunst */
 									echo "<td>Kunst</td>";
-									echo "<td>$score_art</td>";
+									echo "<td>".$score_art."</td>";
 									
 									if( $score_art == 0 ) {
 										echo "<td>0%";
@@ -168,7 +167,7 @@
 									
 									/* Bibel */
 									echo "<td>Bibel</td>";
-									echo "<td>$score_bible</td>";
+									echo "<td>".$score_bible."</td>";
 									
 									if( $score_bible == 0 ) {
 										echo "<td>0%";
@@ -181,7 +180,7 @@
 									
 									/* Essen */
 									echo "<td>Essen</td>";
-									echo "<td>$score_eating</td>";
+									echo "<td>".$score_eating."</td>";
 									
 									if( $score_eating == 0 ) {
 										echo "<td>0%";
@@ -194,7 +193,7 @@
 									
 									/* Sport */
 									echo "<td>Sport</td>";
-									echo "<td>$score_freetime</td>";
+									echo "<td>".$score_freetime."</td>";
 									
 									if( $score_freetime == 0 ) {
 										echo "<td>0%";
@@ -207,7 +206,7 @@
 									
 									/* Kultur */
 									echo "<td>Kultur</td>";
-									echo "<td>$score_geography</td>";
+									echo "<td>".$score_geography."</td>";
 									
 									if( $score_geography == 0 ) {
 										echo "<td>0%";
@@ -220,7 +219,7 @@
 									
 									/* Geschichte */
 									echo "<td>Geschichte</td>";
-									echo "<td>$score_history</td>";
+									echo "<td>".$score_history."</td>";
 									
 									if( $score_history == 0 ) {
 										echo "<td>0%";
@@ -233,7 +232,7 @@
 									
 									/* Filme */
 									echo "<td>Filme</td>";
-									echo "<td>$score_movies</td>";
+									echo "<td>".$score_movies."</td>";
 									
 									if( $score_movies == 0 ) {
 										echo "<td>0%";
@@ -246,7 +245,7 @@
 									
 									/* Musik */
 									echo "<td>Musik</td>";
-									echo "<td>$score_music</td>";
+									echo "<td>".$score_music."</td>";
 									
 									if( $score_music == 0 ) {
 										echo "<td>0%";
@@ -259,7 +258,7 @@
 									
 									/* Natur */
 									echo "<td>Natur</td>";
-									echo "<td>$score_nature</td>";
+									echo "<td>".$score_nature."</td>";
 									
 									if( $score_nature == 0 ) {
 										echo "<td>0%";
@@ -272,7 +271,7 @@
 									
 									/* Politik */
 									echo "<td>Politik</td>";
-									echo "<td>$score_politics</td>";
+									echo "<td>".$score_politics."</td>";
 									
 									if( $score_politics == 0 ) {
 										echo "<td>0%";
@@ -285,7 +284,7 @@
 									
 									/* Wissenschaft */
 									echo "<td>Wissenschaft</td>";
-									echo "<td>$score_science</td>";
+									echo "<td>".$score_science."</td>";
 									
 									if( $score_science == 0 ) {
 										echo "<td>0%";
@@ -298,7 +297,7 @@
 									
 									/* Technologien */
 									echo "<td>Technologien</td>";
-									echo "<td>$score_technology</td>";
+									echo "<td>".$score_technology."</td>";
 									
 									if( $score_technology == 0 ) {
 										echo "<td>0%";
@@ -311,7 +310,7 @@
 								
 									/* Serien */
 									echo "<td>Serien</td>";
-									echo "<td>$score_tvseries</td>";
+									echo "<td>".$score_tvseries."</td>";
 								
 									if( $score_tvseries == 0 ) {
 										echo "<td>0%";
@@ -321,10 +320,10 @@
 									echo ' von 100%</td>';
 								?>
 							</tr>
-						</thead>
+				
 					</table>
 					<br />
-				</center>
+				</div>
 			<?php } ?>
 		</div>
 	</body>

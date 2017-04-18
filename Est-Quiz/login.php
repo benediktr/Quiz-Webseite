@@ -51,8 +51,8 @@
 	<head>
 		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 		<title>EST Quiz-Projekt</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" href="https://www.w3schools.com/w3css/3/w3.css">
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="https://www.w3schools.com/w3css/3/w3.css" />
 	</head>
 	<body>
 		<!-- Sidebar -->
@@ -90,11 +90,13 @@
 			<?php } if( !$successfull ) { ?>
 			<div class="w3-display-middle">
 				<form action= "?login=1" method= "post">
-					<label class="w3-label w3-text-green"><b>Username</b></label>
-					<input type = "name" size= "30" maxlength ="15" name = "username" class = "w3-input w3-border"/><br>
-					<label class="w3-label w3-text-green"><b>Passwort</b></label>
-					<input type = "password" size = "30" maxlength ="30" name = "password" class = "w3-input w3-border"/><br>
-					<center><input class = "w3-button w3-white w3-border w3-border-red w3-round-large" type = "submit" value ="Einloggen"/></center>
+					<fieldset style="border-style:none;">
+						<p class="w3-label w3-text-green" style="font-weight: bold; margin-bottom: 1%; margin-top: 4%;" >Username</p>
+						<input type = "text" size= "30" maxlength ="15" name = "username" class = "w3-input w3-border"/><br />
+						<p class="w3-label w3-text-green" style="font-weight: bold; margin-bottom: 1%; margin-top: 2%;" >Passwort</p>
+						<input type = "password" size = "30" maxlength ="30" name = "password" class = "w3-input w3-border"/><br />
+						<input class = "w3-button w3-white w3-border w3-border-red w3-round-large" type = "submit" style="margin-top: 5%;margin-left:25%;" value ="Einloggen"/>
+					</fieldset>
 				</form>
 				<?php } ?>
 			</div>

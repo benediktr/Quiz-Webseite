@@ -25,6 +25,9 @@
 	//Counter fuer die richtig und falsch beantworteten Fragen auf 0 setzten
 	$_SESSION['falschBeantworteteFragen'] = 0;
 	$_SESSION['richtigBeantworteteFragen'] = 0;
+	
+	//Rundenzahl auf 0 setzen
+	$_SESSION['schonAufgerufen']=0;
 
 	//Counter fuer die Runden auf eins setzen
 	//Rollen sind immer 10 Durchgänge
@@ -37,8 +40,8 @@
 	<head>
 		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 		<title>EST Quiz-Projekt</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" href="https://www.w3schools.com/w3css/3/w3.css">
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="https://www.w3schools.com/w3css/3/w3.css" />
 	</head>
 	<body>
 		<!-- Sidebar -->
@@ -73,11 +76,15 @@
 					<p>Bitte zuerst <a href = "login.php">Einloggen</a>!</p>
 				</center>
 			<?php } else { ?>
-			<center>
-				<div class="w3-container">
-					<div class = 'box'><span class = 'green'>Wähle aus einer der Themengebiete das Thema für dein Quiz</a></span></div><br />
+			
+			<div class="w3-container" style="text-align:center;">
+				<div class = 'box'>
+					<span class = 'green'>Wähle aus einer der Themengebiete das Thema für dein Quiz</span>
+				</div>
+				<br />
 				
-					<form action = "game.php" method = "post">
+				<form action = "game.php" method = "post">
+					<fieldset style="border-style:none;">
 						<select name = "topics" class="w3-select" style = "width: 50%;">
 							<option value = "art">Kunst</option>
 							<option value = "bible">Bibel</option>
@@ -92,15 +99,14 @@
 							<option value = "science">Wissenschaft</option>
 							<option value = "series">TV Serien</option>
 							<option value = "technology">Technologien</option>
-						
+							
 						</select>
 						<br />
-						<br />
 						<input class = "w3-button w3-white w3-border w3-border-red w3-round-large" type="submit" value="Weiter" style="margin: 2%;"/>
-					</form>
+					</fieldset>
+				</form>
 			
-				</div>
-			</center>
+			</div>
 			<?php } ?>
 		</div>
 	</body>

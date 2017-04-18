@@ -42,6 +42,7 @@
 			$statement = $db->prepare("DELETE FROM submit WHERE id = ?");
 			$statement->execute(array($_POST['delete']));
 			header('Location: admin.php'); 
+			exit;
 		}
 		if( isset($_POST['add']) ) {
 			$statement = $db->prepare("SELECT * FROM submit WHERE id = :id");
@@ -65,6 +66,9 @@
 			$sql = "UPDATE user SET counter_add_questions='$counter' WHERE id='$id'";
 			$stmt = $db->prepare($sql);
 			$stmt->execute();
+			
+			header('Location: admin.php'); 
+			exit;
 		}
 		if( isset($_POST['edit']) ) {
 			$questionID = $_POST['edit'];
@@ -141,8 +145,8 @@
 	<head>
 		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 		<title>EST Quiz-Projekt</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" href="https://www.w3schools.com/w3css/3/w3.css">
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="https://www.w3schools.com/w3css/3/w3.css" />
 	</head>
 	<body>
 		<!-- Sidebar -->
@@ -173,17 +177,19 @@
 			</div>
 			<hr />
 			<?php if( !$access ) { ?>
-				<center><p>Bitte zuerst <a href = "login.php">Einloggen</a>!</p></center>
+				<p style="text-align:center">Bitte zuerst <a href = "login.php">Einloggen</a>!</p>
 				<?php } if( strcmp($user['status'], "Admin") == 0 ) { ?>
 					<?php if( !isset($_POST['userverwaltung']) && !isset($_POST['fragen']) && !$editing ) { ?>
-					<center>
+					<div style="text-align:center">
 					<form action = "?admin=1" method = "post">
-						<input class = "w3-button w3-white w3-border w3-border-red w3-round-large" type = "submit" name = "userverwaltung" value = "Userverwaltung anzeigen"/>
-						<hr />
-						<input class = "w3-button w3-white w3-border w3-border-red w3-round-large" type = "submit" name = "fragen" value = "Eingereichte Fragen anzeigen"/>
+						<fieldset style="border-style:none;">
+							<input class = "w3-button w3-white w3-border w3-border-red w3-round-large" type = "submit" name = "userverwaltung" value = "Userverwaltung anzeigen"/>
+							<hr />
+							<input class = "w3-button w3-white w3-border w3-border-red w3-round-large" type = "submit" name = "fragen" value = "Eingereichte Fragen anzeigen"/>
+						</fieldset>
 					</form>
 					<?php } if( $userverwaltung ) { ?>
-					<center><h2 class="w3-opacity">Userverwaltung</h2></center>
+					<h2 style="text-align:center"class="w3-opacity">Userverwaltung</h2>
 					<form action = "?change=1" method = "POST">
 						<div class="w3-row-padding">
 							<div class="w3-third">
@@ -222,11 +228,11 @@
 								</thead>
 							</table>
 						</form>
-					</center>
+					</div>
 					<?php }			
 					if( $_POST['fragen'] ) {		
 					?>
-					<center><h2 class="w3-opacity">Eingereichte Fragen verwalten</h2></center>
+					<h2 style="text-align:center" class="w3-opacity">Eingereichte Fragen verwalten</h2>
 					<form action = "?question=1" method = "POST">
 						<div class="w3-row-padding">
 							<div class="w3-third">
@@ -245,12 +251,12 @@
 						<br />
 						<center><input class = "w3-button w3-white w3-border w3-border-red w3-round-large" type = "submit" name = "addquestion" value = "Speichern"/></center>
 						<br />
-						</center>
+						</div>
 						<?php 
 							$question = "SELECT * FROM `submit` ORDER BY id";
 							foreach( $db->query($question) as $row) {
 						?>
-							<center>
+							<div style="text-align:center">
 							<label class = "w3-label w3-text-green">ID</label><br />
 							<?php echo $row['id'] ?> <br /><br />
 							<label class = "w3-label w3-text-green">Thema</label><br />
@@ -266,7 +272,7 @@
 							<label class = "w3-label w3-text-green">3. Falsche Antwort</label><br />
 							<?php echo $row['wrong_answer_3'] ?> <br /><br />
 							<hr />
-							</center>
+							</div>
 							<?php } ?>
 						</form>
 					<?php }
@@ -275,11 +281,11 @@
 						else { 
 					
 						?>
-					<center>
-						<p class = "w3-text-red">Du hast hier keine Berechtigung!</p>
+					
+					<p style="text-align:center" class = "w3-text-red">Du hast hier keine Berechtigung!</p>
 					</center>
 				<?php } if( $editing ) { ?>
-					<center>
+					
 					<form action = "?addquestion=1" method= "post">
 						<label class="w3-label w3-text-green">Themenauswahl</label>
 						<select name = "topics" class="w3-select">
@@ -318,11 +324,11 @@
 									echo "SELECTED";
 								}
 							?>>Filme</option>
-							<option value = "musik" <?php 
-								if( strcmp($topic, "musik") == 0 ) {
+							<option value = "music" <?php 
+								if( strcmp($topic, "music") == 0 ) {
 									echo "SELECTED";
 								}
-							?>>Musik</option>
+							?>>music</option>
 							<option value = "nature" <?php 
 								if( strcmp($topic, "nature") == 0 ) {
 									echo "SELECTED";
@@ -386,10 +392,11 @@
 							</form>
 						</center>
 				<?php } if( $edited ) { ?>
-					<center>
-						<p class = "w3-text-green">Du hast die Frage erfolgreich hinzugef&uuml;gt!</p>
-					</center>
+				
+					<p style="text-align:center" class = "w3-text-green">Du hast die Frage erfolgreich hinzugef&uuml;gt!</p>
+			
 				<?php } ?>
 			</div>
-		</body>
+		</div>
+	</body>
 </html>

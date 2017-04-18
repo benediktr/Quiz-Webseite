@@ -86,8 +86,8 @@
 	<head>
 		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 		<title>EST Quiz-Projekt</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" href="https://www.w3schools.com/w3css/3/w3.css">
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="https://www.w3schools.com/w3css/3/w3.css" />
 	</head>
 	<body>
 		<!-- Sidebar -->
@@ -114,29 +114,32 @@
 		<div style="margin-left:15%">
 			<div class="w3-container w3-teal">
 				<h1>Registrieren</h1>
+				<p>Est Quiz-Projekt von Benedikt Ross und Lukas Keller</p>
 			</div>
 			<hr />
 			<div class="w3-display-middle">
 				<?php if( $showFormular ) { ?>
 				<form action = "?register=1" method = "post">
-					<label class="w3-label w3-text-green"><b>Username</b></label>
-					<input type = "name"  size = "30" maxlength = "15" name = "username" class = "w3-input w3-border"/><br>
-					<label class="w3-label w3-text-green"><b>Passwort</b></label>
-					<input type = "password" size = "30" maxlength = "255" name = "password" class = "w3-input w3-border"/><br>
-					<label class="w3-label w3-text-green"><b>Passwort wiederholen</b></label>
-					<input type = "password" size = "30" maxlength = "255" name = "password2" class = "w3-input w3-border"/><br>
-					<label class="w3-label w3-text-green"><b>E-Mail-Addresse</b></label>
-					<input type = "email" size = "30" maxlength = "200" name = "email" class = "w3-input w3-border"/><br />
-					<center><input class = "w3-button w3-white w3-border w3-border-red w3-round-large" value = "Registrieren" type = "submit"/><center>
+					<fieldset style="border-style:none;">
+						<p class="w3-label w3-text-green" style="font-weight: bold; margin-bottom: 1%; margin-top: 4%;">Username</p>
+						<input type = "text"  size = "30" maxlength = "15" name = "username" class = "w3-input w3-border" />
+						<p class="w3-label w3-text-green" style="font-weight: bold; margin-bottom: 1%; margin-top: 4%;">Passwort</p>
+						<input type = "password" size = "30" maxlength = "255" name = "password" class = "w3-input w3-border" />
+						<p class="w3-label w3-text-green" style="font-weight: bold; margin-bottom: 1%; margin-top: 4%;">Passwort wiederholen</p>
+						<input type = "password" size = "30" maxlength = "255" name = "password2" class = "w3-input w3-border" />
+						<p class="w3-label w3-text-green" style="font-weight: bold; margin-bottom: 1%; margin-top: 4%;">E-Mail-Addresse</p>
+						<input type = "email" size = "30" maxlength = "200" name = "email" class = "w3-input w3-border" />
+						
+						<input class = "w3-button w3-white w3-border w3-border-red w3-round-large" style="margin-top: 5%;margin-left:25%;" value = "Registrieren" type = "submit" />
+					</fieldset>
 				</form>
 			</div>
 			<?php } if( $error ) { ?>
-				<center><p class = "w3-text-red">Fehler beim registrieren!</p></center>
-				<center><p class = "w3-text-red"><?php echo $error_message; ?></p></center>
+				<p class = "w3-text-red" style="text-align: center;">Fehler beim registrieren!</p>
+				<p class = "w3-text-red" style="text-align: center;"><?php echo $error_message; ?></p>
 			<?php } if( $successfull ) { ?>
-				<center><p class = "w3-text-green">Hallo <?php echo $username; ?>, du hast erfolgreich einen Account erstellt! Du kannst dich nun <a href = "login.php">Einloggen</a>!</p></center>
+				<p class = "w3-text-green" style="text-align: center;">Hallo <?php echo $username; ?>, du hast erfolgreich einen Account erstellt! Du kannst dich nun <a href = "login.php">Einloggen</a>!</p>
 			<?php } ?>
-			</div>
 		</div>
 	</body>
 </html>
