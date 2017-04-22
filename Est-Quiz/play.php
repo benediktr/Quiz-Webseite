@@ -26,11 +26,9 @@
 	$_SESSION['falschBeantworteteFragen'] = 0;
 	$_SESSION['richtigBeantworteteFragen'] = 0;
 	
-	//Rundenzahl auf 0 setzen
-	$_SESSION['schonAufgerufen']=0;
 
 	//Counter fuer die Runden auf eins setzen
-	//Rollen sind immer 10 Durchgänge
+	//Eine Runde sind immer 10 Fragen
 	$_SESSION['runden'] = 1;
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
@@ -67,20 +65,18 @@
 		<!-- Content -->
 		<div style="margin-left:15%">
 			<div class="w3-container w3-teal">
-				<h1>Profil</h1>
+				<h1>Spiel starten</h1>
 				<p>Est Quiz-Projekt von Benedikt Ross und Lukas Keller</p>
 			</div>
 			<hr />
-			<?php if( !$access ) { ?>
-				<center>
-					<p>Bitte zuerst <a href = "login.php">Einloggen</a>!</p>
-				</center>
+			<?php if( !$access ) { ?>				
+				<p style="text-align:center;">Bitte zuerst <a href = "login.php">Einloggen</a>!</p>
 			<?php } else { ?>
 			
 			<div class="w3-container" style="text-align:center;">
-				<div class = 'box'>
-					<span class = 'green'>Wähle aus einer der Themengebiete das Thema für dein Quiz</span>
-				</div>
+				
+				<p>W&auml;hle aus einer der Themengebiete das Thema f&uuml;r dein Quiz</p>
+				
 				<br />
 				
 				<form action = "game.php" method = "post">

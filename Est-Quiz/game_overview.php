@@ -2,7 +2,7 @@
 	session_start(); 
 	require 'php/functions.php'; 
 	
-		if( isset($_SESSION['userid']) ) {
+	if( isset($_SESSION['userid']) ) {
 		$access = true;
 	} else {
 		$access = false;
@@ -63,7 +63,7 @@
 		<!-- Content -->
 		<div style="margin-left:15%">
 			<div class="w3-container w3-teal">
-				<h1>Profil</h1>
+				<h1>Runden&uuml;bersicht</h1>
 				<p>Est Quiz-Projekt von Benedikt Ross und Lukas Keller</p>
 			</div>
 			<hr />

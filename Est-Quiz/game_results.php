@@ -50,7 +50,7 @@
 		<!-- Content -->
 		<div style="margin-left:15%">
 			<div class="w3-container w3-teal">
-				<h1>Profil</h1>
+				<h1>Spiel</h1>
 				<p>Est Quiz-Projekt von Benedikt Ross und Lukas Keller</p>
 			</div>
 			<hr />
@@ -65,7 +65,7 @@
 				//Wenn keine Fragen verfuegbar sind Warnung anzeigen...
 				if($_SESSION['maximaleAnzahlAnFragen'] < $_SESSION['IDaktuelleFrage']){
 				?>
-					<div class="w3-panel w3-green">
+					<div class="w3-panel w3-red">
 						<h3> Fehler </h3>
 						<p> Es sind keine weiteren Fragen in diesem Themenbereich verf&uuml;gbar. F&uuml;ge weitere hinzu oder spiele in einem anderen Themenbereich weiter.</p>
 					</div>
@@ -172,7 +172,7 @@
 					if($_POST['antworten'] == $_SESSION['richtigeAntwortZahl']){
 						//Totalen Score erhoehen, 
 						//Anzahl richtig beantworteter Fragen erhoehen  
-						//ID der zuletztbeantworteten Frage erhoehen
+						//Zahl der zuletztbeantworteten Frage erhoehen
 						$abfrage_richtig = "UPDATE  `user` SET  `total_score` =  `total_score` +1, `".$_SESSION['themaScore']."` =  `".$_SESSION['themaScore']."`+1, `counter_right_answers` =  `counter_right_answers` +1, `counter_answers` =  `counter_answers` +1 WHERE `id`=".$_SESSION['userid']."";
 						$statement_right = $db->prepare($abfrage_richtig);
 						$statement_right->execute();
@@ -208,7 +208,6 @@
 						echo '<form action="game_overview.php" method="post" >';
 						// Wieder zurücksetzen
 						$_SESSION['durchlauf'] = 1;
-						$_SESSION['schonAufgerufen']=$_SESSION['schonAufgerufen']+1;
 					}
 					?>
 						<fieldset style="border-style:none;">

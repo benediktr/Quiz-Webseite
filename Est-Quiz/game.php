@@ -53,7 +53,7 @@
 		<!-- Content -->
 		<div style="margin-left:15%">
 			<div class="w3-container w3-teal">
-				<h1>Profil</h1>
+				<h1>Spiel</h1>
 				<p>Est Quiz-Projekt von Benedikt Ross und Lukas Keller</p>
 			</div>
 			<hr />
@@ -93,7 +93,7 @@
 							case "freetime":
 								$_SESSION['themaQuestion']='freetime';
 								$_SESSION['themaScore']='score_freetime';
-							break;
+								break;
 							case "geography":
 								$_SESSION['themaQuestion']='geographie';
 								$_SESSION['themaScore']='score_geography';
@@ -191,7 +191,6 @@
 					} 
 					
 					//Formular Kopf
-					//Wenn es unter 10 Mal ist soll sich das Skript selbst nochmals aufrufen, beim 10 Mal soll das Ergebnis 
 					
 					?> 
 					<form action="game_results.php" method="post">

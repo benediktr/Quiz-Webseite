@@ -81,7 +81,7 @@
 									}
 								} else {
 									if( $_SESSION['userid'] == $row2['id'] ) {
-										$nameuser = "<td><span class = 'w3-text-green'>".$row2["username"]."</span></td>";
+										$nameuser = "<td><span class = 'w3-text-green'>".$row2["username"]."</span>[<span class = 'w3-text-blue'>User</span>]</td>";
 									} else {
 										$nameuser = "<td>".$row2["username"]." [<span class = 'w3-text-blue'>User</span>]</td>";
 									}
@@ -89,7 +89,7 @@
 								$score_total = "<td>".$row2['total_score']."</td>";
 								if($username != $nameuser){
 									if( $platz == 1 ) {
-										echo "<td><span class='w3-badge w3-green'>$platz</span></td>";
+										echo "<td><span class='w3-badge w3-green'>$platz </span></td>";
 									}
 									if( $platz == 2 ) {
 										echo "<td><span class='w3-badge w3-orange'>$platz</span></td>";
