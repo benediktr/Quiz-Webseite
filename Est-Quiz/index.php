@@ -63,7 +63,7 @@
 			
 			<p style="text-align: center;">
 				Herzlich Willkommen auf der Projekt Webseite! <br />
-				Du möchtest dein Wissen auf die Probe stellen und dich gleizeitig mit anderen messen? Dann bist du <b>hier</b> genau richtig! <br />
+				Du möchtest dein Wissen auf die Probe stellen und dich gleichzeitig mit anderen messen? Dann bist du <b>hier</b> genau richtig! <br />
 				Es haben sich bereits <b> <?php echo $usersRegistered; ?></b> User registriert!<br />
 			</p>
 			
